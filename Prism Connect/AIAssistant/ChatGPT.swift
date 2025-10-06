@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// a change to be tracked.
 // MARK: - ChatGPT Client
 // A minimal, self-contained client for OpenAI's Chat Completions API.
 // Uses URLSession + Swift Concurrency, no external dependencies.
