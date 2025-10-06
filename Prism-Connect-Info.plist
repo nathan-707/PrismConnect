@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>Applcon</string>
+			</array>
+			<key>CFBundleIconName</key>
+			<string>Applcon</string>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>NSAccessorySetupBluetoothServices</key>
+	<array>
+		<string>E56A082E-C49B-47CA-A2AB-389127B8ABE3</string>
+		<string>E58A082E-C49B-47CA-A2AB-389127B8ABE4</string>
+	</array>
+	<key>NSAccessorySetupKitSupports</key>
+	<array>
+		<string>Bluetooth</string>
+	</array>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationPreferredDefaultSceneSessionRole</key>
+		<string>UIWindowSceneSessionRoleVolumetricApplication</string>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<true/>
+	</dict>
+</dict>
+</plist>

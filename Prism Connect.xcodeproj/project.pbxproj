@@ -1,0 +1,950 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8203862A2DA5E2F800614D9F /* ClockSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820386292DA5E2F800614D9F /* ClockSpace.swift */; };
+		82164EA12E22DE4300D6B1E2 /* aiFunfactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82164EA02E22DE4300D6B1E2 /* aiFunfactView.swift */; };
+		821856822E1E1D98003F70F3 /* AsistanceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821856812E1E1D98003F70F3 /* AsistanceData.swift */; };
+		82190AC32E8CB97800693B39 /* TeleportOptionsQuickMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82190AC22E8CB97800693B39 /* TeleportOptionsQuickMenu.swift */; };
+		82190AC82E8CBFCC00693B39 /* thunderstorm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82190AC62E8CBFCC00693B39 /* thunderstorm.mp3 */; platformFilters = (xros, ); };
+		82190ACA2E8CC87200693B39 /* snow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82190AC92E8CC87200693B39 /* snow.mp3 */; platformFilters = (xros, ); };
+		82263CB32D7EB21C00952BF2 /* InTeleportModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82263CB22D7EB21C00952BF2 /* InTeleportModeView.swift */; };
+		82263CD52D812FDC00952BF2 /* ThemeParkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82263CD42D812FDC00952BF2 /* ThemeParkView.swift */; };
+		82263CD72D8272A000952BF2 /* EffectSpeedPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82263CD62D8272A000952BF2 /* EffectSpeedPickerView.swift */; };
+		823470822E62C2F60001CE4E /* ChatGPT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823470812E62C2F60001CE4E /* ChatGPT.swift */; };
+		823CD69E2E625E92006F334E /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CD69D2E625E92006F334E /* Debug.swift */; };
+		823CD6A02E6267F8006F334E /* VirtualColorClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CD69F2E6267F8006F334E /* VirtualColorClock.swift */; };
+		823CF8312E6778C800BC9461 /* Funfacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CF8302E6778C800BC9461 /* Funfacts.swift */; };
+		823CF8332E67799F00BC9461 /* Funfacts_ThemeParks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CF8322E67799F00BC9461 /* Funfacts_ThemeParks.swift */; };
+		823CF8352E67842300BC9461 /* FunfactTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823CF8342E67842300BC9461 /* FunfactTool.swift */; };
+		824313312E21EDE1003C554C /* AIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824313302E21EDE1003C554C /* AIResponse.swift */; };
+		8245B54B2DAAFA6900C419A2 /* SceneReconstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8245B54A2DAAFA6900C419A2 /* SceneReconstruction.swift */; };
+		82480ABA2C1C206200ED84CD /* Prism_ConnectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82480AB92C1C206200ED84CD /* Prism_ConnectApp.swift */; };
+		82480ABC2C1C206200ED84CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82480ABB2C1C206200ED84CD /* ContentView.swift */; };
+		82480ABE2C1C206300ED84CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82480ABD2C1C206300ED84CD /* Assets.xcassets */; };
+		82480AC12C1C206300ED84CD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82480AC02C1C206300ED84CD /* Preview Assets.xcassets */; };
+		82480ACB2C1C206300ED84CD /* Prism_ConnectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82480ACA2C1C206300ED84CD /* Prism_ConnectTests.swift */; };
+		82480AD52C1C206300ED84CD /* Prism_ConnectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82480AD42C1C206300ED84CD /* Prism_ConnectUITests.swift */; };
+		82480AD72C1C206300ED84CD /* Prism_ConnectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82480AD62C1C206300ED84CD /* Prism_ConnectUITestsLaunchTests.swift */; };
+		8249FF5C2DA5C1FD00379A15 /* ClockInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8249FF5B2DA5C1FD00379A15 /* ClockInfo.swift */; };
+		825C73902D87E9BC00E91FBB /* SleepModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825C738F2D87E9BC00E91FBB /* SleepModeView.swift */; };
+		8260316E2D78F13000C0BF71 /* TeleportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8260316D2D78F13000C0BF71 /* TeleportView.swift */; };
+		826031702D7908AD00C0BF71 /* PickEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8260316F2D7908AD00C0BF71 /* PickEffectView.swift */; };
+		826031732D79707E00C0BF71 /* ClockSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826031722D79707E00C0BF71 /* ClockSettingsView.swift */; };
+		826031752D79804500C0BF71 /* ColorTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826031742D79804500C0BF71 /* ColorTile.swift */; };
+		8260C0A12E8B8E6800561B63 /* virutalskies_storeConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 8260C0A02E8B8E6800561B63 /* virutalskies_storeConfig.storekit */; };
+		8284B53F2E8E210700104BB6 /* rain.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8284B53E2E8E210700104BB6 /* rain.wav */; platformFilters = (xros, ); };
+		828584E72E66B1EF00A1636B /* ClockDisplayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828584E62E66B1EF00A1636B /* ClockDisplayInfo.swift */; };
+		82998E622E9092AC00D68331 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82998E612E9092AC00D68331 /* Defaults.swift */; };
+		82AA6EB02DA5E4EC00FCFE43 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 82AA6EAF2DA5E4EC00FCFE43 /* RealityKitContent */; };
+		82ADE58A2D6D8E4B002FE822 /* PrismBoxColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADE5892D6D8E4B002FE822 /* PrismBoxColors.swift */; };
+		82ADE58E2D6D8EA8002FE822 /* sessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADE58D2D6D8EA8002FE822 /* sessionManager.swift */; };
+		82ADE5952D6D9E60002FE822 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADE5942D6D9E60002FE822 /* SettingsModel.swift */; };
+		82ADE5CD2D703979002FE822 /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADE5CC2D703979002FE822 /* TODO.swift */; };
+		82ADE5CF2D719781002FE822 /* ConnectedMainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADE5CE2D719781002FE822 /* ConnectedMainMenu.swift */; };
+		82B256E22E7527A30002CD7B /* VisionClockInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B256E12E7527A30002CD7B /* VisionClockInfoView.swift */; };
+		82BB29CA2E6A1FAA00906872 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BB29C92E6A1FAA00906872 /* SettingsView.swift */; };
+		82BB29CC2E6A256100906872 /* SelectLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BB29CB2E6A256100906872 /* SelectLocationView.swift */; };
+		82BC4E712DE98089001D7B63 /* ClockVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC4E702DE98089001D7B63 /* ClockVolume.swift */; };
+		82BC4E732DE986BE001D7B63 /* ClockControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC4E722DE986BE001D7B63 /* ClockControls.swift */; };
+		82C108C22DEA41F200E8CDF9 /* WeatherVolumeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C108C12DEA41F200E8CDF9 /* WeatherVolumeManager.swift */; };
+		82D6928B2E7D1515007BCD48 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6928A2E7D1515007BCD48 /* UserData.swift */; };
+		82DEAC3D2DA9E05500013FF1 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEAC3C2DA9E05500013FF1 /* WeatherManager.swift */; };
+		82E6F7C42D7805910087A1C6 /* WaitTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6F7C32D7805910087A1C6 /* WaitTimes.swift */; };
+		82E6F7C62D780F8F0087A1C6 /* ParkPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6F7C52D780F8F0087A1C6 /* ParkPicker.swift */; };
+		82E6F7C82D7818D50087A1C6 /* TeleportCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6F7C72D7818D50087A1C6 /* TeleportCities.swift */; };
+		82E978432E20A1A300CFD6D0 /* AiAsistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E978422E20A1A300CFD6D0 /* AiAsistantView.swift */; };
+		82F233822DA3A7500020AE36 /* VisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F233812DA3A7500020AE36 /* VisionView.swift */; };
+		82F517BE2E84E4A3007D11C7 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F517BD2E84E4A3007D11C7 /* Store.swift */; };
+		82F517C02E84E6FA007D11C7 /* UpgradeInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F517BF2E84E6FA007D11C7 /* UpgradeInfoView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		82480AC72C1C206300ED84CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 82480AAE2C1C206200ED84CD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 82480AB52C1C206200ED84CD;
+			remoteInfo = "Prism Connect";
+		};
+		82480AD12C1C206300ED84CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 82480AAE2C1C206200ED84CD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 82480AB52C1C206200ED84CD;
+			remoteInfo = "Prism Connect";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		82263CCF2D8124A900952BF2 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		820386292DA5E2F800614D9F /* ClockSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockSpace.swift; sourceTree = "<group>"; };
+		8213DA1F2E8B5F710074B3D7 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		82164EA02E22DE4300D6B1E2 /* aiFunfactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aiFunfactView.swift; sourceTree = "<group>"; };
+		821856812E1E1D98003F70F3 /* AsistanceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsistanceData.swift; sourceTree = "<group>"; };
+		82190AC22E8CB97800693B39 /* TeleportOptionsQuickMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportOptionsQuickMenu.swift; sourceTree = "<group>"; };
+		82190AC62E8CBFCC00693B39 /* thunderstorm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thunderstorm.mp3; sourceTree = "<group>"; };
+		82190AC92E8CC87200693B39 /* snow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snow.mp3; sourceTree = "<group>"; };
+		82263CB22D7EB21C00952BF2 /* InTeleportModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTeleportModeView.swift; sourceTree = "<group>"; };
+		82263CBA2D8124A700952BF2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		82263CBC2D8124A700952BF2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		82263CD42D812FDC00952BF2 /* ThemeParkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeParkView.swift; sourceTree = "<group>"; };
+		82263CD62D8272A000952BF2 /* EffectSpeedPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectSpeedPickerView.swift; sourceTree = "<group>"; };
+		823470812E62C2F60001CE4E /* ChatGPT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPT.swift; sourceTree = "<group>"; };
+		823CD69D2E625E92006F334E /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
+		823CD69F2E6267F8006F334E /* VirtualColorClock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualColorClock.swift; sourceTree = "<group>"; };
+		823CD6A12E626CAA006F334E /* Prism Connect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Prism Connect.entitlements"; sourceTree = "<group>"; };
+		823CF8302E6778C800BC9461 /* Funfacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Funfacts.swift; sourceTree = "<group>"; };
+		823CF8322E67799F00BC9461 /* Funfacts_ThemeParks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Funfacts_ThemeParks.swift; sourceTree = "<group>"; };
+		823CF8342E67842300BC9461 /* FunfactTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunfactTool.swift; sourceTree = "<group>"; };
+		824313302E21EDE1003C554C /* AIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIResponse.swift; sourceTree = "<group>"; };
+		8245B54A2DAAFA6900C419A2 /* SceneReconstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneReconstruction.swift; sourceTree = "<group>"; };
+		82480AB62C1C206200ED84CD /* Prism Connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Prism Connect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82480AB92C1C206200ED84CD /* Prism_ConnectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prism_ConnectApp.swift; sourceTree = "<group>"; };
+		82480ABB2C1C206200ED84CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		82480ABD2C1C206300ED84CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		82480AC02C1C206300ED84CD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		82480AC62C1C206300ED84CD /* Prism ConnectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Prism ConnectTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82480ACA2C1C206300ED84CD /* Prism_ConnectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prism_ConnectTests.swift; sourceTree = "<group>"; };
+		82480AD02C1C206300ED84CD /* Prism ConnectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Prism ConnectUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82480AD42C1C206300ED84CD /* Prism_ConnectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prism_ConnectUITests.swift; sourceTree = "<group>"; };
+		82480AD62C1C206300ED84CD /* Prism_ConnectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prism_ConnectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		82480AE32C1C240800ED84CD /* Prism-Connect-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Prism-Connect-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8249FF5B2DA5C1FD00379A15 /* ClockInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockInfo.swift; sourceTree = "<group>"; };
+		825C738F2D87E9BC00E91FBB /* SleepModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepModeView.swift; sourceTree = "<group>"; };
+		8260316D2D78F13000C0BF71 /* TeleportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportView.swift; sourceTree = "<group>"; };
+		8260316F2D7908AD00C0BF71 /* PickEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickEffectView.swift; sourceTree = "<group>"; };
+		826031722D79707E00C0BF71 /* ClockSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockSettingsView.swift; sourceTree = "<group>"; };
+		826031742D79804500C0BF71 /* ColorTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTile.swift; sourceTree = "<group>"; };
+		8260C0A02E8B8E6800561B63 /* virutalskies_storeConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; name = virutalskies_storeConfig.storekit; path = "Prism Connect/VisionOS/Files/virutalskies_storeConfig.storekit"; sourceTree = SOURCE_ROOT; };
+		8284B53E2E8E210700104BB6 /* rain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rain.wav; sourceTree = "<group>"; };
+		828584E62E66B1EF00A1636B /* ClockDisplayInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockDisplayInfo.swift; sourceTree = "<group>"; };
+		82998E612E9092AC00D68331 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		82ADE5892D6D8E4B002FE822 /* PrismBoxColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismBoxColors.swift; sourceTree = "<group>"; };
+		82ADE58D2D6D8EA8002FE822 /* sessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionManager.swift; sourceTree = "<group>"; };
+		82ADE5942D6D9E60002FE822 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		82ADE5CC2D703979002FE822 /* TODO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
+		82ADE5CE2D719781002FE822 /* ConnectedMainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedMainMenu.swift; sourceTree = "<group>"; };
+		82B256E12E7527A30002CD7B /* VisionClockInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionClockInfoView.swift; sourceTree = "<group>"; };
+		82BB29C92E6A1FAA00906872 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		82BB29CB2E6A256100906872 /* SelectLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationView.swift; sourceTree = "<group>"; };
+		82BC4E702DE98089001D7B63 /* ClockVolume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockVolume.swift; sourceTree = "<group>"; };
+		82BC4E722DE986BE001D7B63 /* ClockControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockControls.swift; sourceTree = "<group>"; };
+		82C108C12DEA41F200E8CDF9 /* WeatherVolumeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVolumeManager.swift; sourceTree = "<group>"; };
+		82D6928A2E7D1515007BCD48 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		82DEAC3C2DA9E05500013FF1 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		82E6F7C32D7805910087A1C6 /* WaitTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitTimes.swift; sourceTree = "<group>"; };
+		82E6F7C52D780F8F0087A1C6 /* ParkPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkPicker.swift; sourceTree = "<group>"; };
+		82E6F7C72D7818D50087A1C6 /* TeleportCities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportCities.swift; sourceTree = "<group>"; };
+		82E978422E20A1A300CFD6D0 /* AiAsistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AiAsistantView.swift; sourceTree = "<group>"; };
+		82F233812DA3A7500020AE36 /* VisionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionView.swift; sourceTree = "<group>"; };
+		82F517BD2E84E4A3007D11C7 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		82F517BF2E84E6FA007D11C7 /* UpgradeInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeInfoView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		82480AB32C1C206200ED84CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82AA6EB02DA5E4EC00FCFE43 /* RealityKitContent in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82480AC32C1C206300ED84CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82480ACD2C1C206300ED84CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8213DA1E2E8B5F710074B3D7 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				8213DA1F2E8B5F710074B3D7 /* RealityKitContent */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		82190AC42E8CBFA200693B39 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				8284B53E2E8E210700104BB6 /* rain.wav */,
+				82190AC62E8CBFCC00693B39 /* thunderstorm.mp3 */,
+				82190AC92E8CC87200693B39 /* snow.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		82263CB92D8124A700952BF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				82263CBA2D8124A700952BF2 /* WidgetKit.framework */,
+				82263CBC2D8124A700952BF2 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		824313322E21EED5003C554C /* AIAssistant */ = {
+			isa = PBXGroup;
+			children = (
+				823470812E62C2F60001CE4E /* ChatGPT.swift */,
+				82164EA02E22DE4300D6B1E2 /* aiFunfactView.swift */,
+				821856812E1E1D98003F70F3 /* AsistanceData.swift */,
+				824313302E21EDE1003C554C /* AIResponse.swift */,
+				82E978422E20A1A300CFD6D0 /* AiAsistantView.swift */,
+				823CF8342E67842300BC9461 /* FunfactTool.swift */,
+			);
+			path = AIAssistant;
+			sourceTree = "<group>";
+		};
+		8245B54C2DAAFA8E00C419A2 /* IOS */ = {
+			isa = PBXGroup;
+			children = (
+				826031782D7A444F00C0BF71 /* SubViews */,
+				826031712D7966FE00C0BF71 /* Views */,
+			);
+			path = IOS;
+			sourceTree = "<group>";
+		};
+		82480AAD2C1C206200ED84CD = {
+			isa = PBXGroup;
+			children = (
+				823CD69D2E625E92006F334E /* Debug.swift */,
+				82ADE5CC2D703979002FE822 /* TODO.swift */,
+				82480AB82C1C206200ED84CD /* Prism Connect */,
+				82480AC92C1C206300ED84CD /* Prism ConnectTests */,
+				82480AD32C1C206300ED84CD /* Prism ConnectUITests */,
+				82263CB92D8124A700952BF2 /* Frameworks */,
+				8213DA1E2E8B5F710074B3D7 /* Packages */,
+				82480AB72C1C206200ED84CD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		82480AB72C1C206200ED84CD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				82480AB62C1C206200ED84CD /* Prism Connect.app */,
+				82480AC62C1C206300ED84CD /* Prism ConnectTests.xctest */,
+				82480AD02C1C206300ED84CD /* Prism ConnectUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		82480AB82C1C206200ED84CD /* Prism Connect */ = {
+			isa = PBXGroup;
+			children = (
+				823CD6A12E626CAA006F334E /* Prism Connect.entitlements */,
+				82190AC42E8CBFA200693B39 /* Sounds */,
+				824313322E21EED5003C554C /* AIAssistant */,
+				82F057CA2E6A69F4006C9ABC /* TeleportFiles */,
+				8245B54C2DAAFA8E00C419A2 /* IOS */,
+				82DEAC3A2DA9DE7F00013FF1 /* VisionOS */,
+				826031792D7A446A00C0BF71 /* GeneralFiles */,
+				82480AE32C1C240800ED84CD /* Prism-Connect-Info.plist */,
+				82480ABD2C1C206300ED84CD /* Assets.xcassets */,
+				82480ABF2C1C206300ED84CD /* Preview Content */,
+			);
+			path = "Prism Connect";
+			sourceTree = "<group>";
+		};
+		82480ABF2C1C206300ED84CD /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				82480AC02C1C206300ED84CD /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		82480AC92C1C206300ED84CD /* Prism ConnectTests */ = {
+			isa = PBXGroup;
+			children = (
+				82480ACA2C1C206300ED84CD /* Prism_ConnectTests.swift */,
+			);
+			path = "Prism ConnectTests";
+			sourceTree = "<group>";
+		};
+		82480AD32C1C206300ED84CD /* Prism ConnectUITests */ = {
+			isa = PBXGroup;
+			children = (
+				82480AD42C1C206300ED84CD /* Prism_ConnectUITests.swift */,
+				82480AD62C1C206300ED84CD /* Prism_ConnectUITestsLaunchTests.swift */,
+			);
+			path = "Prism ConnectUITests";
+			sourceTree = "<group>";
+		};
+		826031712D7966FE00C0BF71 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8260316D2D78F13000C0BF71 /* TeleportView.swift */,
+				82480ABB2C1C206200ED84CD /* ContentView.swift */,
+				82E6F7C52D780F8F0087A1C6 /* ParkPicker.swift */,
+				82ADE5CE2D719781002FE822 /* ConnectedMainMenu.swift */,
+				825C738F2D87E9BC00E91FBB /* SleepModeView.swift */,
+				82263CB22D7EB21C00952BF2 /* InTeleportModeView.swift */,
+				82263CD42D812FDC00952BF2 /* ThemeParkView.swift */,
+				826031722D79707E00C0BF71 /* ClockSettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		826031782D7A444F00C0BF71 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				826031742D79804500C0BF71 /* ColorTile.swift */,
+				82263CD62D8272A000952BF2 /* EffectSpeedPickerView.swift */,
+				8260316F2D7908AD00C0BF71 /* PickEffectView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		826031792D7A446A00C0BF71 /* GeneralFiles */ = {
+			isa = PBXGroup;
+			children = (
+				82ADE58D2D6D8EA8002FE822 /* sessionManager.swift */,
+				82480AB92C1C206200ED84CD /* Prism_ConnectApp.swift */,
+				82ADE5892D6D8E4B002FE822 /* PrismBoxColors.swift */,
+				82ADE5942D6D9E60002FE822 /* SettingsModel.swift */,
+				82D6928A2E7D1515007BCD48 /* UserData.swift */,
+				82998E612E9092AC00D68331 /* Defaults.swift */,
+			);
+			path = GeneralFiles;
+			sourceTree = "<group>";
+		};
+		82DEAC3A2DA9DE7F00013FF1 /* VisionOS */ = {
+			isa = PBXGroup;
+			children = (
+				82DEAC3F2DA9E15100013FF1 /* Views */,
+				82DEAC3E2DA9E14800013FF1 /* Files */,
+			);
+			path = VisionOS;
+			sourceTree = "<group>";
+		};
+		82DEAC3E2DA9E14800013FF1 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				82F517BD2E84E4A3007D11C7 /* Store.swift */,
+				823CD69F2E6267F8006F334E /* VirtualColorClock.swift */,
+				82DEAC3C2DA9E05500013FF1 /* WeatherManager.swift */,
+				8245B54A2DAAFA6900C419A2 /* SceneReconstruction.swift */,
+				8249FF5B2DA5C1FD00379A15 /* ClockInfo.swift */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		82DEAC3F2DA9E15100013FF1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				82190AC22E8CB97800693B39 /* TeleportOptionsQuickMenu.swift */,
+				82B256E12E7527A30002CD7B /* VisionClockInfoView.swift */,
+				82BC4E722DE986BE001D7B63 /* ClockControls.swift */,
+				82BC4E702DE98089001D7B63 /* ClockVolume.swift */,
+				820386292DA5E2F800614D9F /* ClockSpace.swift */,
+				828584E62E66B1EF00A1636B /* ClockDisplayInfo.swift */,
+				82BB29C92E6A1FAA00906872 /* SettingsView.swift */,
+				82F517BF2E84E6FA007D11C7 /* UpgradeInfoView.swift */,
+				82BB29CB2E6A256100906872 /* SelectLocationView.swift */,
+				82F233812DA3A7500020AE36 /* VisionView.swift */,
+				82C108C12DEA41F200E8CDF9 /* WeatherVolumeManager.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		82F057CA2E6A69F4006C9ABC /* TeleportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				82E6F7C72D7818D50087A1C6 /* TeleportCities.swift */,
+				8260C0A02E8B8E6800561B63 /* virutalskies_storeConfig.storekit */,
+				82E6F7C32D7805910087A1C6 /* WaitTimes.swift */,
+				823CF8302E6778C800BC9461 /* Funfacts.swift */,
+				823CF8322E67799F00BC9461 /* Funfacts_ThemeParks.swift */,
+			);
+			path = TeleportFiles;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		82480AB52C1C206200ED84CD /* Prism Connect */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82480ADA2C1C206300ED84CD /* Build configuration list for PBXNativeTarget "Prism Connect" */;
+			buildPhases = (
+				82480AB22C1C206200ED84CD /* Sources */,
+				82480AB32C1C206200ED84CD /* Frameworks */,
+				82480AB42C1C206200ED84CD /* Resources */,
+				82263CCF2D8124A900952BF2 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Prism Connect";
+			productName = "Prism Connect";
+			productReference = 82480AB62C1C206200ED84CD /* Prism Connect.app */;
+			productType = "com.apple.product-type.application";
+		};
+		82480AC52C1C206300ED84CD /* Prism ConnectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82480ADD2C1C206300ED84CD /* Build configuration list for PBXNativeTarget "Prism ConnectTests" */;
+			buildPhases = (
+				82480AC22C1C206300ED84CD /* Sources */,
+				82480AC32C1C206300ED84CD /* Frameworks */,
+				82480AC42C1C206300ED84CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82480AC82C1C206300ED84CD /* PBXTargetDependency */,
+			);
+			name = "Prism ConnectTests";
+			productName = "Prism ConnectTests";
+			productReference = 82480AC62C1C206300ED84CD /* Prism ConnectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		82480ACF2C1C206300ED84CD /* Prism ConnectUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82480AE02C1C206300ED84CD /* Build configuration list for PBXNativeTarget "Prism ConnectUITests" */;
+			buildPhases = (
+				82480ACC2C1C206300ED84CD /* Sources */,
+				82480ACD2C1C206300ED84CD /* Frameworks */,
+				82480ACE2C1C206300ED84CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82480AD22C1C206300ED84CD /* PBXTargetDependency */,
+			);
+			name = "Prism ConnectUITests";
+			productName = "Prism ConnectUITests";
+			productReference = 82480AD02C1C206300ED84CD /* Prism ConnectUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		82480AAE2C1C206200ED84CD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					82480AB52C1C206200ED84CD = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					82480AC52C1C206300ED84CD = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 82480AB52C1C206200ED84CD;
+					};
+					82480ACF2C1C206300ED84CD = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 82480AB52C1C206200ED84CD;
+					};
+				};
+			};
+			buildConfigurationList = 82480AB12C1C206200ED84CD /* Build configuration list for PBXProject "Prism Connect" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 82480AAD2C1C206200ED84CD;
+			packageReferences = (
+				82AA6EAE2DA5E4EC00FCFE43 /* XCLocalSwiftPackageReference "Packages/RealityKitContent" */,
+			);
+			productRefGroup = 82480AB72C1C206200ED84CD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				82480AB52C1C206200ED84CD /* Prism Connect */,
+				82480AC52C1C206300ED84CD /* Prism ConnectTests */,
+				82480ACF2C1C206300ED84CD /* Prism ConnectUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		82480AB42C1C206200ED84CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8284B53F2E8E210700104BB6 /* rain.wav in Resources */,
+				82480AC12C1C206300ED84CD /* Preview Assets.xcassets in Resources */,
+				82190AC82E8CBFCC00693B39 /* thunderstorm.mp3 in Resources */,
+				82480ABE2C1C206300ED84CD /* Assets.xcassets in Resources */,
+				8260C0A12E8B8E6800561B63 /* virutalskies_storeConfig.storekit in Resources */,
+				82190ACA2E8CC87200693B39 /* snow.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82480AC42C1C206300ED84CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82480ACE2C1C206300ED84CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		82480AB22C1C206200ED84CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				823CD69E2E625E92006F334E /* Debug.swift in Sources */,
+				82BC4E712DE98089001D7B63 /* ClockVolume.swift in Sources */,
+				823CF8352E67842300BC9461 /* FunfactTool.swift in Sources */,
+				826031732D79707E00C0BF71 /* ClockSettingsView.swift in Sources */,
+				82480ABC2C1C206200ED84CD /* ContentView.swift in Sources */,
+				82F517C02E84E6FA007D11C7 /* UpgradeInfoView.swift in Sources */,
+				823CD6A02E6267F8006F334E /* VirtualColorClock.swift in Sources */,
+				821856822E1E1D98003F70F3 /* AsistanceData.swift in Sources */,
+				82B256E22E7527A30002CD7B /* VisionClockInfoView.swift in Sources */,
+				82C108C22DEA41F200E8CDF9 /* WeatherVolumeManager.swift in Sources */,
+				82DEAC3D2DA9E05500013FF1 /* WeatherManager.swift in Sources */,
+				8203862A2DA5E2F800614D9F /* ClockSpace.swift in Sources */,
+				82D6928B2E7D1515007BCD48 /* UserData.swift in Sources */,
+				82263CD72D8272A000952BF2 /* EffectSpeedPickerView.swift in Sources */,
+				82190AC32E8CB97800693B39 /* TeleportOptionsQuickMenu.swift in Sources */,
+				82F233822DA3A7500020AE36 /* VisionView.swift in Sources */,
+				828584E72E66B1EF00A1636B /* ClockDisplayInfo.swift in Sources */,
+				82E6F7C42D7805910087A1C6 /* WaitTimes.swift in Sources */,
+				82ADE5952D6D9E60002FE822 /* SettingsModel.swift in Sources */,
+				82BB29CC2E6A256100906872 /* SelectLocationView.swift in Sources */,
+				82BC4E732DE986BE001D7B63 /* ClockControls.swift in Sources */,
+				82E6F7C62D780F8F0087A1C6 /* ParkPicker.swift in Sources */,
+				823470822E62C2F60001CE4E /* ChatGPT.swift in Sources */,
+				82F517BE2E84E4A3007D11C7 /* Store.swift in Sources */,
+				823CF8332E67799F00BC9461 /* Funfacts_ThemeParks.swift in Sources */,
+				82ADE58A2D6D8E4B002FE822 /* PrismBoxColors.swift in Sources */,
+				82ADE58E2D6D8EA8002FE822 /* sessionManager.swift in Sources */,
+				82998E622E9092AC00D68331 /* Defaults.swift in Sources */,
+				8245B54B2DAAFA6900C419A2 /* SceneReconstruction.swift in Sources */,
+				826031702D7908AD00C0BF71 /* PickEffectView.swift in Sources */,
+				82263CB32D7EB21C00952BF2 /* InTeleportModeView.swift in Sources */,
+				82480ABA2C1C206200ED84CD /* Prism_ConnectApp.swift in Sources */,
+				825C73902D87E9BC00E91FBB /* SleepModeView.swift in Sources */,
+				82263CD52D812FDC00952BF2 /* ThemeParkView.swift in Sources */,
+				82164EA12E22DE4300D6B1E2 /* aiFunfactView.swift in Sources */,
+				82ADE5CF2D719781002FE822 /* ConnectedMainMenu.swift in Sources */,
+				8249FF5C2DA5C1FD00379A15 /* ClockInfo.swift in Sources */,
+				82ADE5CD2D703979002FE822 /* TODO.swift in Sources */,
+				82E978432E20A1A300CFD6D0 /* AiAsistantView.swift in Sources */,
+				8260316E2D78F13000C0BF71 /* TeleportView.swift in Sources */,
+				82E6F7C82D7818D50087A1C6 /* TeleportCities.swift in Sources */,
+				824313312E21EDE1003C554C /* AIResponse.swift in Sources */,
+				823CF8312E6778C800BC9461 /* Funfacts.swift in Sources */,
+				826031752D79804500C0BF71 /* ColorTile.swift in Sources */,
+				82BB29CA2E6A1FAA00906872 /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82480AC22C1C206300ED84CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82480ACB2C1C206300ED84CD /* Prism_ConnectTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82480ACC2C1C206300ED84CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82480AD52C1C206300ED84CD /* Prism_ConnectUITests.swift in Sources */,
+				82480AD72C1C206300ED84CD /* Prism_ConnectUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		82480AC82C1C206300ED84CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 82480AB52C1C206200ED84CD /* Prism Connect */;
+			targetProxy = 82480AC72C1C206300ED84CD /* PBXContainerItemProxy */;
+		};
+		82480AD22C1C206300ED84CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 82480AB52C1C206200ED84CD /* Prism Connect */;
+			targetProxy = 82480AD12C1C206300ED84CD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		82480AD82C1C206300ED84CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = DTFF4HTNZR;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		82480AD92C1C206300ED84CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = DTFF4HTNZR;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		82480ADB2C1C206300ED84CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Prism Connect/Prism Connect.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 27;
+				DEVELOPMENT_ASSET_PATHS = "\"Prism Connect/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Prism-Connect-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = PrismConnect;
+				"INFOPLIST_KEY_CFBundleDisplayName[sdk=iphone*]" = PrismConnect;
+				"INFOPLIST_KEY_CFBundleDisplayName[sdk=xr*]" = VirtualSkies;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Allow Bluetooth to Connect to PrismBox";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow Access for Weather";
+				INFOPLIST_KEY_NSWorldSensingUsageDescription = "Enable World Sensing?";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				"MARKETING_VERSION[sdk=iphone*]" = 1.1;
+				"MARKETING_VERSION[sdk=xr*]" = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loosestudios.virtualskies;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.loosestudios.prismConnect;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,7";
+			};
+			name = Debug;
+		};
+		82480ADC2C1C206300ED84CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Prism Connect/Prism Connect.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 27;
+				DEVELOPMENT_ASSET_PATHS = "\"Prism Connect/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Prism-Connect-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = PrismConnect;
+				"INFOPLIST_KEY_CFBundleDisplayName[sdk=iphone*]" = PrismConnect;
+				"INFOPLIST_KEY_CFBundleDisplayName[sdk=xr*]" = VirtualSkies;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Allow Bluetooth to Connect to PrismBox";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow Access for Weather";
+				INFOPLIST_KEY_NSWorldSensingUsageDescription = "Enable World Sensing?";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				"MARKETING_VERSION[sdk=iphone*]" = 1.1;
+				"MARKETING_VERSION[sdk=xr*]" = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loosestudios.virtualskies;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.loosestudios.prismConnect;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,7";
+			};
+			name = Release;
+		};
+		82480ADE2C1C206300ED84CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "nathaneriksen.Prism-ConnectTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Prism Connect.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Prism Connect";
+			};
+			name = Debug;
+		};
+		82480ADF2C1C206300ED84CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "nathaneriksen.Prism-ConnectTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Prism Connect.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Prism Connect";
+			};
+			name = Release;
+		};
+		82480AE12C1C206300ED84CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "nathaneriksen.Prism-ConnectUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Prism Connect";
+			};
+			name = Debug;
+		};
+		82480AE22C1C206300ED84CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "nathaneriksen.Prism-ConnectUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Prism Connect";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		82480AB12C1C206200ED84CD /* Build configuration list for PBXProject "Prism Connect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82480AD82C1C206300ED84CD /* Debug */,
+				82480AD92C1C206300ED84CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82480ADA2C1C206300ED84CD /* Build configuration list for PBXNativeTarget "Prism Connect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82480ADB2C1C206300ED84CD /* Debug */,
+				82480ADC2C1C206300ED84CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82480ADD2C1C206300ED84CD /* Build configuration list for PBXNativeTarget "Prism ConnectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82480ADE2C1C206300ED84CD /* Debug */,
+				82480ADF2C1C206300ED84CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82480AE02C1C206300ED84CD /* Build configuration list for PBXNativeTarget "Prism ConnectUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82480AE12C1C206300ED84CD /* Debug */,
+				82480AE22C1C206300ED84CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		82AA6EAE2DA5E4EC00FCFE43 /* XCLocalSwiftPackageReference "Packages/RealityKitContent" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/RealityKitContent;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		82AA6EAF2DA5E4EC00FCFE43 /* RealityKitContent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RealityKitContent;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 82480AAE2C1C206200ED84CD /* Project object */;
+}
