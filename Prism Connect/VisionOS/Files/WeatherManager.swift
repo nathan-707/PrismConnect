@@ -26,6 +26,7 @@ enum WeatherLight: Int {
         return WeatherLight(rawValue: rawValue)
     }
     
+    
     func title() -> String {
         switch self {
         case .CLEAR_DAY:

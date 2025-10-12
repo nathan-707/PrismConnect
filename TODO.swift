@@ -4,17 +4,40 @@
 //
 //  Created by Nathan Eriksen on 2/27/25.
 /*
+ // todo::::::::::::::
+ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
  
- // todo list for today::
-
-
- teleporting animation
+ adjust default clock and temp size as well as any other defaults that need it.
+ 
+ balance the different audio sounds. (rain, snow, thunderstorm)
+ 
+ handle if weather fails
  
  when turning world tour on it flips from one locaiotn to amother really fast sometimes
+ 
+ funfact showed "no fun facts for this city" on teleport.
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
 // DONE ///////// -------------------------------------------------------------------------------------------
  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ teleporting animation
+
+ 
+ its putting stars above clouds even when its day
+
  
  tell user to turn on lcoaoitn access when app detects they didnt allow it
  

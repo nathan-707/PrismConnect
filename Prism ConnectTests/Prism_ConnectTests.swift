@@ -1,17 +1,21 @@
+////
+////  Prism_ConnectTests.swift
+////  Prism ConnectTests
+////
+////  Created by Nathan Eriksen on 6/14/24.
+////
 //
-//  Prism_ConnectTests.swift
-//  Prism ConnectTests
+//import Testing
+//#if canImport(Prism_Connect)
+//@testable import Prism_Connect
+//#else
+//// Prism_Connect module is unavailable for this deployment target.
+//#endif
 //
-//  Created by Nathan Eriksen on 6/14/24.
+//struct Prism_ConnectTests {
 //
-
-import Testing
-@testable import Prism_Connect
-
-struct Prism_ConnectTests {
-
-    @Test func testExample() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-    }
-
-}
+//    @Test func testExample() async throws {
+//        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+//    }
+//
+//}

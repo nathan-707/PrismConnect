@@ -22,13 +22,11 @@ struct TeleportOptionsQuickMenu: View {
                             mode: .home,
                             city: worldTourCity
                         )
-                
                 } label: {
                     Text("GO HOME")
                 }
 
             } else {
-
                 Button(
                     "Start Tour (Random City Every \(prismSessionManager.standalone_worldTourInterval_Mins) min)",
                     systemImage: "globe.americas.fill"
@@ -37,15 +35,10 @@ struct TeleportOptionsQuickMenu: View {
                         .presentSelectLocationView = false
                     prismSessionManager.standalonemode_Mode =
                         .teleportMode
-//                    prismSessionManager.CurrentTeleportation =
-//                        standAloneCities.randomElement()!
-                    
+
                     prismSessionManager.CurrentTeleportation = emptyCity
                     prismSessionManager.worldTourIsOn = true
                     lastWorldTourSuccessFetchDate = Date(timeIntervalSince1970: 0)
-//                    worldTourTask = worldTourTaskSch(prismSessionManager: prismSessionManager)
-
-                    
                 }
                 .controlSize(.large)
                 .buttonStyle(.borderedProminent)
@@ -59,6 +52,7 @@ struct TeleportOptionsQuickMenu: View {
                 } label: {
                     Text("Select City")
                 }
+                .padding()
             }
         }
     }

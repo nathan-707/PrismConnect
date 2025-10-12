@@ -9,9 +9,6 @@ import RealityKit
 import RealityKitContent
 import SwiftUI
 
-var worldTourTask: Task<Void, Never>?
-var appScenePhase: ScenePhase = .active
-
 struct ClockVolume: View {
     @Environment(\.openWindow) private var openWindow
     // Runs whenever scenePhase changes; prior task is cancelled automatically.
@@ -20,6 +17,7 @@ struct ClockVolume: View {
     @Environment(\.scenePhase) var scenePhase: ScenePhase
     @State private var getWeatherTask: Task<Void, Never>?
     @State private var keepTryingToGetWeatherTask: Task<Void, Never>?
+    @State private var updateTimeTask: Task<Void, Never>?
 
     var body: some View {
         RealityView { content in
@@ -54,14 +52,21 @@ struct ClockVolume: View {
         .onChange(
             of: scenePhase,
             { oldValue, newValue in
-                if newValue == .active {
+                if newValue == .active {  // app active. reschedule the get time and get weather task
                     if getWeatherTask == nil
                         || ((getWeatherTask?.isCancelled) != nil)
                     {
                         getWeatherTask = getWeatherTaskSch()
                     }
-                } else {
+
+                    if updateTimeTask == nil
+                        || ((updateTimeTask?.isCancelled) != nil)
+                    {
+                        updateTimeTask = updateTimeTaskSch()
+                    }
+                } else {  // app not active. cancel all task.
                     getWeatherTask?.cancel()
+                    //                    updateTimeTask?.cancel()
                 }
             }
         )
@@ -86,6 +91,7 @@ struct ClockVolume: View {
             prismSessionManager.getWeather(mode: .home, city: worldTourCity)
             keepTryingToGetWeatherTask = keepTryingToGetWeatherTaskSch()
             getWeatherTask = getWeatherTaskSch()
+            updateTimeTask = updateTimeTaskSch()
             initAudio()
         }
         .onChange(
@@ -123,6 +129,15 @@ struct ClockVolume: View {
 
     }
 
+    func updateTimeTaskSch() -> Task<Void, Never>? {
+        return Task {
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(1))
+                prismSessionManager.updateTime()
+            }
+        }
+    }
+
     func getWeatherTaskSch() -> Task<Void, Never>? {
         return Task {
             while !Task.isCancelled {
@@ -140,14 +155,13 @@ struct ClockVolume: View {
                         let elapsed = Date().timeIntervalSince(last)
                         let interval = getWeatherInterval_Mins * 60
 
-                        if Int(elapsed) < interval
+                        if elapsed < interval
                             && prismSessionManager.failedHome == false
                         {
                             if debug.printGetWeatherTimers {
                                 print(
-                                    "home or city: \(Int(elapsed))s elapsed (< \(interval)s interval)"
+                                    "home or city: \(Int(elapsed)) s elapsed (< \(Int(interval)) s interval)"
                                 )
-
                             }
                             try? await Task.sleep(for: .seconds(1))
                             continue

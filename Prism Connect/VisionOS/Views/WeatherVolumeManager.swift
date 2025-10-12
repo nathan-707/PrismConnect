@@ -65,6 +65,8 @@ struct WeatherVolumeManager {
         
         root.children.removeAll()
         
+        print("isday:", isDay)
+        
 //        let weatherUpdate: WeatherLight = .RAIN
         
         if weatherUpdate.audioType(isDay: isDay) != lastAudio && weatherUpdate != .UNKNOWN{

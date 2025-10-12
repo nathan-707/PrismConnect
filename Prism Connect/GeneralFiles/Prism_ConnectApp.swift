@@ -65,6 +65,8 @@ struct Prism_ConnectApp: App {
             }
             .modelContainer(for: [DataModel.self])
             .windowStyle(.volumetric)
+            .defaultSize(width: defaultVolumeWidth, height: defaultVolumeHeight)
+
 
             .onChange(of: scenePhase) { oldValue, newValue in
                 switch newValue {

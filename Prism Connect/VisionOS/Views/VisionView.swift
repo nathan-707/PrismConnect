@@ -6,52 +6,52 @@
 //
 #if os(visionOS)
 
-import SwiftUI
+    import SwiftUI
 
-struct VisionView: View {
-    @EnvironmentObject private var prismSessionManager: ClockSessionManager
-    @Environment(\.openImmersiveSpace) private var openImmersiveSpace
-    @State var spaceIsOpen: Bool = false
-    @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
-    @State var modelOn: Bool = false
-    
-    var body: some View {
-        ZStack(alignment: Alignment(horizontal: .controlPanelGuide, vertical: .bottom)) {
-            ClockVolume()
-            VStack{
-                Spacer()
+    struct VisionView: View {
+        @EnvironmentObject private var prismSessionManager: ClockSessionManager
+        @Environment(\.openImmersiveSpace) private var openImmersiveSpace
+        @State var spaceIsOpen: Bool = false
+        @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
+        @State var modelOn: Bool = false
 
-     
-                ClockDisplayInfo()
-                
-                
-                if prismSessionManager.presentSelectLocationView  {
-                    TeleportOptionsQuickMenu()
+        var body: some View {
+            ZStack(
+                alignment: Alignment(
+                    horizontal: .controlPanelGuide,
+                    vertical: .bottom
+                )
+            ) {
+                ClockVolume()
+                VStack {
+                    Spacer()
+
+                    if prismSessionManager.presentSelectLocationView {
+                        TeleportOptionsQuickMenu()
+                    } else {
+                        ClockDisplayInfo()
+                    }
+
+                    GlobeControls()
                 }
-                
-
-                GlobeControls()
             }
         }
     }
-}
 
-
-extension HorizontalAlignment {
-    /// A custom alignment to center the control panel under the globe.
-    private struct ControlPanelAlignment: AlignmentID {
-        static func defaultValue(in context: ViewDimensions) -> CGFloat {
-            context[HorizontalAlignment.center]
+    extension HorizontalAlignment {
+        /// A custom alignment to center the control panel under the globe.
+        private struct ControlPanelAlignment: AlignmentID {
+            static func defaultValue(in context: ViewDimensions) -> CGFloat {
+                context[HorizontalAlignment.center]
+            }
         }
-    }
-    
-    /// A custom alignment guide to center the control panel under the globe.
-    static let controlPanelGuide = HorizontalAlignment(
-        ControlPanelAlignment.self
-    )
-}
-#Preview {
-    VisionView()
-}
-#endif
 
+        /// A custom alignment guide to center the control panel under the globe.
+        static let controlPanelGuide = HorizontalAlignment(
+            ControlPanelAlignment.self
+        )
+    }
+    #Preview {
+        VisionView()
+    }
+#endif

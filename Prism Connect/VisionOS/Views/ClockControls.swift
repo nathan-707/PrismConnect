@@ -128,9 +128,7 @@
                     blue: dm.cBlue
                 )
                 print(dm)
-
             }
-
         }
 
         func initSettings() {

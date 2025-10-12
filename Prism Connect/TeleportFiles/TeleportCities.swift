@@ -64,7 +64,7 @@ let randomLocation = 148
 let randomLocationCity = City(id: randomLocation, city: "Random Location", territory: "", coreLocation: CLLocation(latitude: 0, longitude: 00))
 let worldTourCity = City(id: worldTour, city: "World Tour", territory: "(Cycle Through All)", coreLocation: CLLocation(latitude: 0, longitude: 00))
 
-let emptyCity = City(id: 100, city: "--", territory: "--", coreLocation: CLLocation())
+let emptyCity = City(id: 100, city: "-- ", territory: " --", coreLocation: CLLocation(), funfacts: [" "])
 
 let CityModes: [City] = [
     worldTourCity, randomLocationCity

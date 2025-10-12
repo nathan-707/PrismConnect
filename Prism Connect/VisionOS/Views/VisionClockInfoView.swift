@@ -13,13 +13,12 @@ import SwiftUI
 
     let scaleMul: Double = 5
 
+
     struct VisionClockInfoView: View {
         @State private var currentDate = Date()
-        @State private var clockTime: String = "1:00"
         @State private var timer: Timer? = nil
         @State private var localFunfact = "no fun fact"
         @EnvironmentObject private var prismSessionManager: ClockSessionManager
-        @State private var syncTimeTask: Task<Void, Never>?
         @State private var deviceBatteryLevel: Float = -1
 
         var body: some View {
@@ -34,7 +33,8 @@ import SwiftUI
                     ProgressView()
                 }
 
-                Text(prismSessionManager.timeFormatted())
+                // TIME
+                Text(prismSessionManager.clockTime)
                     .font(.extraLargeTitle)
                     .foregroundStyle(prismSessionManager.userColor)
                     .bold()
@@ -44,6 +44,7 @@ import SwiftUI
                     }
                     .padding(prismSessionManager.timeScale * scaleMul)
 
+                // TEMPERATURE
                 if prismSessionManager.showTemperature {
                     Text(
                         String(prismSessionManager.clock_temperature)
@@ -60,33 +61,42 @@ import SwiftUI
                     .padding(10)
 
                 }
+                
+                // BATTERY
+                if prismSessionManager.showBattery {
+                    Text(
+                        deviceBatteryLevel >= 0
+                            ? Double(deviceBatteryLevel).formatted(
+                                .percent.precision(.fractionLength(0))
+                            ) : "—%"
+                    )
+                    .font(.largeTitle)
+                    .foregroundStyle(prismSessionManager.userColor)
+                    .padding(0)
+                }
 
-                //                if prismSessionManager.currentMode == .teleportMode && prismSessionManager.isStandaloneMode == false {
-                //                    Text(prismSessionManager.CurrentTeleportation.city + ", " + prismSessionManager.CurrentTeleportation.territory)
-                //                    .font(.headline)
-                //                    .foregroundColor(prismSessionManager.userColor)
-                //                    .bold()
-                //                    .padding(5)
-                //
-                //                }
-                //
-                //               else
-
+                // TELEPORT INFO
                 if prismSessionManager.currentMode == .teleportMode
                     && !prismSessionManager.isStandaloneMode
 
                     || prismSessionManager.standalonemode_Mode == .teleportMode
                         && prismSessionManager.isStandaloneMode
                 {
+                    if prismSessionManager.isStandaloneMode && prismSessionManager.CurrentTeleportation == emptyCity && prismSessionManager.worldTourIsOn {
+                        // only dont display city if world tour mode is trying to get another city.
+                        ProgressView()
+                    } else {
+                        Text(
+                            prismSessionManager.CurrentTeleportation.city + ", "
+                                + prismSessionManager.CurrentTeleportation.territory
+                        )
+                        .font(.headline)
+                        .foregroundColor(prismSessionManager.userColor)
+                        .bold()
+                        .padding(5)
+                    }
 
-                    Text(
-                        prismSessionManager.CurrentTeleportation.city + ", "
-                            + prismSessionManager.CurrentTeleportation.territory
-                    )
-                    .font(.headline)
-                    .foregroundColor(prismSessionManager.userColor)
-                    .bold()
-                    .padding(5)
+           
                     //                    .glassBackgroundEffect(in: .rect(cornerRadius: 200))
 
                     if prismSessionManager.showFunfact {
@@ -116,21 +126,13 @@ import SwiftUI
                     .padding(5)
                     //                    .glassBackgroundEffect(in: .rect(cornerRadius: 200))
                 }
-                if prismSessionManager.showBattery {
-                    Text(
-                        deviceBatteryLevel >= 0
-                            ? Double(deviceBatteryLevel).formatted(
-                                .percent.precision(.fractionLength(0))
-                            ) : "—%"
-                    )
-                    .font(.title)
-                    .foregroundStyle(prismSessionManager.userColor)
-                    .padding(0)
-                }
+
+      
             }
             .onAppear {
                 localFunfact = prismSessionManager.CurrentTeleportation
                     .randomFunfact()
+                
                 #if canImport(UIKit)
                     UIDevice.current.isBatteryMonitoringEnabled = true
                     updateBatteryLevel()
@@ -164,16 +166,19 @@ import SwiftUI
         }
 
         func getRandomFactFromLocal() -> String {
-            if prismSessionManager.isStandaloneMode == false && prismSessionManager.currentMode == .themeParkMode {
+            if prismSessionManager.isStandaloneMode == false
+                && prismSessionManager.currentMode == .themeParkMode
+            {
                 return prismSessionManager.CurrentParkClockIsIn.funfacts
                     .randomElement()!
-            }
-            
-            else {
+            } else {
                 return prismSessionManager.CurrentTeleportation.randomFunfact()
             }
         }
     }
+
+
+
 
     extension VisionClockInfoView {
         fileprivate func updateBatteryLevel() {

@@ -20,10 +20,12 @@ enum Views {
 }
 
 class ClockSessionManager: NSObject, ObservableObject {
+    
+    @Published var reportWeatherError = false
 
-    var currentDate = Date()
 
     private var currentSystemTime: String {
+        
         let formatter = DateFormatter()
 
         formatter.dateFormat = "h:mm"  // This ensures a space before AM/PM
@@ -34,13 +36,12 @@ class ClockSessionManager: NSObject, ObservableObject {
         //        }else {
         //            formatter.dateFormat = "h:mm  a" // This ensures a space before AM/PM
         //        }
-        return formatter.string(from: currentDate)
+        return formatter.string(from: Date())
     }
     @Published var showFunfact: Bool = true
     @Published var showTemperature: Bool = true
     @Published var soundOn: Bool = true
     @Published var rainSnowGain: Double = 10
-    
     
     @Published var imperial = true {
         didSet {
@@ -247,16 +248,24 @@ class ClockSessionManager: NSObject, ObservableObject {
     @Published var somethingICanUse2: Int = 0  // future proof if i need it
     @Published var somethingICanUse3: Int = 0  // future proof if i need it
 
-    func timeFormatted() -> String {
+    
+    @Published var clockTime: String = ""
+    
+    
+    func updateTime() {
 
         if self.peripheralConnected == false || self.isStandaloneMode == true {
-            return self.currentSystemTime
+            clockTime = self.currentSystemTime;
+            return;
+//            return self.currentSystemTime
         }
 
         if clock_time_min >= 10 {
-            return "\(clock_time_hour):\(clock_time_min)"
+            clockTime = "\(clock_time_hour):\(clock_time_min)"
+//            return "\(clock_time_hour):\(clock_time_min)"
         } else {
-            return "\(clock_time_hour) \(":") \("0")\(clock_time_min)"
+            clockTime = "\(clock_time_hour) \(":") \("0")\(clock_time_min)"
+//            return "\(clock_time_hour) \(":") \("0")\(clock_time_min)"
         }
     }
 
@@ -505,6 +514,7 @@ class ClockSessionManager: NSObject, ObservableObject {
 
     // MARK: - Connection Management
     func connect() {
+
         guard let manager = manager, manager.state == .poweredOn,
             let peripheral = peripheral
         else {
@@ -866,6 +876,8 @@ class ClockSessionManager: NSObject, ObservableObject {
             type: .withResponse
         )
     }
+    
+
 }
 
 // MARK: - CBCentralManagerDelegate
@@ -1032,6 +1044,7 @@ extension ClockSessionManager: CBPeripheralDelegate {
         }
 
         ping()
+    
     }
 
     func peripheral(

@@ -24,6 +24,9 @@ import SwiftUI
 
         var body: some View {
             VStack {
+                
+    
+                
                 if prismSessionManager.initHomeWeather {
                     if prismSessionManager.isStandaloneMode == false
                         && prismSessionManager.pending
@@ -42,20 +45,20 @@ import SwiftUI
                 }
             }
 
-            .onChange(of: prismSessionManager.clock_time_min) {
-                oldValue,
-                newValue in
-                clockTime = prismSessionManager.timeFormatted()
-            }
-            .onAppear {
-                //            localFunfact = prismSessionManager.CurrentTeleportation.funfacts.randomElement() ?? "No fun fact available"
-
-                timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true)
-                { _ in
-                    currentDate = Date()
-                }
-                clockTime = prismSessionManager.timeFormatted()
-            }
+//            .onChange(of: prismSessionManager.clock_time_min) {
+//                oldValue,
+//                newValue in
+//                clockTime = prismSessionManager.timeFormatted()
+//            }
+//            .onAppear {
+//                //            localFunfact = prismSessionManager.CurrentTeleportation.funfacts.randomElement() ?? "No fun fact available"
+//
+//                timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true)
+//                { _ in
+//                    currentDate = Date()
+//                }
+//                clockTime = prismSessionManager.timeFormatted()
+//            }
             .onChange(
                 of: prismSessionManager.CurrentTeleportation,
                 { oldValue, newValue in
