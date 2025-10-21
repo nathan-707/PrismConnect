@@ -10,7 +10,7 @@ import SwiftUI
 struct ThemeParkView: View {
     @EnvironmentObject private var prismSessionManager: ClockSessionManager
     var body: some View {
-        VStack{
+        VStack {
             Text(prismSessionManager.CurrentParkClockIsIn.fullParkName())
                 .font(.title2).bold()
             Text(prismSessionManager.CurrentParkClockIsIn.fullLocationName())

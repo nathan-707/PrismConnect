@@ -7,15 +7,19 @@
 
 import RealityKit
 import RealityKitContent
+import SwiftData
 import SwiftUI
 
+var getWeatherTask: Task<Void, Never>?
+
 struct ClockVolume: View {
+    @Query var dataModelQuery: [DataModel]
+    @Environment(\.modelContext) var modelContext
     @Environment(\.openWindow) private var openWindow
     // Runs whenever scenePhase changes; prior task is cancelled automatically.
     @EnvironmentObject private var prismSessionManager: ClockSessionManager
     @State var manager: WeatherVolumeManager?
     @Environment(\.scenePhase) var scenePhase: ScenePhase
-    @State private var getWeatherTask: Task<Void, Never>?
     @State private var keepTryingToGetWeatherTask: Task<Void, Never>?
     @State private var updateTimeTask: Task<Void, Never>?
 
@@ -38,6 +42,12 @@ struct ClockVolume: View {
             )
             content.add(Scene)
         }
+        .onChange(
+            of: prismSessionManager.lastKnownLat,
+            { oldValue, newValue in
+                saveSettings()
+            }
+        )
 
         .onChange(
             of: prismSessionManager.tryToTurnOnStandAloneMode,
@@ -48,7 +58,6 @@ struct ClockVolume: View {
                 }
             }
         )
-
         .onChange(
             of: scenePhase,
             { oldValue, newValue in
@@ -56,7 +65,9 @@ struct ClockVolume: View {
                     if getWeatherTask == nil
                         || ((getWeatherTask?.isCancelled) != nil)
                     {
-                        getWeatherTask = getWeatherTaskSch()
+                        getWeatherTask = getWeatherTaskSch(
+                            prismSessionManager: prismSessionManager
+                        )
                     }
 
                     if updateTimeTask == nil
@@ -90,7 +101,9 @@ struct ClockVolume: View {
         .onAppear {
             prismSessionManager.getWeather(mode: .home, city: worldTourCity)
             keepTryingToGetWeatherTask = keepTryingToGetWeatherTaskSch()
-            getWeatherTask = getWeatherTaskSch()
+            getWeatherTask = getWeatherTaskSch(
+                prismSessionManager: prismSessionManager
+            )
             updateTimeTask = updateTimeTaskSch()
             initAudio()
         }
@@ -120,13 +133,38 @@ struct ClockVolume: View {
             )
         }
 
+        .onChange(
+            of: prismSessionManager.soundOn,
+            { oldValue, newValue in
+                manager?.updateAudioLevel(
+                    level: prismSessionManager.rainSnowGain,
+                    soundOn: prismSessionManager.soundOn,
+                )
+            }
+        )
         .onChange(of: prismSessionManager.rainSnowGain) { oldValue, newValue in
             manager?.updateAudioLevel(
                 level: newValue,
-                soundOn: prismSessionManager.soundOn
+                soundOn: prismSessionManager.soundOn,
             )
         }
 
+        .onChange(of: prismSessionManager.lastKnownLat) { oldValue, newValue in
+            let virtualHomeLat = prismSessionManager.virtualClock?.homeLocation
+                .coordinate.latitude
+            if virtualHomeLat != prismSessionManager.lastKnownLat {
+                prismSessionManager.lastKnownLat = newValue
+            }
+            saveSettings()
+        }
+        .onChange(of: prismSessionManager.lastKnownLong) { oldValue, newValue in
+            let virtualHomeLong = prismSessionManager.virtualClock?.homeLocation
+                .coordinate.longitude
+            if virtualHomeLong != prismSessionManager.lastKnownLong {
+                prismSessionManager.lastKnownLong = newValue
+            }
+            saveSettings()
+        }
     }
 
     func updateTimeTaskSch() -> Task<Void, Never>? {
@@ -138,112 +176,47 @@ struct ClockVolume: View {
         }
     }
 
-    func getWeatherTaskSch() -> Task<Void, Never>? {
-        return Task {
-            while !Task.isCancelled {
-                guard prismSessionManager.isStandaloneMode
-                else {
-                    try? await Task.sleep(for: .seconds(1))
-                    continue
-                }
-
-                if prismSessionManager.standalonemode_Mode == .home
-                    || prismSessionManager.standalonemode_Mode == .teleportMode
-                        && !prismSessionManager.worldTourIsOn
-                {
-                    if let last = lastHomeSuccessFetchDate {
-                        let elapsed = Date().timeIntervalSince(last)
-                        let interval = getWeatherInterval_Mins * 60
-
-                        if elapsed < interval
-                            && prismSessionManager.failedHome == false
-                        {
-                            if debug.printGetWeatherTimers {
-                                print(
-                                    "home or city: \(Int(elapsed)) s elapsed (< \(Int(interval)) s interval)"
-                                )
-                            }
-                            try? await Task.sleep(for: .seconds(1))
-                            continue
-                        }
-                    }
-
-                    if prismSessionManager.standalonemode_Mode == .home {
-                        prismSessionManager.getWeather(
-                            mode: .home,
-                            city: prismSessionManager.CurrentTeleportation
-                        )
-                    } else {
-                        prismSessionManager.getWeather(
-                            mode: .teleportMode,
-                            city: prismSessionManager.CurrentTeleportation
-                        )
-                    }
-
-                    print("called got weather. sleeping 3 seconds.(HOME MODE)")
-                    try? await Task.sleep(for: .seconds(3))
-                }
-
-                // world tour selected.
-                else if prismSessionManager.standalonemode_Mode == .teleportMode
-                    && prismSessionManager.worldTourIsOn
-                {
-                    //                    print("WORLD TOUR")
-                    if let last = lastWorldTourSuccessFetchDate {
-                        let elapsed = Date().timeIntervalSince(last)
-
-                        let interval =
-                            prismSessionManager
-                            .standalone_worldTourInterval_Mins * 60
-
-                        if Int(elapsed) < interval
-                            && prismSessionManager.failedTeleport == false
-                        {
-
-                            if debug.printGetWeatherTimers {
-                                print(
-                                    "worldTour: \(Int(elapsed))s elapsed (< \(interval)s interval)"
-                                )
-                            }
-
-                            try? await Task.sleep(for: .seconds(1))
-                            continue
-                        }
-                    }
-
-                    prismSessionManager.CurrentTeleportation =
-                        standAloneCities.randomElement()!
-
-                    prismSessionManager.getWeather(
-                        mode: prismSessionManager.standalonemode_Mode,
-                        city: prismSessionManager.CurrentTeleportation
-                    )
-                    print(
-                        "called got weather. sleeping 3 seconds.(WORLD TOUR MODE)"
-                    )
-                    try? await Task.sleep(for: .seconds(3))
-                }
-            }
-        }
-    }
-
     func keepTryingToGetWeatherTaskSch() -> Task<Void, Never>? {
         return Task {
             while !Task.isCancelled {
                 try? await Task.sleep(for: .seconds(5))
+
+                prismSessionManager.failedGetHomeWeatherAttempts += 1
+                print("Trying to get home weather...")
 
                 if prismSessionManager.isStandaloneMode {
                     if prismSessionManager.initHomeWeather {
                         keepTryingToGetWeatherTask?.cancel()
                         break
                     }
-                    print("Retrying to get home weather...")
+
                     prismSessionManager.getWeather(
                         mode: .home,
                         city: prismSessionManager.CurrentTeleportation
                     )
                 }
             }
+        }
+    }
+
+    func saveSettings() {
+
+        guard let savedDataModel = dataModelQuery.first else { return }
+
+        if prismSessionManager.lastKnownLat != savedDataModel.lastKnownLat {
+            print("updated last location.")
+            savedDataModel.lastKnownLat = prismSessionManager.lastKnownLat
+        }
+
+        if prismSessionManager.lastKnownLong != savedDataModel.lastKnownLong {
+            print("updated last locaiton.")
+            savedDataModel.lastKnownLong = prismSessionManager.lastKnownLong
+        }
+
+        do {
+            try modelContext.save()
+        } catch {
+            print("error saving")
         }
     }
 }
@@ -267,13 +240,105 @@ func loadLoopingResource(fileName: String) -> AudioResource {
     return resource
 }
 
-func initAudio() {
+func getWeatherTaskSch(prismSessionManager: ClockSessionManager) -> Task<
+    Void, Never
+>? {
+    return Task { @MainActor in
+        while !Task.isCancelled {
+            guard prismSessionManager.isStandaloneMode
+            else {
+                try? await Task.sleep(for: .seconds(1))
+                continue
+            }
 
+            if prismSessionManager.standalonemode_Mode == .home
+                || prismSessionManager.standalonemode_Mode == .teleportMode
+                    && !prismSessionManager.worldTourIsOn
+            {
+                if let last = lastHomeSuccessFetchDate {
+                    let elapsed = Date().timeIntervalSince(last)
+                    let interval =
+                        defaultSettings.getWeatherInterval_Mins * 60
+
+                    if elapsed < interval
+                        && prismSessionManager.failedHome == false
+                    {
+                        if debug.printGetWeatherTimers {
+                            print(
+                                "home or city: \(Int(elapsed)) s elapsed (< \(Int(interval)) s interval)"
+                            )
+                        }
+                        try? await Task.sleep(for: .seconds(1))
+                        continue
+                    }
+                }
+
+                if prismSessionManager.standalonemode_Mode == .home {
+                    prismSessionManager.getWeather(
+                        mode: .home,
+                        city: prismSessionManager.CurrentTeleportation
+                    )
+                } else {
+                    prismSessionManager.getWeather(
+                        mode: .teleportMode,
+                        city: prismSessionManager.CurrentTeleportation
+                    )
+                }
+
+                print("called got weather. sleeping 3 seconds.(HOME MODE)")
+
+                try? await Task.sleep(for: .seconds(3))
+            }
+
+            // world tour selected.
+            else if prismSessionManager.standalonemode_Mode == .teleportMode
+                && prismSessionManager.worldTourIsOn
+            {
+                //                    print("WORLD TOUR")
+                if let last = lastWorldTourSuccessFetchDate {
+                    let elapsed = Date().timeIntervalSince(last)
+
+                    let interval =
+                        prismSessionManager
+                        .standalone_worldTourInterval_Mins * 60
+
+                    if Int(elapsed) < interval
+                        && prismSessionManager.failedTeleport == false
+                    {
+
+                        if debug.printGetWeatherTimers {
+                            print(
+                                "worldTour: \(Int(elapsed))s elapsed (< \(interval)s interval)"
+                            )
+                        }
+
+                        try? await Task.sleep(for: .seconds(1))
+                        continue
+                    }
+                }
+
+                prismSessionManager.CurrentTeleportation =
+                    standAloneCities.randomElement()!
+
+                prismSessionManager.getWeather(
+                    mode: prismSessionManager.standalonemode_Mode,
+                    city: prismSessionManager.CurrentTeleportation
+                )
+
+                print(
+                    "called got weather. sleeping 3 seconds.(WORLD TOUR MODE)"
+                )
+                try? await Task.sleep(for: .seconds(3))
+            }
+        }
+    }
+}
+
+func initAudio() {
     if debug.loadSounds {
         rainNoise = loadLoopingResource(fileName: "rain")
-        thunderStormNoise = loadLoopingResource(fileName: "thunderstorm")
+        thunderStormNoise = loadLoopingResource(fileName: "thunderStormBoost")
         snowNoise = loadLoopingResource(fileName: "snow")
     }
-
     print("audio initialized.")
 }

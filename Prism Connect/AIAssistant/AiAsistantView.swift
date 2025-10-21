@@ -154,7 +154,7 @@ import SwiftUI
         "Make it feel like a high-tech lab",
         "Turn on a futuristic cityscape",
         "Give me a mystical enchanted forest look",
-        "Turn on lights for an apocalyptic world"
+        "Turn on lights for an apocalyptic world",
     ]
 
 #endif

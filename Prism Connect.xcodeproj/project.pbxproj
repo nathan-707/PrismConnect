@@ -11,8 +11,6 @@
 		82164EA12E22DE4300D6B1E2 /* aiFunfactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82164EA02E22DE4300D6B1E2 /* aiFunfactView.swift */; };
 		821856822E1E1D98003F70F3 /* AsistanceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821856812E1E1D98003F70F3 /* AsistanceData.swift */; };
 		82190AC32E8CB97800693B39 /* TeleportOptionsQuickMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82190AC22E8CB97800693B39 /* TeleportOptionsQuickMenu.swift */; };
-		82190AC82E8CBFCC00693B39 /* thunderstorm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82190AC62E8CBFCC00693B39 /* thunderstorm.mp3 */; platformFilters = (xros, ); };
-		82190ACA2E8CC87200693B39 /* snow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82190AC92E8CC87200693B39 /* snow.mp3 */; platformFilters = (xros, ); };
 		82263CB32D7EB21C00952BF2 /* InTeleportModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82263CB22D7EB21C00952BF2 /* InTeleportModeView.swift */; };
 		82263CD52D812FDC00952BF2 /* ThemeParkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82263CD42D812FDC00952BF2 /* ThemeParkView.swift */; };
 		82263CD72D8272A000952BF2 /* EffectSpeedPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82263CD62D8272A000952BF2 /* EffectSpeedPickerView.swift */; };
@@ -48,6 +46,8 @@
 		82ADE5CD2D703979002FE822 /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADE5CC2D703979002FE822 /* TODO.swift */; };
 		82ADE5CF2D719781002FE822 /* ConnectedMainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ADE5CE2D719781002FE822 /* ConnectedMainMenu.swift */; };
 		82B256E22E7527A30002CD7B /* VisionClockInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B256E12E7527A30002CD7B /* VisionClockInfoView.swift */; };
+		82B67ECE2EA2E95A00026F21 /* thunderStormBoost.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82B67ECD2EA2E95A00026F21 /* thunderStormBoost.mp3 */; platformFilters = (xros, ); };
+		82B67ED22EA2F38F00026F21 /* snow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82B67ED12EA2F38F00026F21 /* snow.mp3 */; platformFilters = (xros, ); };
 		82BB29CA2E6A1FAA00906872 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BB29C92E6A1FAA00906872 /* SettingsView.swift */; };
 		82BB29CC2E6A256100906872 /* SelectLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BB29CB2E6A256100906872 /* SelectLocationView.swift */; };
 		82BC4E712DE98089001D7B63 /* ClockVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC4E702DE98089001D7B63 /* ClockVolume.swift */; };
@@ -100,8 +100,6 @@
 		82164EA02E22DE4300D6B1E2 /* aiFunfactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aiFunfactView.swift; sourceTree = "<group>"; };
 		821856812E1E1D98003F70F3 /* AsistanceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsistanceData.swift; sourceTree = "<group>"; };
 		82190AC22E8CB97800693B39 /* TeleportOptionsQuickMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportOptionsQuickMenu.swift; sourceTree = "<group>"; };
-		82190AC62E8CBFCC00693B39 /* thunderstorm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thunderstorm.mp3; sourceTree = "<group>"; };
-		82190AC92E8CC87200693B39 /* snow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snow.mp3; sourceTree = "<group>"; };
 		82263CB22D7EB21C00952BF2 /* InTeleportModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTeleportModeView.swift; sourceTree = "<group>"; };
 		82263CBA2D8124A700952BF2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		82263CBC2D8124A700952BF2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -143,6 +141,8 @@
 		82ADE5CC2D703979002FE822 /* TODO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
 		82ADE5CE2D719781002FE822 /* ConnectedMainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedMainMenu.swift; sourceTree = "<group>"; };
 		82B256E12E7527A30002CD7B /* VisionClockInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionClockInfoView.swift; sourceTree = "<group>"; };
+		82B67ECD2EA2E95A00026F21 /* thunderStormBoost.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thunderStormBoost.mp3; sourceTree = "<group>"; };
+		82B67ED12EA2F38F00026F21 /* snow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snow.mp3; sourceTree = "<group>"; };
 		82BB29C92E6A1FAA00906872 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		82BB29CB2E6A256100906872 /* SelectLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationView.swift; sourceTree = "<group>"; };
 		82BC4E702DE98089001D7B63 /* ClockVolume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockVolume.swift; sourceTree = "<group>"; };
@@ -197,8 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				8284B53E2E8E210700104BB6 /* rain.wav */,
-				82190AC62E8CBFCC00693B39 /* thunderstorm.mp3 */,
-				82190AC92E8CC87200693B39 /* snow.mp3 */,
+				82B67ECD2EA2E95A00026F21 /* thunderStormBoost.mp3 */,
+				82B67ED12EA2F38F00026F21 /* snow.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -499,10 +499,10 @@
 			files = (
 				8284B53F2E8E210700104BB6 /* rain.wav in Resources */,
 				82480AC12C1C206300ED84CD /* Preview Assets.xcassets in Resources */,
-				82190AC82E8CBFCC00693B39 /* thunderstorm.mp3 in Resources */,
 				82480ABE2C1C206300ED84CD /* Assets.xcassets in Resources */,
+				82B67ECE2EA2E95A00026F21 /* thunderStormBoost.mp3 in Resources */,
 				8260C0A12E8B8E6800561B63 /* virutalskies_storeConfig.storekit in Resources */,
-				82190ACA2E8CC87200693B39 /* snow.mp3 in Resources */,
+				82B67ED22EA2F38F00026F21 /* snow.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

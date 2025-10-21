@@ -32,26 +32,28 @@ class Weather: Equatable {
     }
 }
 
-
-
 class VirtualColorClock: NSObject, CLLocationManagerDelegate {
     // Tracks when we last successfully fetched weather
     private var lastFetchDate: Date? = nil
     // Default refresh interval in seconds (e.g., 10 minutes)
     private var homeWeatherRefreshInterval: TimeInterval =
-        getWeatherInterval_Mins * 60
+        defaultSettings.getWeatherInterval_Mins * 60
     private var getTeleportFetchCoolOffInterval: TimeInterval =
-        getWeatherInterval_Mins * 60
+        defaultSettings.getWeatherInterval_Mins * 60
     private var gotHomeWeather: Bool = false
+    private var initWithLastKnownLocation = true
     var currentWeather = Weather()
     var locationManager: CLLocationManager
+
     var gotLocation = false
+
     var homeLocation: CLLocation
     var sessionManager: ClockSessionManager?
     var homeLocationCache = Weather()
 
     func getWeather(mode: Modes, city: City) async -> Bool {
         // Handle teleport/city mode immediately with the city’s known location.
+
         if mode != .home {
             let cityLocation = city.coreLocation
             return await fetchWeather(
@@ -74,13 +76,39 @@ class VirtualColorClock: NSObject, CLLocationManagerDelegate {
 
         case .authorizedWhenInUse, .authorizedAlways:
             if gotLocation {
+
                 return await fetchWeather(
                     using: homeLocation,
                     mode: mode,
                     teleportCity: city
                 )
+
             } else {
-                print("No home location. Retrying to get it...")
+                // failed to get GPS of current location. use the stashed coordinates from swiftData instead.
+
+                print("failed to get location.")
+
+                if sessionManager?.lastKnownLat != 0
+                    && initWithLastKnownLocation
+                {
+                    initWithLastKnownLocation = false
+                    homeLocation = CLLocation(
+                        latitude: sessionManager?.lastKnownLat ?? 0,
+                        longitude: sessionManager?.lastKnownLong ?? 0
+                    )
+
+                    print(
+                        "NO LOCATIONS. Using last known coordinates. \(sessionManager?.lastKnownLat) + \(sessionManager?.lastKnownLong)"
+                    )
+
+                    return await fetchWeather(
+                        using: homeLocation,
+                        mode: mode,
+                        teleportCity: city
+                    )
+                }
+
+                // if this ever works it should update the stashed last known location.
                 locationManager.requestLocation()
                 return false
             }
@@ -107,6 +135,7 @@ class VirtualColorClock: NSObject, CLLocationManagerDelegate {
         teleportCity: City
     ) async -> Bool {
         do {
+            sessionManager?.weatherRequestIsPending = true
             // Respect a minimum refresh interval if we recently fetched
             if mode == .home {
                 if let last = lastFetchDate {
@@ -127,30 +156,44 @@ class VirtualColorClock: NSObject, CLLocationManagerDelegate {
                             homeLocationCache.weatherMain
                         currentWeather.weatherLight =
                             homeLocationCache.weatherLight
+                        sessionManager?.weatherRequestIsPending = false
                         return true
                     }
                 }
             } else {  // teleporting.
-                if let lastTeleportCityDate = teleportCity.lastWeatherFetch {
-                    let elapsed = Date().timeIntervalSince(lastTeleportCityDate)
-                    if elapsed < getTeleportFetchCoolOffInterval {
-                        print(
-                            "Skipping weather fetch for \(teleportCity.city); only \(Int(elapsed))s elapsed (< \(Int(getTeleportFetchCoolOffInterval))s interval)"
-                        )
-                        let weatherCache = teleportCity.weatherCache
 
-                        // set current weather to the citys weather cache.
-                        sessionManager?.isDay = weatherCache.isDayLight
-                        currentWeather.isDayLight = weatherCache.isDayLight
-                        currentWeather.intensity = weatherCache.intensity
-                        currentWeather.temp_main = weatherCache.temp_main
-                        currentWeather.temp_feelsLike =
-                            weatherCache.temp_feelsLike
-                        currentWeather.weatherDescription =
-                            weatherCache.weatherDescription
-                        currentWeather.weatherMain = weatherCache.weatherMain
-                        currentWeather.weatherLight = weatherCache.weatherLight
-                        return true
+                if let idx = ALL_CITIES.firstIndex(where: {
+                    $0.nameForPicker() == teleportCity.nameForPicker()
+                }) {
+
+                    if let lastTeleportCityDate = ALL_CITIES[idx]
+                        .lastWeatherFetch
+                    {
+                        let elapsed = Date().timeIntervalSince(
+                            lastTeleportCityDate
+                        )
+                        if elapsed < getTeleportFetchCoolOffInterval {
+                            print(
+                                "Skipping weather fetch for \(teleportCity.city); only \(Int(elapsed))s elapsed (< \(Int(getTeleportFetchCoolOffInterval))s interval)"
+                            )
+                            let weatherCache = teleportCity.weatherCache
+
+                            // set current weather to the citys weather cache.
+                            sessionManager?.isDay = weatherCache.isDayLight
+                            currentWeather.isDayLight = weatherCache.isDayLight
+                            currentWeather.intensity = weatherCache.intensity
+                            currentWeather.temp_main = weatherCache.temp_main
+                            currentWeather.temp_feelsLike =
+                                weatherCache.temp_feelsLike
+                            currentWeather.weatherDescription =
+                                weatherCache.weatherDescription
+                            currentWeather.weatherMain =
+                                weatherCache.weatherMain
+                            currentWeather.weatherLight =
+                                weatherCache.weatherLight
+                            sessionManager?.weatherRequestIsPending = false
+                            return true
+                        }
                     }
                 }
             }
@@ -159,6 +202,7 @@ class VirtualColorClock: NSObject, CLLocationManagerDelegate {
             print(
                 "attempting weather for \(location.coordinate.latitude) \(location.coordinate.longitude)"
             )
+
             let service = WeatherService.shared
             let weather = try await service.weather(for: location)
             sessionManager?.isDay = weather.currentWeather.isDaylight
@@ -200,6 +244,7 @@ class VirtualColorClock: NSObject, CLLocationManagerDelegate {
                 homeLocationCache.weatherLight = currentWeather.weatherLight
             } else {  // update teleport cities weather cache and interval
                 // Update the matched city's lastWeatherFetch by index (requires ALL_CITIES to be a mutable array)
+
                 if let idx = ALL_CITIES.firstIndex(where: {
                     $0.nameForPicker() == teleportCity.nameForPicker()
                 }) {
@@ -221,20 +266,27 @@ class VirtualColorClock: NSObject, CLLocationManagerDelegate {
                 }
             }
 
-            lastWorldTourSuccessFetchDate = Date()
-            lastHomeSuccessFetchDate = Date()
+            if mode == .home {
+                lastHomeSuccessFetchDate = Date()
+            } else {
+                lastWorldTourSuccessFetchDate = Date()
+            }
+
             print("WEATHER SUCCESS")
             sessionManager?.reportWeatherError = false
+            sessionManager?.weatherRequestIsPending = false
             return true
         } catch {
             print("WeatherKit fetch failed: \(error.localizedDescription)")
             sessionManager?.reportWeatherError = true
-            
-            if sessionManager?.isStandaloneMode == true && sessionManager?.standalonemode_Mode == .teleportMode {
+
+            if sessionManager?.isStandaloneMode == true
+                && sessionManager?.standalonemode_Mode == .teleportMode
+            {
                 sessionManager?.standalonemode_Mode = .home
-                
+
             }
-            
+            sessionManager?.weatherRequestIsPending = false
             return false
         }
     }
@@ -252,11 +304,16 @@ class VirtualColorClock: NSObject, CLLocationManagerDelegate {
         didUpdateLocations locations: [CLLocation]
     ) {
         guard let location = locations.first else { return }
-        gotLocation = true
+
         homeLocation = CLLocation(
             latitude: location.coordinate.latitude,
             longitude: location.coordinate.longitude
         )
+
+        sessionManager?.lastKnownLat = location.coordinate.latitude
+        sessionManager?.lastKnownLong = location.coordinate.longitude
+        gotLocation = true
+
         print(
             "Got home location: \(homeLocation.coordinate.latitude), \(homeLocation.coordinate.longitude)"
         )

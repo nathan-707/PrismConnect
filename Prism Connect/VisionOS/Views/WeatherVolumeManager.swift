@@ -5,13 +5,13 @@
 //  Created by Nathan Eriksen on 5/30/25.
 //
 
+import Combine
 import Foundation
 import RealityKit
-import Combine
 
 struct WeatherVolumeManager {
-    
-    private var ScoredFlashBlinkCancellable: AnyCancellable? // Declare it as optional first
+
+    private var ScoredFlashBlinkCancellable: AnyCancellable?  // Declare it as optional first
     var isDay: Bool
     var root = Entity()
     var weatherTransitionPoof: Entity
@@ -25,54 +25,53 @@ struct WeatherVolumeManager {
     var snow: Entity
     var thunderStrike: Entity
     var thunderFlashLight: Entity
-    
+
     var channelAudioEntity: Entity
-    var lastAudio: AudioType = .nothing
-    
-    
+
     func updateAudioLevel(level: Double, soundOn: Bool) {
+
         if soundOn == false {
             channelAudioEntity.stopAllAudio()
-            return;
+            return
         }
         channelAudioEntity.spatialAudio?.gain = level
     }
-    
-    func updateAudio(AudioToPlay: AudioType, soundOn: Bool, defaultGain: Double){
-        
+
+    func updateAudio(AudioToPlay: AudioType, soundOn: Bool, defaultGain: Double)
+    {
         if soundOn == false || debug.loadSounds == false {
             channelAudioEntity.stopAllAudio()
             return
         }
-        
-        channelAudioEntity.spatialAudio?.gain = defaultGain
-            
-        switch AudioToPlay {
-        case .rain:
+
+        if AudioToPlay == .drizzle || AudioToPlay == .rain {
             channelAudioEntity.playAudio(rainNoise!)
-        case .drizzle:
-            channelAudioEntity.playAudio(rainNoise!)
-        case .thunderstorm:
+        } else if AudioToPlay == .thunderstorm {
             channelAudioEntity.playAudio(thunderStormNoise!)
-        case .snow:
+        } else if AudioToPlay == .snow {
             channelAudioEntity.playAudio(snowNoise!)
-        default:
-            channelAudioEntity.stopAllAudio()
+        } else {
+            channelAudioEntity.spatialAudio?.gain = defaultGain
         }
     }
-    
-    func updateWeather(weatherUpdate: WeatherLight, isDay: Bool, defaultGain: Double, soundOn: Bool){
-        
+
+    func updateWeather(
+        weatherUpdate: WeatherLight,
+        isDay: Bool,
+        defaultGain: Double,
+        soundOn: Bool
+    ) {
+
         root.children.removeAll()
-        
-        print("isday:", isDay)
-        
-//        let weatherUpdate: WeatherLight = .RAIN
-        
-        if weatherUpdate.audioType(isDay: isDay) != lastAudio && weatherUpdate != .UNKNOWN{
-            updateAudio(AudioToPlay: weatherUpdate.audioType(isDay: isDay), soundOn: soundOn, defaultGain: defaultGain)
-        }
-        
+
+        channelAudioEntity.stopAllAudio()
+
+        updateAudio(
+            AudioToPlay: weatherUpdate.audioType(isDay: isDay),
+            soundOn: soundOn,
+            defaultGain: defaultGain
+        )
+
         switch weatherUpdate {
         case .CLEAR_DAY:
             root.addChild(sun.clone(recursive: true))
@@ -123,9 +122,17 @@ struct WeatherVolumeManager {
             break
         }
     }
-    
-    init (Scene: Entity, currentWeather: WeatherLight, isDay: Bool, defaultGain: Double, soundOn: Bool) {
-        self.weatherTransitionPoof = Scene.findEntity(named: "weatherTransitionPoof")!
+
+    init(
+        Scene: Entity,
+        currentWeather: WeatherLight,
+        isDay: Bool,
+        defaultGain: Double,
+        soundOn: Bool
+    ) {
+        self.weatherTransitionPoof = Scene.findEntity(
+            named: "weatherTransitionPoof"
+        )!
         self.sun = Scene.findEntity(named: "SUN")!
         self.clouds = Scene.findEntity(named: "CLOUDS")!
         self.rain = Scene.findEntity(named: "RAIN")!
@@ -135,17 +142,24 @@ struct WeatherVolumeManager {
         self.stars = Scene.findEntity(named: "stars_24")!
         self.snow = Scene.findEntity(named: "snow")!
         self.thunderFlashLight = Scene.findEntity(named: "lightningSpotLight")!
-        self.thunderStrike = Scene.findEntity(named: "Lightning")!.clone(recursive: true)
+        self.thunderStrike = Scene.findEntity(named: "Lightning")!.clone(
+            recursive: true
+        )
         self.channelAudioEntity = Entity()
         self.channelAudioEntity.components.set(SpatialAudioComponent())
         self.isDay = isDay
         Scene.children.removeAll()
         Scene.addChild(root)
         Scene.addChild(channelAudioEntity)
-        self.updateWeather(weatherUpdate: currentWeather, isDay: isDay, defaultGain: defaultGain, soundOn: soundOn)
+        self.updateWeather(
+            weatherUpdate: currentWeather,
+            isDay: isDay,
+            defaultGain: defaultGain,
+            soundOn: soundOn
+        )
     }
-    
-    func putStarsAboveClouds(){
+
+    func putStarsAboveClouds() {
         let starClouds = stars.clone(recursive: true)
         root.addChild(starClouds)
         starClouds.position.y += 1.3

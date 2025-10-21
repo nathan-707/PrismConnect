@@ -7,15 +7,13 @@
 
 import Foundation
 
-
-
 struct VisionInfo: Codable, Equatable {
     var am: Bool
     var isDay: Bool
     var visionP: Int
-    var city: Int // current teleport city selected.
-    var park: Int // current park selected.
-    var mode: Int // home, teleport, city
+    var city: Int  // current teleport city selected.
+    var park: Int  // current park selected.
+    var mode: Int  // home, teleport, city
     var timeHour: Int
     var timeMin: Int
     var weekDay: Int
@@ -27,6 +25,3 @@ struct VisionInfo: Codable, Equatable {
     var tempG: Int
     var tempB: Int
 }
-
-
-

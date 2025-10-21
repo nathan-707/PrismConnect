@@ -25,7 +25,7 @@ struct Prism_ConnectApp: App {
             }
             .modelContainer(for: [DataModel.self])
             .windowStyle(.plain)
-            .defaultSize(width: 900, height: 600)
+            .defaultSize(width: 900, height: 1000)
             .windowResizability(.contentSize)
             .defaultWindowPlacement { content, context in
                 if let contentWindow = context.windows.first(
@@ -65,20 +65,22 @@ struct Prism_ConnectApp: App {
             }
             .modelContainer(for: [DataModel.self])
             .windowStyle(.volumetric)
-            .defaultSize(width: defaultVolumeWidth, height: defaultVolumeHeight)
-
+            .defaultSize(
+                width: defaultSettings.defaultVolumeWidth,
+                height: defaultSettings.defaultVolumeHeight
+            )
 
             .onChange(of: scenePhase) { oldValue, newValue in
                 switch newValue {
                 case .background:
                     prismSessionManager.disconnect()
-//                    print("background")
+                //                    print("background")
                 case .inactive:
                     prismSessionManager.disconnect()
-//                    print("inactive")
+                //                    print("inactive")
                 case .active:
                     prismSessionManager.connect()
-//                    print("active")
+                    //                    print("active")
                     break
                 @unknown default:
                     prismSessionManager.disconnect()

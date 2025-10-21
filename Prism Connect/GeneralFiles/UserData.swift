@@ -46,22 +46,26 @@ class DataModel {
     var boolIMayUse3: Bool = false
     var boolIMayUse4: Bool = false
     var boolIMayUse5: Bool = false
+
+    var lastKnownLat: Double = 0
+    var lastKnownLong: Double = 0
+    var showConnectToPrismboxButton = false
     /////////////////////////////////////////////////////////
 
     init() {
-        self.imperial = true
-        self.timeScale = 1
-        self.tempScale = 1
+        self.imperial = defaultSettings.default_imperial
+        self.timeScale = defaultSettings.default_timeScale
+        self.tempScale = defaultSettings.default_tempScale
 
-        self.cRed = 0
-        self.cGreen = 1
-        self.cBlue = 0
+        self.cRed = defaultSettings.default_cRed
+        self.cGreen = defaultSettings.default_cgreen
+        self.cBlue = defaultSettings.default_cBlue
 
-        self.showBattery = false
-        self.showTemperature = true
-        self.soundOn = true
-        self.volume = defaultVolume
-        self.tourInterval = defaultWorldTourInterval_Mins
-        self.showFunfact = true
+        self.showBattery = defaultSettings.default_showBattery
+        self.showTemperature = defaultSettings.default_showTemperature
+        self.soundOn = defaultSettings.default_soundON
+        self.volume = defaultSettings.defaultVolume
+        self.tourInterval = defaultSettings.defaultWorldTourInterval_Mins
+        self.showFunfact = defaultSettings.default_showFunfact
     }
 }

@@ -15,18 +15,18 @@
   ],
   "products" : [
     {
-      "displayPrice" : "5.99",
-      "familyShareable" : false,
+      "displayPrice" : "4.99",
+      "familyShareable" : true,
       "internalID" : "6753197556",
       "localizations" : [
         {
-          "description" : "Custom Color|Short Tour Interval|Display Battery Level",
-          "displayName" : "Upgrade VirtualSkies",
+          "description" : "Customize Color;Show Battery Level;Adjust Tour Interval",
+          "displayName" : "Unlock Extra Features",
           "locale" : "en_US"
         }
       ],
       "productID" : "virtualskies.upgrade",
-      "referenceName" : "VirtualSkies Upgrade",
+      "referenceName" : "VirtualSkies Extra Features Upgrade",
       "type" : "NonConsumable"
     }
   ],
@@ -38,7 +38,7 @@
     "_developerTeamID" : "DTFF4HTNZR",
     "_disableDialogs" : false,
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 780969341.84907305,
+    "_lastSynchronizedDate" : 782708882.969239,
     "_locale" : "en_US",
     "_renewalBillingIssuesEnabled" : false,
     "_storefront" : "USA",

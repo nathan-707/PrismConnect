@@ -20,16 +20,15 @@ enum Views {
 }
 
 class ClockSessionManager: NSObject, ObservableObject {
-    
+    @Published var lastKnownLat: Double = 0
+    @Published var lastKnownLong: Double = 0
+    @Published var failedGetHomeWeatherAttempts = 0
     @Published var reportWeatherError = false
-
+    @Published var showConnectToPrismboxButton = false
 
     private var currentSystemTime: String {
-        
         let formatter = DateFormatter()
-
         formatter.dateFormat = "h:mm"  // This ensures a space before AM/PM
-
         //        if isStandaloneMode && standalonemode_Mode == .home {
         //            formatter.dateFormat = "h:mm" // This ensures a space before AM/PM
         //
@@ -38,11 +37,12 @@ class ClockSessionManager: NSObject, ObservableObject {
         //        }
         return formatter.string(from: Date())
     }
+
     @Published var showFunfact: Bool = true
     @Published var showTemperature: Bool = true
     @Published var soundOn: Bool = true
     @Published var rainSnowGain: Double = 10
-    
+
     @Published var imperial = true {
         didSet {
             updateDisplayedTemperatureFromRaw()
@@ -52,6 +52,7 @@ class ClockSessionManager: NSObject, ObservableObject {
     @Published var worldTourIsOn: Bool = false
     @Published var userColor: Color = .green
     @Published var locationDenied = false
+    @Published var weatherRequestIsPending = false
 
     func getCurrentTemp() -> String {
         if imperial {
@@ -69,7 +70,7 @@ class ClockSessionManager: NSObject, ObservableObject {
             clock_temperature = Int(round(celsius))
         }
     }
-    
+
     var failedHome = true
     var failedTeleport = true
 
@@ -79,7 +80,6 @@ class ClockSessionManager: NSObject, ObservableObject {
             virtualClock = VirtualColorClock()
             virtualClock?.sessionManager = self
         }
-  
 
         Task { @MainActor in
             let success = await virtualClock?.getWeather(mode: mode, city: city)
@@ -92,9 +92,7 @@ class ClockSessionManager: NSObject, ObservableObject {
                     default:
                         failedTeleport = false
                     }
-                }
-                
-                else {
+                } else {
                     failedHome = true
                     failedTeleport = true
                     if mode == .teleportMode {
@@ -139,7 +137,7 @@ class ClockSessionManager: NSObject, ObservableObject {
             try? await Task.sleep(for: .seconds(5))
 
             if peripheralConnected {
-                
+
                 isStandaloneMode = false
                 tryToTurnOnStandAloneMode = true
             } else {
@@ -173,7 +171,7 @@ class ClockSessionManager: NSObject, ObservableObject {
     @Published var tryToTurnOnStandAloneMode: Bool = false
 
     // end of standalone vars.
-    private var virtualClock: VirtualColorClock?
+    var virtualClock: VirtualColorClock?
     @Published var showingFullTrackingSpace = false
     @Published var cityIsSelected = true
 
@@ -248,24 +246,22 @@ class ClockSessionManager: NSObject, ObservableObject {
     @Published var somethingICanUse2: Int = 0  // future proof if i need it
     @Published var somethingICanUse3: Int = 0  // future proof if i need it
 
-    
     @Published var clockTime: String = ""
-    
-    
+
     func updateTime() {
 
         if self.peripheralConnected == false || self.isStandaloneMode == true {
-            clockTime = self.currentSystemTime;
-            return;
-//            return self.currentSystemTime
+            clockTime = self.currentSystemTime
+            return
+            //            return self.currentSystemTime
         }
 
         if clock_time_min >= 10 {
             clockTime = "\(clock_time_hour):\(clock_time_min)"
-//            return "\(clock_time_hour):\(clock_time_min)"
+            //            return "\(clock_time_hour):\(clock_time_min)"
         } else {
             clockTime = "\(clock_time_hour) \(":") \("0")\(clock_time_min)"
-//            return "\(clock_time_hour) \(":") \("0")\(clock_time_min)"
+            //            return "\(clock_time_hour) \(":") \("0")\(clock_time_min)"
         }
     }
 
@@ -876,7 +872,6 @@ class ClockSessionManager: NSObject, ObservableObject {
             type: .withResponse
         )
     }
-    
 
 }
 
@@ -953,6 +948,7 @@ extension ClockSessionManager: CBCentralManagerDelegate {
             guard let prismboxVersion = prismboxVersion else { return }
             peripheral.delegate = self
             peripheral.discoverServices([prismboxVersion.serviceUUID])
+            ping()
         #endif
         #if os(visionOS)
             peripheral.discoverServices([
@@ -1044,7 +1040,7 @@ extension ClockSessionManager: CBPeripheralDelegate {
         }
 
         ping()
-    
+
     }
 
     func peripheral(
@@ -1152,4 +1148,3 @@ extension Int {
 func returnSecondsFrom(min: Int) -> Double {
     return Double(min * 60)
 }
-

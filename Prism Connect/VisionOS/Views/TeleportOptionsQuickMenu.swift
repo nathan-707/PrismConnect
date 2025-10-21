@@ -17,28 +17,42 @@ struct TeleportOptionsQuickMenu: View {
                 Button {
                     prismSessionManager.standalonemode_Mode = .home
                     prismSessionManager.presentSelectLocationView = false
-                    
+
                     prismSessionManager.getWeather(
-                            mode: .home,
-                            city: worldTourCity
-                        )
+                        mode: .home,
+                        city: worldTourCity
+                    )
                 } label: {
                     Text("GO HOME")
                 }
+                .controlSize(.large)
+                .buttonStyle(.borderedProminent)
+                .tint(.green)
+                .foregroundStyle(.white)
+                .padding(12)
 
             } else {
                 Button(
                     "Start Tour (Random City Every \(prismSessionManager.standalone_worldTourInterval_Mins) min)",
                     systemImage: "globe.americas.fill"
                 ) {
+
+                    prismSessionManager.weatherRequestIsPending = true
+
                     prismSessionManager
                         .presentSelectLocationView = false
+
                     prismSessionManager.standalonemode_Mode =
                         .teleportMode
 
-                    prismSessionManager.CurrentTeleportation = emptyCity
                     prismSessionManager.worldTourIsOn = true
-                    lastWorldTourSuccessFetchDate = Date(timeIntervalSince1970: 0)
+                    lastWorldTourSuccessFetchDate = Date(
+                        timeIntervalSince1970: 0
+                    )
+                    getWeatherTask?.cancel()
+                    getWeatherTask = getWeatherTaskSch(
+                        prismSessionManager: prismSessionManager
+                    )
                 }
                 .controlSize(.large)
                 .buttonStyle(.borderedProminent)

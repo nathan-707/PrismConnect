@@ -10,17 +10,20 @@ import Foundation
 let progressScale = 1.33
 
 struct Debug {
-    let allowUpdateFromSettings = true
+    let allowUpdateFromSettings = false
 
     let testingSoDontShowSetup = false
     let skipClockSearch = false
     let printStateUpdates = false
-    
 
     let loadSounds = true
-    let printGetWeatherTimers = true
+    let printGetWeatherTimers = false
+    
+    ////////////////////////////////////////////////////////////////////////////
+
+    
+    let locationDenied_Test = false
+    let noInternet_Test = false
 }
 
-
 let debug = Debug()
-

@@ -56,18 +56,6 @@
                             Toggle(isOn: $prismSessionManager.presentSettings) {
                                 Label("settings", systemImage: "gear")
                             }
-
-                            Toggle(
-                                isOn: $prismSessionManager
-                                    .tryToTurnOnStandAloneMode
-                            ) {
-                                Label(
-                                    "NoPrismBox",
-                                    systemImage: prismSessionManager
-                                        .tryToTurnOnStandAloneMode
-                                        ? "clock.badge.checkmark" : "clock"
-                                )
-                            }
                             .onChange(
                                 of: prismSessionManager
                                     .tryToTurnOnStandAloneMode
@@ -84,15 +72,15 @@
                                     .tryToTurnOnStandAloneMode
                                 {  // get weather data over internet and present teleport options.
                                     prismSessionManager.disconnect()
-                                    
-                                    prismSessionManager.standalonemode_Mode = .home
 
-                                   prismSessionManager.getWeather(
-                                            mode: prismSessionManager
-                                                .standalonemode_Mode,
-                                            city: worldTourCity
-                                        )
-                                    
+                                    prismSessionManager.standalonemode_Mode =
+                                        .home
+
+                                    prismSessionManager.getWeather(
+                                        mode: prismSessionManager
+                                            .standalonemode_Mode,
+                                        city: worldTourCity
+                                    )
 
                                 } else {
                                     prismSessionManager.connect()
@@ -100,6 +88,21 @@
                                         .waitToTryToConnectAndReport()
                                 }
                             }
+
+                            if prismSessionManager.showConnectToPrismboxButton {
+                                Toggle(
+                                    isOn: $prismSessionManager
+                                        .tryToTurnOnStandAloneMode
+                                ) {
+                                    Label(
+                                        "NoPrismBox",
+                                        systemImage: prismSessionManager
+                                            .tryToTurnOnStandAloneMode
+                                            ? "clock.badge.checkmark" : "clock"
+                                    )
+                                }
+                            }
+
                         }
                         .toggleStyle(.button)
                         .buttonStyle(.borderless)
@@ -136,7 +139,7 @@
             print(dataModelQuery.count, " datamodels")
 
             if dataModelQuery.isEmpty {
-                print("Nothing")
+                print("No data model in memory. settings defaults")
                 modelContext.insert(DataModel())
                 print(dataModelQuery.count, " datamodels")
 
@@ -146,33 +149,52 @@
                     print("Error initializing settings")
                 }
 
-            } else {
-                
-                
-//                self.imperial = true
-//                self.timeScale = 1
-//                self.tempScale = 1
-//
+                // no data model. set default settings instead.
+                prismSessionManager.showConnectToPrismboxButton =
+                    defaultSettings.default_showConnectToPrismboxButton
+                prismSessionManager.imperial = defaultSettings.default_imperial
+                prismSessionManager.timeScale =
+                    defaultSettings.default_timeScale
+                prismSessionManager.tempScale =
+                    defaultSettings.default_tempScale
+                prismSessionManager.showBattery =
+                    defaultSettings.default_showBattery
+                prismSessionManager.showBattery =
+                    defaultSettings.default_showBattery
+                prismSessionManager.showTemperature =
+                    defaultSettings.default_showTemperature
+                prismSessionManager.soundOn = defaultSettings.default_soundON
+                prismSessionManager.rainSnowGain = defaultSettings.defaultVolume
+                prismSessionManager.standalone_worldTourInterval_Mins =
+                    defaultSettings.defaultWorldTourInterval_Mins
+                prismSessionManager.showFunfact =
+                    defaultSettings.default_showFunfact
+                initColor()
 
-//                
-//                self.showBattery = false
-//                self.showTemperature = true
-//                self.soundOn = true
-//                self.volume = -30
-//                self.tourInterval = 0
-                
-                guard let savedDataModel = dataModelQuery.first else {return}
-                print("Something")
+            } else {
+
+                guard let savedDataModel = dataModelQuery.first else { return }
+                print("Data model found. restoring settings.")
+                prismSessionManager.lastKnownLat = savedDataModel.lastKnownLat
+                prismSessionManager.lastKnownLong = savedDataModel.lastKnownLong
+                print(
+                    prismSessionManager.lastKnownLat,
+                    prismSessionManager.lastKnownLong
+                )
                 prismSessionManager.imperial = savedDataModel.imperial
                 prismSessionManager.timeScale = savedDataModel.timeScale
                 prismSessionManager.tempScale = savedDataModel.tempScale
                 prismSessionManager.showBattery = savedDataModel.showBattery
                 prismSessionManager.showBattery = savedDataModel.showBattery
-                prismSessionManager.showTemperature = savedDataModel.showTemperature
+                prismSessionManager.showTemperature =
+                    savedDataModel.showTemperature
                 prismSessionManager.soundOn = savedDataModel.soundOn
                 prismSessionManager.rainSnowGain = savedDataModel.volume
-                prismSessionManager.standalone_worldTourInterval_Mins = savedDataModel.tourInterval
+                prismSessionManager.standalone_worldTourInterval_Mins =
+                    savedDataModel.tourInterval
                 prismSessionManager.showFunfact = savedDataModel.showFunfact
+                prismSessionManager.showConnectToPrismboxButton =
+                    savedDataModel.showConnectToPrismboxButton
                 initColor()
             }
         }

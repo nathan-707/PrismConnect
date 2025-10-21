@@ -8,117 +8,117 @@
 import Foundation
 
 let funFactsBirmingham: [String] = [
-    "Birmingham, Alabama is nicknamed \"The Magic City\" due to its rapid industrial growth in the late 19th century.", // nickname :contentReference[oaicite:1]{index=1}
-    "Vulcan, the 56-ft cast-iron statue atop Red Mountain, is the largest cast-iron statue in the world.", // Vulcan :contentReference[oaicite:2]{index=2}
-    "The Heaviest Corner on Earth refers to four early 20th-century skyscrapers clustered at 20th St & 1st Ave North.", // Heaviest Corner :contentReference[oaicite:3]{index=3}
-    "Birmingham was founded on June 1, 1871, by the Elyton Land Company.", // foundation :contentReference[oaicite:4]{index=4}
-    "It’s the only place in the world where iron ore, coal, and limestone are found within a ten-mile radius—all needed for steel.", // raw materials :contentReference[oaicite:5]{index=5}
-    "The city was named after Birmingham, England—another major industrial center.", // namesake :contentReference[oaicite:6]{index=6}
-    "Sloss Furnaces operated as a blast furnace from 1882–1971 and is now a museum and National Historic Landmark.", // Sloss Furnaces :contentReference[oaicite:7]{index=7}
-    "Railroad Park sparked downtown revitalization, including conversion of old buildings into cultural and food venues.", // reinvention :contentReference[oaicite:8]{index=8}
-    "The stadium dog—a hot dog with kraut, onions, and mustard-ketchup sauce—became a cult classic at football games.", // stadium dog :contentReference[oaicite:9]{index=9}
-    "The Vulcan statue was originally created for the 1904 World's Fair in St. Louis before being moved to Birmingham.", // World's Fair :contentReference[oaicite:11]{index=11}
-    "Vulcan’s heaviest section—his head—weighs about 11,000 lb, and the full figure plus tools tops 120,000 lb.", // weight :contentReference[oaicite:12]{index=12}
-    "Vulcan was restored in a $14 million renovation between 1999–2004 and re-erected with a new spear.", // restoration :contentReference[oaicite:13]{index=13}
-    "Vulcan Park’s spear served as a neon traffic signal: green normally, red after fatal accidents.", // novelty :contentReference[oaicite:14]{index=14}
-    "Vulcan Park & Museum includes an interactive history museum and serves as a visitor information center.", // museum :contentReference[oaicite:15]{index=15}
-    "Sloss Furnaces was preserved and opened to the public in 1983 as the first U.S. blast furnace museum.", // Sloss preservation :contentReference[oaicite:16]{index=16}
-    "Sloss now hosts metal arts classes, concerts, festivals, and even was a venue for the 2022 World Games.", // current use :contentReference[oaicite:17]{index=17}
-    "The Birmingham Zoo houses over 800 animals across 200+ species.", // zoo :contentReference[oaicite:18]{index=18}
-    "Ruffner Mountain and Red Mountain Park offer hiking, zip-lining, and nature escapes within city limits.", // parks :contentReference[oaicite:19]{index=19}
-    "The Barber Vintage Motorsports Museum holds the largest motorcycle collection in the world.", // museum :contentReference[oaicite:20]{index=20}
-    "Media giants like *Southern Living*, *Cooking Light*, and *Food & Wine* are headquartered in Birmingham.", // magazines :contentReference[oaicite:21]{index=21}
-    "Birmingham is highly regarded as a culinary city, with several James Beard–nominated chefs and vibrant food halls.", // food scene :contentReference[oaicite:22]{index=22}
-    "Birmingham hosts the Sidewalk Film Festival, a major independent film event.", // festivals general
-    "Highland Park Golf Course is one of the oldest public golf courses in the U.S.", // golf course general
-    "Legion Field earned the nickname “Football Capital of the South.”", // Football nickname general
-    "Birmingham offers more green space per capita than many cities its size.", // green space general
-    "The Alabama Theatre, opened in 1927, still hosts shows and classic films.", // Alabama Theatre general
-    "Birmingham was the first city in the U.S. to celebrate Veteran’s Day.", // Veteran’s Day general :contentReference[oaicite:23]{index=23}
-    "The Metropolitan Area, including Hoover and Cullman, is home to roughly 1.1 million people.", // metro pop :contentReference[oaicite:24]{index=24}
-    "The city has a thriving craft brewery scene with vibrant, local flavor.", // breweries general
-    "The McWane Science Center features hands-on exhibits and an IMAX dome.", // McWane general
-    "Free museum entry, scenic Vulcan sunset views, and affordable minor-league games make B’ham wallet-friendly.", // affordability general
-    "A nine-day festival in 1939 celebrated Vulcan’s reinstallation with the crowning of a ‘Vulcan Queen.’", // Vulcan festival :contentReference[oaicite:25]{index=25}
-    "The Vulcan statue once held ice-cream cones, a Coca-Cola bottle, and pickles as temporary props.", // novelty Vulcan props :contentReference[oaicite:26]{index=26}
-    "The Heaviest Corner’s buildings are listed on the National Register of Historic Places.", // historic register :contentReference[oaicite:27]{index=27}
-    "The Heaviest Corner earned its moniker from early 20th-century promotional materials calling it 'Heaviest Corner on Earth.'", // name origin :contentReference[oaicite:28]{index=28}
-    "Birmingham revitalized historic buildings into trendy food halls in the ‘Reinvention’ era.", // reinvention general :contentReference[oaicite:29]{index=29}
-    "Sloss Furnaces also hosts the annual Furnace Fest, a hardcore punk festival revived in 2021.", // Furnace Fest :contentReference[oaicite:30]{index=30}
-    "Sloss hosted VEX Robotics events such as the ’Haunted’ signature competition in 2024.", // robotics event :contentReference[oaicite:31]{index=31}
-    "Free Museum of Art admission opens doors widely to visual culture fans.", // free arts general
-    "The city's urban renewal and cultural resurgence reflect Pride: 'Birmingham is not Mars.'", // quote :contentReference[oaicite:32]{index=32}
-    "Birmingham landed a James Beard national award with Highlands Bar and Grill winning Most Outstanding Restaurant in 2018.", // James Beard :contentReference[oaicite:33]{index=33}
-    "Chris Hastings and Rodney Scott are notable James Beard–winning chefs based in Birmingham.", // chefs :contentReference[oaicite:34]{index=34}
-    "The revitalized food hall, like Busy Corner Cheese & Provisions, brought local innovation to old spaces.", // food hall :contentReference[oaicite:35]{index=35}
-    "The Civic food scene includes collard greens, peach cobbler, and longstanding diners like Niki’s West and John's.", // local classics :contentReference[oaicite:36]{index=36}
-    "The Vulcan statue’s observation deck was added in 1971 during a $1 million centennial refurbishment.", // observatory :contentReference[oaicite:37]{index=37}
-    "Vulcan's centennial facelift included marble cladding, elevator access, and gift shop with walkways.", // facelift :contentReference[oaicite:38]{index=38}
-    "The Vulcan Park Foundation preserves and promotes the statue and Birmingham’s culture.", // foundation :contentReference[oaicite:39]{index=39}
-    "The Vulcan statue was awarded a Grand Prize at the 1904 World's Fair.", // award :contentReference[oaicite:40]{index=40}
-    "Vulcan’s statue design was by sculptor Giuseppe Moretti and composed of 29 iron sections bolted together.", // design :contentReference[oaicite:41]{index=41}
-    "Vulcan's construction cost $15,000, raised through community events like art shows and baseball games.", // fundraising :contentReference[oaicite:42]{index=42}
-    "Vulcan was assembled incorrectly the first time (arms wrong, missing spear) before proper reassembly on Red Mountain.", // assembly mishap :contentReference[oaicite:43]{index=43}
-    "In 1949, the Vulcan area added TV stations with studios and towers at Red Mountain.", // TV stations :contentReference[oaicite:44]{index=44}
-    "Vulcan has a waist circumference of 18 ft and chest circumference of 22 ft.", // dimensions :contentReference[oaicite:45]{index=45}
-    "The statue is declared a National Register historic place since July 6, 1976.", // NRHP :contentReference[oaicite:46]{index=46}
-    "The Vulcan head was displayed at the Birmingham Museum of Art during restoration in 2002.", // head display :contentReference[oaicite:47]{index=47}
-    "Vulcan’s tower originally lacked an elevator; the 1971 renovation added one.", // elevator :contentReference[oaicite:48]{index=48}
-    "Local dignitaries, foundrymen, and 5,000 attendees were at the 1939 festival to inaugurate the restored Vulcan site.", // festival crowd :contentReference[oaicite:49]{index=49}
-    "Vulcan’s restoration project received National Preservation Honor Award in 2006.", // award :contentReference[oaicite:50]{index=50}
-    "The restoration stripped later additions and returned Vulcan to its 1938 appearance.", // restoration fidelity :contentReference[oaicite:51]{index=51}
-    "Following restoration, webcams from local TV stations livestreamed the reinstallation of Vulcan.", // webcam :contentReference[oaicite:52]{index=52}
-    "Today, more than 100,000 visitors view Vulcan annually, especially enjoying views of downtown.", // visitors :contentReference[oaicite:53]{index=53}
-    "Vulcan Park today includes urban green space and stroll paths alongside the museum.", // green space :contentReference[oaicite:54]{index=54}
-    "Vulcan remains Alabama’s iconic figure—tightly woven into the city’s identity and cultural narrative.", // symbolic identity general
+    "Birmingham, Alabama is nicknamed \"The Magic City\" due to its rapid industrial growth in the late 19th century.",  // nickname :contentReference[oaicite:1]{index=1}
+    "Vulcan, the 56-ft cast-iron statue atop Red Mountain, is the largest cast-iron statue in the world.",  // Vulcan :contentReference[oaicite:2]{index=2}
+    "The Heaviest Corner on Earth refers to four early 20th-century skyscrapers clustered at 20th St & 1st Ave North.",  // Heaviest Corner :contentReference[oaicite:3]{index=3}
+    "Birmingham was founded on June 1, 1871, by the Elyton Land Company.",  // foundation :contentReference[oaicite:4]{index=4}
+    "It’s the only place in the world where iron ore, coal, and limestone are found within a ten-mile radius—all needed for steel.",  // raw materials :contentReference[oaicite:5]{index=5}
+    "The city was named after Birmingham, England—another major industrial center.",  // namesake :contentReference[oaicite:6]{index=6}
+    "Sloss Furnaces operated as a blast furnace from 1882–1971 and is now a museum and National Historic Landmark.",  // Sloss Furnaces :contentReference[oaicite:7]{index=7}
+    "Railroad Park sparked downtown revitalization, including conversion of old buildings into cultural and food venues.",  // reinvention :contentReference[oaicite:8]{index=8}
+    "The stadium dog—a hot dog with kraut, onions, and mustard-ketchup sauce—became a cult classic at football games.",  // stadium dog :contentReference[oaicite:9]{index=9}
+    "The Vulcan statue was originally created for the 1904 World's Fair in St. Louis before being moved to Birmingham.",  // World's Fair :contentReference[oaicite:11]{index=11}
+    "Vulcan’s heaviest section—his head—weighs about 11,000 lb, and the full figure plus tools tops 120,000 lb.",  // weight :contentReference[oaicite:12]{index=12}
+    "Vulcan was restored in a $14 million renovation between 1999–2004 and re-erected with a new spear.",  // restoration :contentReference[oaicite:13]{index=13}
+    "Vulcan Park’s spear served as a neon traffic signal: green normally, red after fatal accidents.",  // novelty :contentReference[oaicite:14]{index=14}
+    "Vulcan Park & Museum includes an interactive history museum and serves as a visitor information center.",  // museum :contentReference[oaicite:15]{index=15}
+    "Sloss Furnaces was preserved and opened to the public in 1983 as the first U.S. blast furnace museum.",  // Sloss preservation :contentReference[oaicite:16]{index=16}
+    "Sloss now hosts metal arts classes, concerts, festivals, and even was a venue for the 2022 World Games.",  // current use :contentReference[oaicite:17]{index=17}
+    "The Birmingham Zoo houses over 800 animals across 200+ species.",  // zoo :contentReference[oaicite:18]{index=18}
+    "Ruffner Mountain and Red Mountain Park offer hiking, zip-lining, and nature escapes within city limits.",  // parks :contentReference[oaicite:19]{index=19}
+    "The Barber Vintage Motorsports Museum holds the largest motorcycle collection in the world.",  // museum :contentReference[oaicite:20]{index=20}
+    "Media giants like *Southern Living*, *Cooking Light*, and *Food & Wine* are headquartered in Birmingham.",  // magazines :contentReference[oaicite:21]{index=21}
+    "Birmingham is highly regarded as a culinary city, with several James Beard–nominated chefs and vibrant food halls.",  // food scene :contentReference[oaicite:22]{index=22}
+    "Birmingham hosts the Sidewalk Film Festival, a major independent film event.",  // festivals general
+    "Highland Park Golf Course is one of the oldest public golf courses in the U.S.",  // golf course general
+    "Legion Field earned the nickname “Football Capital of the South.”",  // Football nickname general
+    "Birmingham offers more green space per capita than many cities its size.",  // green space general
+    "The Alabama Theatre, opened in 1927, still hosts shows and classic films.",  // Alabama Theatre general
+    "Birmingham was the first city in the U.S. to celebrate Veteran’s Day.",  // Veteran’s Day general :contentReference[oaicite:23]{index=23}
+    "The Metropolitan Area, including Hoover and Cullman, is home to roughly 1.1 million people.",  // metro pop :contentReference[oaicite:24]{index=24}
+    "The city has a thriving craft brewery scene with vibrant, local flavor.",  // breweries general
+    "The McWane Science Center features hands-on exhibits and an IMAX dome.",  // McWane general
+    "Free museum entry, scenic Vulcan sunset views, and affordable minor-league games make B’ham wallet-friendly.",  // affordability general
+    "A nine-day festival in 1939 celebrated Vulcan’s reinstallation with the crowning of a ‘Vulcan Queen.’",  // Vulcan festival :contentReference[oaicite:25]{index=25}
+    "The Vulcan statue once held ice-cream cones, a Coca-Cola bottle, and pickles as temporary props.",  // novelty Vulcan props :contentReference[oaicite:26]{index=26}
+    "The Heaviest Corner’s buildings are listed on the National Register of Historic Places.",  // historic register :contentReference[oaicite:27]{index=27}
+    "The Heaviest Corner earned its moniker from early 20th-century promotional materials calling it 'Heaviest Corner on Earth.'",  // name origin :contentReference[oaicite:28]{index=28}
+    "Birmingham revitalized historic buildings into trendy food halls in the ‘Reinvention’ era.",  // reinvention general :contentReference[oaicite:29]{index=29}
+    "Sloss Furnaces also hosts the annual Furnace Fest, a hardcore punk festival revived in 2021.",  // Furnace Fest :contentReference[oaicite:30]{index=30}
+    "Sloss hosted VEX Robotics events such as the ’Haunted’ signature competition in 2024.",  // robotics event :contentReference[oaicite:31]{index=31}
+    "Free Museum of Art admission opens doors widely to visual culture fans.",  // free arts general
+    "The city's urban renewal and cultural resurgence reflect Pride: 'Birmingham is not Mars.'",  // quote :contentReference[oaicite:32]{index=32}
+    "Birmingham landed a James Beard national award with Highlands Bar and Grill winning Most Outstanding Restaurant in 2018.",  // James Beard :contentReference[oaicite:33]{index=33}
+    "Chris Hastings and Rodney Scott are notable James Beard–winning chefs based in Birmingham.",  // chefs :contentReference[oaicite:34]{index=34}
+    "The revitalized food hall, like Busy Corner Cheese & Provisions, brought local innovation to old spaces.",  // food hall :contentReference[oaicite:35]{index=35}
+    "The Civic food scene includes collard greens, peach cobbler, and longstanding diners like Niki’s West and John's.",  // local classics :contentReference[oaicite:36]{index=36}
+    "The Vulcan statue’s observation deck was added in 1971 during a $1 million centennial refurbishment.",  // observatory :contentReference[oaicite:37]{index=37}
+    "Vulcan's centennial facelift included marble cladding, elevator access, and gift shop with walkways.",  // facelift :contentReference[oaicite:38]{index=38}
+    "The Vulcan Park Foundation preserves and promotes the statue and Birmingham’s culture.",  // foundation :contentReference[oaicite:39]{index=39}
+    "The Vulcan statue was awarded a Grand Prize at the 1904 World's Fair.",  // award :contentReference[oaicite:40]{index=40}
+    "Vulcan’s statue design was by sculptor Giuseppe Moretti and composed of 29 iron sections bolted together.",  // design :contentReference[oaicite:41]{index=41}
+    "Vulcan's construction cost $15,000, raised through community events like art shows and baseball games.",  // fundraising :contentReference[oaicite:42]{index=42}
+    "Vulcan was assembled incorrectly the first time (arms wrong, missing spear) before proper reassembly on Red Mountain.",  // assembly mishap :contentReference[oaicite:43]{index=43}
+    "In 1949, the Vulcan area added TV stations with studios and towers at Red Mountain.",  // TV stations :contentReference[oaicite:44]{index=44}
+    "Vulcan has a waist circumference of 18 ft and chest circumference of 22 ft.",  // dimensions :contentReference[oaicite:45]{index=45}
+    "The statue is declared a National Register historic place since July 6, 1976.",  // NRHP :contentReference[oaicite:46]{index=46}
+    "The Vulcan head was displayed at the Birmingham Museum of Art during restoration in 2002.",  // head display :contentReference[oaicite:47]{index=47}
+    "Vulcan’s tower originally lacked an elevator; the 1971 renovation added one.",  // elevator :contentReference[oaicite:48]{index=48}
+    "Local dignitaries, foundrymen, and 5,000 attendees were at the 1939 festival to inaugurate the restored Vulcan site.",  // festival crowd :contentReference[oaicite:49]{index=49}
+    "Vulcan’s restoration project received National Preservation Honor Award in 2006.",  // award :contentReference[oaicite:50]{index=50}
+    "The restoration stripped later additions and returned Vulcan to its 1938 appearance.",  // restoration fidelity :contentReference[oaicite:51]{index=51}
+    "Following restoration, webcams from local TV stations livestreamed the reinstallation of Vulcan.",  // webcam :contentReference[oaicite:52]{index=52}
+    "Today, more than 100,000 visitors view Vulcan annually, especially enjoying views of downtown.",  // visitors :contentReference[oaicite:53]{index=53}
+    "Vulcan Park today includes urban green space and stroll paths alongside the museum.",  // green space :contentReference[oaicite:54]{index=54}
+    "Vulcan remains Alabama’s iconic figure—tightly woven into the city’s identity and cultural narrative.",  // symbolic identity general
 ]
 
 let funFactsAnchorage: [String] = [
-    "Anchorage, Alaska was impacted by the most powerful recorded U.S. earthquake – a magnitude 9.2 quake in 1964.", // original fact
-    "Anchorage spans around 1,705 square miles, making it the 3rd-largest U.S. city by area.", // area :contentReference[oaicite:55]{index=55}
-    "It’s larger than Rhode Island and almost the size of Delaware.", // comparison :contentReference[oaicite:56]{index=56}
-    "Anchorage is Alaska’s largest city, housing around 289,000 residents.", // population :contentReference[oaicite:57]{index=57}
-    "Nearly 40% of Alaska’s population resides in Anchorage.", // pop share :contentReference[oaicite:58]{index=58}
-    "Anchorage is the northernmost major U.S. city with large population and urban infrastructure.", // northernmost :contentReference[oaicite:59]{index=59}
-    "Average summer temps range between 55–78°F; winter lows dip to 5°F, with record high 90°F (2019).", // temperatures :contentReference[oaicite:60]{index=60}
-    "Anchorage averages 75.5 inches of snow annually; one winter in 2011–12 dropped over 11 feet.", // snowfall :contentReference[oaicite:61]{index=61}
-    "Trail cameras capture wildlife near town—moose, bears, lynx, wolves, wolverines—and are popular online.", // wildlife cams :contentReference[oaicite:62]{index=62}
-    "Approximately 1,500 moose roam urban Anchorage areas.", // moose :contentReference[oaicite:63]{index=63}
-    "On summer solstice, the city gets up to 22 hours of daylight—streetlights barely turn on.", // daylight :contentReference[oaicite:64]{index=64}
-    "Surfers ride tidal bore waves in Turnagain Arm thanks to massive tidal swings.", // surfing tide :contentReference[oaicite:65]{index=65}
-    "The annual Slippery Salmon Olympics challenges participants to race while holding a slick, wild salmon.", // salmon games :contentReference[oaicite:66]{index=66}
-    "Outhouse races are a comedic highlight during the Fur Rendezvous winter festival.", // outhouse races :contentReference[oaicite:67]{index=67}
-    "Fur Rendezvous (Rondy) is North America’s largest winter festival, blending sports, culture, and quirky events.", // festival :contentReference[oaicite:68]{index=68}
-    "Rondy began in the 1930s to uplift spirits; one quirky rule fined men without beards.", // festival history :contentReference[oaicite:69]{index=69}
-    "Anchorage is the ceremonial start of the Iditarod Sled Dog Race each March.", // Iditarod :contentReference[oaicite:70]{index=70}
-    "Turnagain Arm was named by Captain Cook after failing to find the Northwest Passage and having to turn again.", // name origin :contentReference[oaicite:71]{index=71}
-    "Snowzilla is Anchorage’s legendary giant snowman built annually since 2005, once as high as 25 ft.", // Snowzilla :contentReference[oaicite:72]{index=72}
-    "Snowzilla drew attention internationally—TV crews from Japan and Russia filmed it.", // Snowzilla fame :contentReference[oaicite:73]{index=73}
-    "Anchorage International Airport is a critical refueling stop and among the top five busiest air-freight hubs globally.", // airport freight :contentReference[oaicite:74]{index=74}
-    "Lake Hood in Anchorage is the world’s busiest seaplane base.", // seaplane :contentReference[oaicite:75]{index=75}
-    "Anchorage serves nearly 90% of the industrialized world within 9.5 flight hours.", // flight hub general
-    "Anchorage was formed from glaciated terrain; visible remnants like kettle ponds and moraines remain.", // glacial geography :contentReference[oaicite:76]{index=76}
-    "The Matanuska Glacier, the largest glacier accessible by car in the U.S., is nearby.", // glacier :contentReference[oaicite:77]{index=77}
-    "Bound by the Chugach Mountains, Anchorage has dramatic mountainous landscapes within city limits.", // geography general
-    "Anchorage’s schools rank among the most ethnically diverse nationwide.", // diversity :contentReference[oaicite:78]{index=78}
-    "Anchorage saw a record early arrival of 100 inches of snow—over 8.7 feet—in one winter.", // snow record :contentReference[oaicite:79]{index=79}
-    "That winter ranked eighth snowiest on record; people even built a 20-ft “Snowzilla” in response.", // snow record response :contentReference[oaicite:80]{index=80}
-    "Anchorage’s Greenbelt and coastal trails are popular for biking, with views of ocean and wildlife.", // trails general
-    "You can drive into wilderness within minutes of downtown, accessing ocean and wildlife areas.", // proximity general
-    "Fur Rendezvous includes events like Running of the Reindeer, snow sculpture contests, and ice bowling.", // Rondy events :contentReference[oaicite:81]{index=81}
-    "Collectible pins for Rondy have been made annually since 1939, now valuable among collectors.", // pins :contentReference[oaicite:82]{index=82}
-    "Anchorage’s Running of the Reindeer playfully mimics Pamplona’s bulls—with animals chasing runners.", // reindeer run :contentReference[oaicite:83]{index=83}
-    "Arctic and Native culture shine through Rondy with multi-tribal events and a Native Arts Market.", // culture :contentReference[oaicite:84]{index=84}
-    "Anchorage has hosted the Open World Championship Sled Dog Race since 1946 as part of Rondy.", // sled competition :contentReference[oaicite:85]{index=85}
-    "Anchorage was originally a railroad construction camp at Ship Creek in the early 20th century.", // origin general
-    "Alaskans were required to grow beards for Rondy or face fines—famous fun fact from festival lore.", // beard rule :contentReference[oaicite:86]{index=86}
-    "Anchorage offers insider favorites like Snow City Café, Moose’s Tooth, and SteamDot for food and coffee.", // dining :contentReference[oaicite:87]{index=87}
-    "Downtown Farmers’ Market brings local produce and crafts to Anchorage’s public life.", // farmers market general :contentReference[oaicite:88]{index=88}
-    "Anchorage Museum and Dos Manos Gallery showcase art, history, and Native works.", // museums :contentReference[oaicite:89]{index=89}
-    "For nightlife, enjoy speakeasy-style bars like Blues Central, Moose’s Tooth concerts, and reindeer hot-dogs.", // nightlife :contentReference[oaicite:90]{index=90}
-    "Day-trip destinations like Girdwood, Seward, and Homer Spit are easy drives or short flights.", // day trips :contentReference[oaicite:91]{index=91}
-    "Anchorage was built on glacially formed terrain, giving it tightly embedded geology and water bodies.", // glacial geology restate :contentReference[oaicite:92]{index=92}
-    "Anchorage’s varied climate includes record highs and remarkable snowfall extremes—extreme weather is part of the city’s story.", // climate extremes summary :contentReference[oaicite:93]{index=93}
+    "Anchorage, Alaska was impacted by the most powerful recorded U.S. earthquake – a magnitude 9.2 quake in 1964.",  // original fact
+    "Anchorage spans around 1,705 square miles, making it the 3rd-largest U.S. city by area.",  // area :contentReference[oaicite:55]{index=55}
+    "It’s larger than Rhode Island and almost the size of Delaware.",  // comparison :contentReference[oaicite:56]{index=56}
+    "Anchorage is Alaska’s largest city, housing around 289,000 residents.",  // population :contentReference[oaicite:57]{index=57}
+    "Nearly 40% of Alaska’s population resides in Anchorage.",  // pop share :contentReference[oaicite:58]{index=58}
+    "Anchorage is the northernmost major U.S. city with large population and urban infrastructure.",  // northernmost :contentReference[oaicite:59]{index=59}
+    "Average summer temps range between 55–78°F; winter lows dip to 5°F, with record high 90°F (2019).",  // temperatures :contentReference[oaicite:60]{index=60}
+    "Anchorage averages 75.5 inches of snow annually; one winter in 2011–12 dropped over 11 feet.",  // snowfall :contentReference[oaicite:61]{index=61}
+    "Trail cameras capture wildlife near town—moose, bears, lynx, wolves, wolverines—and are popular online.",  // wildlife cams :contentReference[oaicite:62]{index=62}
+    "Approximately 1,500 moose roam urban Anchorage areas.",  // moose :contentReference[oaicite:63]{index=63}
+    "On summer solstice, the city gets up to 22 hours of daylight—streetlights barely turn on.",  // daylight :contentReference[oaicite:64]{index=64}
+    "Surfers ride tidal bore waves in Turnagain Arm thanks to massive tidal swings.",  // surfing tide :contentReference[oaicite:65]{index=65}
+    "The annual Slippery Salmon Olympics challenges participants to race while holding a slick, wild salmon.",  // salmon games :contentReference[oaicite:66]{index=66}
+    "Outhouse races are a comedic highlight during the Fur Rendezvous winter festival.",  // outhouse races :contentReference[oaicite:67]{index=67}
+    "Fur Rendezvous (Rondy) is North America’s largest winter festival, blending sports, culture, and quirky events.",  // festival :contentReference[oaicite:68]{index=68}
+    "Rondy began in the 1930s to uplift spirits; one quirky rule fined men without beards.",  // festival history :contentReference[oaicite:69]{index=69}
+    "Anchorage is the ceremonial start of the Iditarod Sled Dog Race each March.",  // Iditarod :contentReference[oaicite:70]{index=70}
+    "Turnagain Arm was named by Captain Cook after failing to find the Northwest Passage and having to turn again.",  // name origin :contentReference[oaicite:71]{index=71}
+    "Snowzilla is Anchorage’s legendary giant snowman built annually since 2005, once as high as 25 ft.",  // Snowzilla :contentReference[oaicite:72]{index=72}
+    "Snowzilla drew attention internationally—TV crews from Japan and Russia filmed it.",  // Snowzilla fame :contentReference[oaicite:73]{index=73}
+    "Anchorage International Airport is a critical refueling stop and among the top five busiest air-freight hubs globally.",  // airport freight :contentReference[oaicite:74]{index=74}
+    "Lake Hood in Anchorage is the world’s busiest seaplane base.",  // seaplane :contentReference[oaicite:75]{index=75}
+    "Anchorage serves nearly 90% of the industrialized world within 9.5 flight hours.",  // flight hub general
+    "Anchorage was formed from glaciated terrain; visible remnants like kettle ponds and moraines remain.",  // glacial geography :contentReference[oaicite:76]{index=76}
+    "The Matanuska Glacier, the largest glacier accessible by car in the U.S., is nearby.",  // glacier :contentReference[oaicite:77]{index=77}
+    "Bound by the Chugach Mountains, Anchorage has dramatic mountainous landscapes within city limits.",  // geography general
+    "Anchorage’s schools rank among the most ethnically diverse nationwide.",  // diversity :contentReference[oaicite:78]{index=78}
+    "Anchorage saw a record early arrival of 100 inches of snow—over 8.7 feet—in one winter.",  // snow record :contentReference[oaicite:79]{index=79}
+    "That winter ranked eighth snowiest on record; people even built a 20-ft “Snowzilla” in response.",  // snow record response :contentReference[oaicite:80]{index=80}
+    "Anchorage’s Greenbelt and coastal trails are popular for biking, with views of ocean and wildlife.",  // trails general
+    "You can drive into wilderness within minutes of downtown, accessing ocean and wildlife areas.",  // proximity general
+    "Fur Rendezvous includes events like Running of the Reindeer, snow sculpture contests, and ice bowling.",  // Rondy events :contentReference[oaicite:81]{index=81}
+    "Collectible pins for Rondy have been made annually since 1939, now valuable among collectors.",  // pins :contentReference[oaicite:82]{index=82}
+    "Anchorage’s Running of the Reindeer playfully mimics Pamplona’s bulls—with animals chasing runners.",  // reindeer run :contentReference[oaicite:83]{index=83}
+    "Arctic and Native culture shine through Rondy with multi-tribal events and a Native Arts Market.",  // culture :contentReference[oaicite:84]{index=84}
+    "Anchorage has hosted the Open World Championship Sled Dog Race since 1946 as part of Rondy.",  // sled competition :contentReference[oaicite:85]{index=85}
+    "Anchorage was originally a railroad construction camp at Ship Creek in the early 20th century.",  // origin general
+    "Alaskans were required to grow beards for Rondy or face fines—famous fun fact from festival lore.",  // beard rule :contentReference[oaicite:86]{index=86}
+    "Anchorage offers insider favorites like Snow City Café, Moose’s Tooth, and SteamDot for food and coffee.",  // dining :contentReference[oaicite:87]{index=87}
+    "Downtown Farmers’ Market brings local produce and crafts to Anchorage’s public life.",  // farmers market general :contentReference[oaicite:88]{index=88}
+    "Anchorage Museum and Dos Manos Gallery showcase art, history, and Native works.",  // museums :contentReference[oaicite:89]{index=89}
+    "For nightlife, enjoy speakeasy-style bars like Blues Central, Moose’s Tooth concerts, and reindeer hot-dogs.",  // nightlife :contentReference[oaicite:90]{index=90}
+    "Day-trip destinations like Girdwood, Seward, and Homer Spit are easy drives or short flights.",  // day trips :contentReference[oaicite:91]{index=91}
+    "Anchorage was built on glacially formed terrain, giving it tightly embedded geology and water bodies.",  // glacial geology restate :contentReference[oaicite:92]{index=92}
+    "Anchorage’s varied climate includes record highs and remarkable snowfall extremes—extreme weather is part of the city’s story.",  // climate extremes summary :contentReference[oaicite:93]{index=93}
 ]
 
 let funFactsUtqiagvik: [String] = [
@@ -171,7 +171,7 @@ let funFactsUtqiagvik: [String] = [
     "Bowhead whale population monitoring is led locally.",
     "Traditional clothing like parkas and mukluks remain widely used.",
     "Inupiat hunters use dog sleds for remote travel.",
-    "Researchers track polar bear populations from Utqiaġvik."
+    "Researchers track polar bear populations from Utqiaġvik.",
 ]
 
 let funFactsPhoenix: [String] = [
@@ -224,7 +224,7 @@ let funFactsPhoenix: [String] = [
     "The city has a vibrant Latin music and arts scene.",
     "Phoenix Sky Harbor is a hub for American and Southwest Airlines.",
     "Phoenix is surrounded by Sonoran Desert flora like saguaros.",
-    "Downtown Phoenix has undergone major revitalization since the 2000s."
+    "Downtown Phoenix has undergone major revitalization since the 2000s.",
 ]
 
 let funFactsLittleRock: [String] = [
@@ -276,7 +276,7 @@ let funFactsLittleRock: [String] = [
     "The city’s airport is Bill and Hillary Clinton National Airport.",
     "Little Rock boasts over 60 parks and green spaces.",
     "The Museum of Discovery is one of the oldest science museums in the U.S.",
-    "Little Rock’s River Market is a foodie destination with global cuisine."
+    "Little Rock’s River Market is a foodie destination with global cuisine.",
 ]
 
 // Anaheim, Death Valley, and Hollywood would follow similarly with 50 detailed facts each.
@@ -332,7 +332,7 @@ let funFactsAnaheim: [String] = [
     "The “Anaheim Lake” area is popular for recreational fishing (stocked species).",
     "The Downtown Anaheim Farmers Market runs weekly near Center Street Promenade.",
     "Anaheim’s annual fall festival and parade date to the 1920s.",
-    "The city operates more than 50 parks and dozens of miles of bike lanes and trails."
+    "The city operates more than 50 parks and dozens of miles of bike lanes and trails.",
 ]
 
 let funFactsDeathValley: [String] = [
@@ -385,7 +385,7 @@ let funFactsDeathValley: [String] = [
     "Borax “cottonball” deposits are found in ancient lake beds.",
     "The park’s huge size means gas, water, and services are very far apart.",
     "Winter is peak hiking season; summer brings otherworldly stillness.",
-    "Death Valley’s silence, vistas, and night skies draw photographers worldwide."
+    "Death Valley’s silence, vistas, and night skies draw photographers worldwide.",
 ]
 
 let funFactsHollywood: [String] = [
@@ -438,7 +438,7 @@ let funFactsHollywood: [String] = [
     "Hollywood’s modern economy mixes tourism, post-production, and streaming studios.",
     "The Gower Gulch area once catered to Western film extras and horses.",
     "Street names like De Longpre and Selma recall early developers and pioneers.",
-    "Hollywood has inspired namesakes worldwide—from Florida to South India’s “Kollywood.”"
+    "Hollywood has inspired namesakes worldwide—from Florida to South India’s “Kollywood.”",
 ]
 let funFactsSanDiego: [String] = [
     "San Diego, California is nicknamed “America’s Finest City” and is known for its mild climate and extensive beaches.",
@@ -489,7 +489,7 @@ let funFactsSanDiego: [String] = [
     "Liberty Station is a revitalized former naval training center.",
     "Chicano Park has the world’s largest collection of outdoor murals.",
     "Julian, a historic gold-mining town, is a popular day trip nearby.",
-    "San Diego’s airport is famously close to downtown, offering dramatic landings."
+    "San Diego’s airport is famously close to downtown, offering dramatic landings.",
 ]
 
 let funFactsDenver: [String] = [
@@ -541,7 +541,7 @@ let funFactsDenver: [String] = [
     "Denver pioneered bike-sharing programs in the U.S.",
     "Denver has a vibrant street art scene, especially in RiNo District.",
     "The city has hosted multiple Winter Olympic bids but turned down hosting rights.",
-    "Denver’s altitude gives it unique weather patterns, often sudden snowstorms."
+    "Denver’s altitude gives it unique weather patterns, often sudden snowstorms.",
 ]
 
 let funFactsBridgeport: [String] = [
@@ -594,7 +594,7 @@ let funFactsBridgeport: [String] = [
     "Igor Sikorsky, helicopter pioneer, founded his company nearby.",
     "Bridgeport’s harbor is a deep-water port that supports cargo shipping.",
     "The city has a mix of historic districts and modern downtown spaces.",
-    "Bridgeport’s revival focuses on arts, tech, and waterfront living."
+    "Bridgeport’s revival focuses on arts, tech, and waterfront living.",
 ]
 
 let funFactsWilmington: [String] = [
@@ -646,7 +646,7 @@ let funFactsWilmington: [String] = [
     "Wilmington is home to Delaware’s only professional ballet company.",
     "The Delaware Theatre Company is a premier performing arts venue.",
     "The Port of Wilmington is the nation’s top fresh fruit import port.",
-    "Christina Park and Tubman-Garrett Riverfront Park honor abolitionist history."
+    "Christina Park and Tubman-Garrett Riverfront Park honor abolitionist history.",
 ]
 
 let funFactsBayLake: [String] = [
@@ -698,7 +698,7 @@ let funFactsBayLake: [String] = [
     "The city is home to EPCOT’s experimental greenhouses.",
     "Walt Disney World Railroad loops around Magic Kingdom in Bay Lake.",
     "The city operates on carefully planned land-use designations.",
-    "Bay Lake hosts over 50 million visitors annually through Disney parks."
+    "Bay Lake hosts over 50 million visitors annually through Disney parks.",
 ]
 
 let funFactsKeyWest: [String] = [
@@ -748,7 +748,7 @@ let funFactsKeyWest: [String] = [
     "Smathers Beach is one of the island’s largest public beaches.",
     "Key West has a thriving art community and galleries.",
     "The Ernest Hemingway House cats are descendants of a six-toed cat named Snow White.",
-    "The southernmost house in the U.S. is located here, just steps from the buoy."
+    "The southernmost house in the U.S. is located here, just steps from the buoy.",
 ]
 
 let funFactsOrlando: [String] = [
@@ -801,7 +801,7 @@ let funFactsOrlando: [String] = [
     "The Orlando International Premium Outlets attract millions annually.",
     "Orlando has over 170 golf courses.",
     "Many Orlando residents work in tourism or hospitality.",
-    "Orlando’s nickname is 'The City Beautiful,' with its symbol being Lake Eola Fountain."
+    "Orlando’s nickname is 'The City Beautiful,' with its symbol being Lake Eola Fountain.",
 ]
 
 let funFactsMiami: [String] = [
@@ -853,7 +853,7 @@ let funFactsMiami: [String] = [
     "Miami has a strong Caribbean cultural influence.",
     "The Ultra Music Festival draws fans from around the globe.",
     "Miami’s name comes from the Mayaimi tribe who lived near Lake Okeechobee.",
-    "Miami’s Wynwood neighborhood was once a warehouse district, now an art hub."
+    "Miami’s Wynwood neighborhood was once a warehouse district, now an art hub.",
 ]
 
 let funFactsAtlanta: [String] = [
@@ -953,7 +953,7 @@ let funFactsHonolulu: [String] = [
     "The National Memorial Cemetery of the Pacific is nicknamed 'Punchbowl.'",
     "Shave ice is a beloved Honolulu treat influenced by Japanese immigrants.",
     "Honolulu is home to the only royal burial grounds in the U.S.",
-    "It’s one of the safest major cities in the U.S. by crime rate."
+    "It’s one of the safest major cities in the U.S. by crime rate.",
 ]
 
 let funFactsBoise: [String] = [
@@ -1006,7 +1006,7 @@ let funFactsBoise: [String] = [
     "The city’s airport code is BOI.",
     "Boise is a gateway to Idaho’s vast wilderness and national forests.",
     "The Boise State Broncos football team is a perennial powerhouse.",
-    "The city has a thriving arts and theater scene."
+    "The city has a thriving arts and theater scene.",
 ]
 
 let funFactsChicago: [String] = [
@@ -1059,7 +1059,7 @@ let funFactsChicago: [String] = [
     "Chicago has over 4,000 high-rise buildings.",
     "The city hosted Barack Obama’s victory speech in 2008.",
     "Chicago has a thriving comedy scene with Second City.",
-    "The Chicago Riverwalk is a popular tourist destination."
+    "The Chicago Riverwalk is a popular tourist destination.",
 ]
 
 let funFactsIndianapolis: [String] = [
@@ -1112,7 +1112,7 @@ let funFactsIndianapolis: [String] = [
     "The Eiteljorg Museum celebrates Native American and Western art.",
     "The Indianapolis 500 Festival includes a large parade and events.",
     "Indy’s downtown is one of the most walkable in the Midwest.",
-    "The city has an active cycling and running community."
+    "The city has an active cycling and running community.",
 ]
 
 let funFactsDesMoines: [String] = [
@@ -1165,7 +1165,7 @@ let funFactsDesMoines: [String] = [
     "Des Moines is a major hub for agriculture and agribusiness finance.",
     "The city’s sculpture park was donated by John and Mary Pappajohn.",
     "Des Moines is home to over 70 insurance companies.",
-    "The Principal Riverwalk connects key downtown attractions."
+    "The Principal Riverwalk connects key downtown attractions.",
 ]
 
 let funFactsWichita: [String] = [
@@ -1216,7 +1216,7 @@ let funFactsWichita: [String] = [
     "Joyland Amusement Park was once a popular destination, operating from 1949 to 2006.",
     "Exploration Place has a massive model of Kansas made entirely of LEGO bricks.",
     "Wichita is home to Koch Industries, one of the largest private companies in the U.S.",
-    "Wichita is a major transportation hub due to its central location."
+    "Wichita is a major transportation hub due to its central location.",
 ]
 
 let funFactsLouisville: [String] = [
@@ -1269,7 +1269,7 @@ let funFactsLouisville: [String] = [
     "Louisville’s Slugger Field hosts minor league baseball.",
     "The Derby attracts over 150,000 spectators annually.",
     "Louisville’s Big Four Arts Festival is held every fall.",
-    "Louisville is home to Cave Hill Cemetery, resting place of Muhammad Ali and Colonel Sanders."
+    "Louisville is home to Cave Hill Cemetery, resting place of Muhammad Ali and Colonel Sanders.",
 ]
 
 let funFactsElizabethtown: [String] = [
@@ -1322,7 +1322,7 @@ let funFactsElizabethtown: [String] = [
     "Freeman Lake’s 170-acre park is popular for walking trails.",
     "E-town hosts concerts at its restored 1940s theater.",
     "The town blends small-town charm with modern shopping centers.",
-    "Elizabethtown is a gateway to Kentucky’s bourbon, caves, and history."
+    "Elizabethtown is a gateway to Kentucky’s bourbon, caves, and history.",
 ]
 
 let funFactsNewOrleans: [String] = [
@@ -1373,7 +1373,7 @@ let funFactsNewOrleans: [String] = [
     "The city has hosted 10 Super Bowls.",
     "Street performers are a hallmark of French Quarter culture.",
     "The city is a major cruise ship port on the Gulf of Mexico.",
-    "New Orleans is home to some of the most iconic Mardi Gras floats and parades."
+    "New Orleans is home to some of the most iconic Mardi Gras floats and parades.",
 ]
 
 let funFactsPortlandME: [String] = [
@@ -1425,7 +1425,7 @@ let funFactsPortlandME: [String] = [
     "Casco Bay ferries connect the mainland to nearby islands.",
     "Portland’s breweries include Allagash Brewing, known worldwide.",
     "Portland is home to one of the first farmers’ markets in the U.S.",
-    "The historic Custom House symbolizes Portland’s maritime history."
+    "The historic Custom House symbolizes Portland’s maritime history.",
 ]
 
 let funFactsBaltimore: [String] = [
@@ -1476,7 +1476,7 @@ let funFactsBaltimore: [String] = [
     "Baltimore’s Bromo Seltzer Tower is a historic landmark.",
     "The Baltimore Sun has been publishing since 1837.",
     "The city is famous for steamed blue crabs served with Old Bay.",
-    "Baltimore is home to the first Catholic cathedral in the U.S., the Basilica of the Assumption."
+    "Baltimore is home to the first Catholic cathedral in the U.S., the Basilica of the Assumption.",
 ]
 
 let funFactsBoston: [String] = [
@@ -1529,7 +1529,7 @@ let funFactsBoston: [String] = [
     "Boston’s skyline features a mix of historic and modern architecture.",
     "The city is known for its intellectual, cultural, and revolutionary history.",
     "Boston’s Charles River turns green during annual Head of the Charles Regatta.",
-    "Boston’s State House has a gilded dome made of 23-karat gold."
+    "Boston’s State House has a gilded dome made of 23-karat gold.",
 ]
 
 let funFactsDetroit: [String] = [
@@ -1579,7 +1579,7 @@ let funFactsDetroit: [String] = [
     "Detroit has a strong street art culture, with murals across the city.",
     "The city is a hub for Arab-American culture, especially in nearby Dearborn.",
     "The Detroit Auto Show is one of the most prestigious in the world.",
-    "Detroit’s River Rouge Plant was once the largest industrial complex in the world."
+    "Detroit’s River Rouge Plant was once the largest industrial complex in the world.",
 ]
 
 let funFactsMinneapolis: [String] = [
@@ -1631,7 +1631,7 @@ let funFactsMinneapolis: [String] = [
     "The city has more theater seats per capita than almost anywhere in the U.S.",
     "The Mississippi Riverfront has been revitalized into a cultural hub.",
     "Winter ice skating on lakes is a local tradition.",
-    "Minneapolis is consistently ranked as one of the best cities for biking."
+    "Minneapolis is consistently ranked as one of the best cities for biking.",
 ]
 
 let funFactsJacksonMS: [String] = [
@@ -1680,7 +1680,7 @@ let funFactsJacksonMS: [String] = [
     "Mississippi Public Broadcasting is headquartered here.",
     "Jackson’s blues heritage is celebrated at live music clubs.",
     "The city is home to over 30 historical markers on the Blues Trail.",
-    "Jackson’s climate is humid subtropical with hot summers."
+    "Jackson’s climate is humid subtropical with hot summers.",
 ]
 
 let funFactsKansasCity: [String] = [
@@ -1732,7 +1732,7 @@ let funFactsKansasCity: [String] = [
     "The Kauffman Center was designed by architect Moshe Safdie.",
     "Kansas City’s Union Station was once the second-largest train station in the country.",
     "Boulevard Drive-In is one of the last remaining drive-in theaters in the Midwest.",
-    "Kansas City has one of the country’s top barbecue competitions, the American Royal."
+    "Kansas City has one of the country’s top barbecue competitions, the American Royal.",
 ]
 
 let funFactsStLouis: [String] = [
@@ -1801,7 +1801,7 @@ let funFactsStLouis: [String] = [
     "Chuck Berry, the 'Father of Rock & Roll,' was born in St. Louis.",
     "St. Louis is a UNESCO City of Music.",
     "The St. Louis Galleria is one of the largest shopping destinations in Missouri.",
-    "St. Louis was once the brewing capital of the United States."
+    "St. Louis was once the brewing capital of the United States.",
 ]
 
 let funFactsBillings: [String] = [
@@ -1874,7 +1874,7 @@ let funFactsBillings: [String] = [
     "Billings is a gateway to Montana’s national parks and wilderness.",
     "The Moss Mansion is listed on the National Register of Historic Places.",
     "The city played a role in Montana’s cattle boom of the 1880s.",
-    "Billings is part of the Yellowstone County, Montana’s most populous county."
+    "Billings is part of the Yellowstone County, Montana’s most populous county.",
 ]
 
 let funFactsOmaha: [String] = [
@@ -1943,7 +1943,7 @@ let funFactsOmaha: [String] = [
     "Cultural councils coordinate museum nights and reciprocal memberships citywide.",
     "Street trees and bluffs create layered “green rooms” framing skyline views.",
     "A network of trails ties downtown to neighborhoods, rivers, and prairies.",
-    "Public-art beacons like the “Jim Ryan” pedestrian bridge lighting animate the night skyline."
+    "Public-art beacons like the “Jim Ryan” pedestrian bridge lighting animate the night skyline.",
 ]
 
 let funFactsLasVegas: [String] = [
@@ -2016,7 +2016,7 @@ let funFactsLasVegas: [String] = [
     "UNLV Hospitality curates living labs across the resort corridor.",
     "Nighttime urbanism defines Vegas: the city is designed to glow.",
     "From mob era to corporate era, governance shifted from skims to spreadsheets.",
-    "Vegas signage is a scholarly subject—letterforms, bulbs, chasers, and boneyards."
+    "Vegas signage is a scholarly subject—letterforms, bulbs, chasers, and boneyards.",
 ]
 let funFactsDover: [String] = [
     "Dover, New Hampshire (1623) is the state’s oldest permanent European settlement.",
@@ -2087,7 +2087,7 @@ let funFactsDover: [String] = [
     "Historic preservation incentives spurred sensitive mill rehabilitations.",
     "The city’s planning embraces river views, walkability, and infill over sprawl.",
     "Public art and wayfinding interpret the mill race and river ecology.",
-    "Dover’s identity braids colonial resilience with creative-economy renewal."
+    "Dover’s identity braids colonial resilience with creative-economy renewal.",
 ]
 
 let funFactsNewark: [String] = [
@@ -2155,7 +2155,7 @@ let funFactsNewark: [String] = [
     "Sculpture gardens and pop-ups activate formerly vacant lots.",
     "Contemporary dance, jazz, and hip-hop define NJPAC programming.",
     "Brick rowhouses and triple-deckers speak to immigrant narratives.",
-    "Newark’s role as a logistics gateway anchors New Jersey’s economy."
+    "Newark’s role as a logistics gateway anchors New Jersey’s economy.",
 ]
 
 let funFactsAlbuquerque: [String] = [
@@ -2225,7 +2225,7 @@ let funFactsAlbuquerque: [String] = [
     "Balloon pin trading is a Fiesta subculture with intricate collectible designs.",
     "Chacoan outliers and trade routes once tied the region to larger cultural networks.",
     "The Sandia Tram base sits in a piñon-juniper belt; the crest reaches subalpine forest.",
-    "Albuquerque’s identity fuses Indigenous, Hispano, and frontier American threads."
+    "Albuquerque’s identity fuses Indigenous, Hispano, and frontier American threads.",
 ]
 
 let funFactsCharlotte: [String] = [
@@ -2295,7 +2295,7 @@ let funFactsCharlotte: [String] = [
     "Charlotte’s skyline reads as a banking “acropolis” on the Piedmont fall line.",
     "CATS bus and rail network expand transit-oriented corridors.",
     "Historic cemeteries and churchyards reveal layered community narratives.",
-    "The city’s identity marries finance, motorsports, and a booming creative economy."
+    "The city’s identity marries finance, motorsports, and a booming creative economy.",
 ]
 
 let funFactsMoreheadCity: [String] = [
@@ -2348,7 +2348,7 @@ let funFactsMoreheadCity: [String] = [
     "Post-storm rebuilds showcase resilient design: higher elevations, vents, breakaway walls.",
     "Fishing piers, boardwalks, and day-sail charters blend work and leisure on the sound.",
     "Charts list wrecks offshore—popular dive sites on the “Graveyard of the Atlantic.”",
-    "The port and fisheries knit Morehead City to a wider Atlantic world."
+    "The port and fisheries knit Morehead City to a wider Atlantic world.",
 ]
 
 let funFactsFargo: [String] = [
@@ -2400,7 +2400,7 @@ let funFactsFargo: [String] = [
     "Winter carnivals, ice rinks, and warming huts make a virtue of the climate.",
     "The museum community documents homesteading, rail, and farm implement innovations.",
     "Fargo’s maker culture spans letterpress, ceramics, and woodshops in old warehouses.",
-    "The city’s identity blends campus energy, prairie grit, and floodplain resilience."
+    "The city’s identity blends campus energy, prairie grit, and floodplain resilience.",
 ]
 
 let funFactsMason: [String] = [
@@ -2449,7 +2449,7 @@ let funFactsMason: [String] = [
     "County records detail Mason’s shift from village (1960s) to growing city (1970s–present).",
     "Historic schoolhouses consolidated into larger K-12 campuses mid-century.",
     "Preservation ordinances protect select commercial façades on Main Street.",
-    "Mason’s identity braids small-town roots with international sports and thrill engineering."
+    "Mason’s identity braids small-town roots with international sports and thrill engineering.",
 ]
 
 let funFactsOklahomaCity: [String] = [
@@ -2501,7 +2501,7 @@ let funFactsOklahomaCity: [String] = [
     "The bombing memorial’s Survivor Tree (American elm) stands as a living witness.",
     "The city’s growth spread along streetcar lines early, then along highways post-war.",
     "The Film Row district recalls when studios distributed reels and posters to Plains theaters.",
-    "The city’s identity blends Native heritage, oil-patch grit, and design-forward reinvention."
+    "The city’s identity blends Native heritage, oil-patch grit, and design-forward reinvention.",
 ]
 
 let funFactsPortlandOR: [String] = [
@@ -2554,7 +2554,7 @@ let funFactsPortlandOR: [String] = [
     "The city’s 5,000+ acres of natural areas include buttes, creeks, and oak savanna remnants.",
     "Portland’s planning legacy blends Scandinavian cycling norms with West Coast environmentalism.",
     "Neighborhood greenways calm side streets for family-friendly biking.",
-    "Adaptive reuse of industrial blocks preserves brick fabric while adding housing and studios."
+    "Adaptive reuse of industrial blocks preserves brick fabric while adding housing and studios.",
 ]
 
 let funFactsProvidence: [String] = [
@@ -2606,7 +2606,7 @@ let funFactsProvidence: [String] = [
     "WaterFire’s volunteer crews choreograph wood, boats, and music for each lighting.",
     "The Providence Preservation Society emerged from a 1950s fight to save Benefit Street.",
     "A living laboratory of adaptive reuse, Providence links mills to modern arts and tech.",
-    "Providence’s character marries dissenting-spirit origins with design-forward renewal."
+    "Providence’s character marries dissenting-spirit origins with design-forward renewal.",
 ]
 
 let funFactsCharlestonSC: [String] = [
@@ -2656,7 +2656,7 @@ let funFactsCharlestonSC: [String] = [
     "The “Low Battery” and “High Battery” reflect 19th-century seawall engineering.",
     "The Maritime Center reconnects working water to a public promenade.",
     "The city’s identity interweaves beauty and burden—architecture built on enslaved labor—now central to its museums.",
-    "Tidal marshes, live oaks, and herons weave wilderness into the urban fabric."
+    "Tidal marshes, live oaks, and herons weave wilderness into the urban fabric.",
 ]
 
 let funFactsSiouxFalls: [String] = [
@@ -2708,9 +2708,8 @@ let funFactsSiouxFalls: [String] = [
     "Regional fairs and stock shows speak to ranching and ag-tech economies.",
     "Sioux quartzite blocks still border many streets as historic curbing.",
     "Greenway wildlife includes deer, foxes, owls, and migratory waterfowl.",
-    "The city’s identity fuses falls, prairie grit, and 21st-century medical innovation."
+    "The city’s identity fuses falls, prairie grit, and 21st-century medical innovation.",
 ]
-
 
 // MARK: - Pigeon Forge Fun Facts
 
@@ -2784,7 +2783,7 @@ let funFactsPigeonForge: [String] = [
     "The world's largest collection of salt and pepper shakers can be found in nearby Gatlinburg.",
     "The Hatfield-McCoy feud, dramatized in a local dinner show, was a real historical conflict from the 19th century.",
     "The city's name is often shortened to simply 'The Forge.'",
-    "Despite its mountain location, the city itself is relatively flat, situated in a valley."
+    "Despite its mountain location, the city itself is relatively flat, situated in a valley.",
 ]
 // MARK: - Salt Lake City Fun Facts
 
@@ -2857,7 +2856,7 @@ let funFactsSaltLakeCity: [String] = [
     "The LDS Conference Center has a seating capacity of 21,000, one of the largest religious auditoriums in the world.",
     "The city's flag features a Sego Lily, which is the state flower of Utah.",
     "Fry sauce, a mixture of ketchup and mayonnaise, is a beloved local condiment.",
-    "Despite its desert-like surroundings, the city maintains many lush public parks thanks to mountain runoff."
+    "Despite its desert-like surroundings, the city maintains many lush public parks thanks to mountain runoff.",
 ]
 // MARK: - Burlington Fun Facts
 
@@ -2931,7 +2930,7 @@ let funFactsBurlington: [String] = [
     "In 1991, the city council declared 'The Simpsons' the city's 'official family.'",
     "The city's fire department was the first in the U.S. to use a compressed air foam system.",
     "Burlington has more breweries per capita than almost any other city.",
-    "The local minor league baseball team is the Vermont Lake Monsters."
+    "The local minor league baseball team is the Vermont Lake Monsters.",
 ]
 // MARK: - Virginia Beach Fun Facts
 
@@ -3005,9 +3004,8 @@ let funFactsVirginiaBeach: [String] = [
     "False Cape State Park, south of Sandbridge, is one of the last remaining undeveloped areas on the Atlantic coast.",
     "The Virginia Beach Amphitheater is a large outdoor concert venue that hosts major touring acts.",
     "The city has an extensive system of waterways and inlets, making it popular for recreational boating.",
-    "The city's historical society operates several historic homes that are open to the public as museums."
+    "The city's historical society operates several historic homes that are open to the public as museums.",
 ]
-import Foundation
 
 // MARK: - Charleston, West Virginia Fun Facts
 
@@ -3079,7 +3077,7 @@ let funFactsCharlestonWV: [String] = [
     "The city hosts a popular 'ArtWalk' event several times a year, showcasing local galleries and artists.",
     "The Charleston Coliseum & Convention Center hosts major concerts, sporting events, and conventions.",
     "The Elk River is the longest river located entirely within the state of West Virginia.",
-    "The city's location at the confluence of two major rivers has been crucial to its history and development."
+    "The city's location at the confluence of two major rivers has been crucial to its history and development.",
 ]
 
 // MARK: - Milwaukee, Wisconsin Fun Facts
@@ -3153,7 +3151,7 @@ let funFactsMilwaukee: [String] = [
     "The architect Frank Lloyd Wright was born in Wisconsin and designed several buildings in the Milwaukee area.",
     "Lake Park, part of the Olmsted park system, offers stunning views of Lake Michigan.",
     "The city is a major producer of industrial controls and automation equipment.",
-    "The original Pabst Blue Ribbon logo was an actual blue silk ribbon tied around the neck of the beer bottles from 1882 to 1916."
+    "The original Pabst Blue Ribbon logo was an actual blue silk ribbon tied around the neck of the beer bottles from 1882 to 1916.",
 ]
 
 // MARK: - Cheyenne, Wyoming Fun Facts
@@ -3176,7 +3174,7 @@ let funFactsCheyenne: [String] = [
     "The city has a public art project featuring large, colorfully painted cowboy boots scattered throughout the town.",
     "The Cheyenne Gunslingers perform free, family-friendly Wild West skits and shootouts in the downtown square during the summer.",
     "Wyoming was the first state to grant women the right to vote, earning it the nickname the 'Equality State,' a history celebrated in Cheyenne.",
-    
+
     "The Terry Bison Ranch near Cheyenne allows visitors to take a train ride through a herd of over 2,500 bison.",
     "The city's location in the southeastern corner of Wyoming makes it the least centrally located capital in the U.S.",
     "The Ames Monument, located between Cheyenne and Laramie, is a large pyramid dedicated to the financiers of the Union Pacific Railroad.",
@@ -3224,7 +3222,7 @@ let funFactsCheyenne: [String] = [
     "The 'Vaqueros,' or Mexican cowboys, heavily influenced the American cowboy culture celebrated in Cheyenne.",
     "The Frontier Days parade features one of the largest collections of horse-drawn carriages in the world.",
     "The rodeo has its own dedicated train that brings visitors from Denver.",
-    "The nickname 'Equality State' for Wyoming originated because the territorial legislature in Cheyenne passed the first law in US history explicitly granting women the right to vote and hold public office in 1869."
+    "The nickname 'Equality State' for Wyoming originated because the territorial legislature in Cheyenne passed the first law in US history explicitly granting women the right to vote and hold public office in 1869.",
 ]
 
 // MARK: - New York, New York Fun Facts
@@ -3298,7 +3296,7 @@ let funFactsNewYork: [String] = [
     "There is a small, 5-month-long 'dirt street' in Manhattan called Broadway Alley.",
     "The world's first commercial passenger airship service flew from the top of the Empire State Building in 1930, but it was deemed too dangerous.",
     "The musical 'West Side Story' is a modern retelling of 'Romeo and Juliet' set in the Upper West Side of Manhattan.",
-    "The annual Feast of San Gennaro is a massive Italian-American street festival in Little Italy."
+    "The annual Feast of San Gennaro is a massive Italian-American street festival in Little Italy.",
 ]
 
 // MARK: - Philadelphia, Pennsylvania Fun Facts
@@ -3372,7 +3370,7 @@ let funFactsPhiladelphia: [String] = [
     "The first U.S. presidential mansion was located at 6th and Market Streets.",
     "The city's flag is blue and yellow, the city's official colors.",
     "The School District of Philadelphia is one of the largest school districts in the country.",
-    "The city is a major hub for legal education, with several prestigious law schools."
+    "The city is a major hub for legal education, with several prestigious law schools.",
 ]
 
 // MARK: - Nashville, Tennessee Fun Facts
@@ -3444,7 +3442,7 @@ let funFactsNashville: [String] = [
     "The city's original name was Fort Nashborough.",
     "The city has a rich history in the blues music genre as well.",
     "The Nashville Sounds are the city's Triple-A minor league baseball team.",
-    "The city's diverse economy makes it relatively recession-proof compared to other cities of its size."
+    "The city's diverse economy makes it relatively recession-proof compared to other cities of its size.",
 ]
 
 // MARK: - Houston, Texas Fun Facts
@@ -3517,7 +3515,7 @@ let funFactsHouston: [String] = [
     "The city has a reputation for being very friendly and welcoming.",
     "The summers are famously hot and humid.",
     "The city is known for its sprawling, car-dependent layout.",
-    "The underground tunnel system is air-conditioned, providing a respite from the summer heat for downtown workers."
+    "The underground tunnel system is air-conditioned, providing a respite from the summer heat for downtown workers.",
 ]
 
 // MARK: - Seattle, Washington Fun Facts
@@ -3591,7 +3589,7 @@ let funFactsSeattle: [String] = [
     "The 'Seattle Dog' is a hot dog served with cream cheese and grilled onions.",
     "The city is home to the corporate headquarters of the Nordstrom department store chain.",
     "The Volunteer Park Water Tower offers a 360-degree view of the city for those willing to climb the stairs.",
-    "The city's topography was dramatically reshaped in the early 20th century through a series of 'regrades' that leveled entire hills."
+    "The city's topography was dramatically reshaped in the early 20th century through a series of 'regrades' that leveled entire hills.",
 ]
 
 // WORLD city fun fact arrays (IDs 61–146)
@@ -3666,7 +3664,7 @@ let funFactsKabul: [String] = [
     "The city's markets, or 'bazaars,' are vibrant and crowded centers of commerce.",
     "The city has a complex and layered history that is visible in its architecture and ruins.",
     "The city's resilience in the face of adversity is a testament to its people.",
-    "The city's future is a subject of intense interest and concern around the world."
+    "The city's future is a subject of intense interest and concern around the world.",
 ]
 // MARK: - Buenos Aires, Argentina Fun Facts
 
@@ -3718,7 +3716,7 @@ let funFactsBuenosAires: [String] = [
     "The city is organized into 48 'barrios,' or neighborhoods.",
     "The Floralis Genérica is a giant, 23-meter-high steel flower sculpture that opens its petals during the day and closes them at night.",
     "The city has a 'siesta' culture, although it is becoming less common in the busy downtown area.",
-    
+
     "The city has a professional rugby union team, the Jaguares.",
     "The city is a major center for psychoanalysis.",
     "The city's main river is the Rio de la Plata, which is the widest river in the world.",
@@ -3739,7 +3737,7 @@ let funFactsBuenosAires: [String] = [
     "The city is known for its high-quality leather goods.",
     "The city is a major financial and corporate hub for South America.",
     "The city has a relaxed and late-night culture, with dinner often starting at 10 PM or later.",
-    "The city's unique blend of European elegance and Latin American passion gives it a distinct identity."
+    "The city's unique blend of European elegance and Latin American passion gives it a distinct identity.",
 ]
 // MARK: - Queensland, Australia Fun Facts
 
@@ -3812,7 +3810,7 @@ let funFactsQueensland: [String] = [
     "The state's outback regions are vast, arid, and sparsely populated.",
     "The state's government is based at Parliament House in Brisbane.",
     "The state has a diverse geography, ranging from tropical rainforests and coral reefs to dry outback and fertile coastal plains.",
-    "The state's vibrant and sunny lifestyle makes it a highly desirable place to live for many Australians."
+    "The state's vibrant and sunny lifestyle makes it a highly desirable place to live for many Australians.",
 ]
 // MARK: - Vienna, Austria Fun Facts
 
@@ -3847,7 +3845,7 @@ let funFactsVienna: [String] = [
     "The city has an extensive and efficient public transportation system, including trams, buses, and the U-Bahn (subway).",
     "The Austrian National Library, housed in the Hofburg Palace, is a baroque masterpiece with a grand hall over 200 feet long.",
     "The Albertina Museum holds one of the most important print rooms in the world, with works by artists like Dürer and Michelangelo.",
-    
+
     "The famous waltz 'The Blue Danube' was composed by Johann Strauss II in Vienna.",
     "The city has a 'Museum of Illusions' and a 'House of Music' (Haus der Musik).",
     "The Naschmarkt is Vienna's largest and most popular market, with over 120 stalls and restaurants.",
@@ -3887,7 +3885,7 @@ let funFactsVienna: [String] = [
     "The city is a pioneer in 'smart city' urban planning and sustainability.",
     "The Vienna International Centre, where the UN is based, is colloquially known as 'UNO City.'",
     "The city has a long history of philosophical and intellectual movements, including the Vienna Circle.",
-    "The city's residents have a reputation for being 'grantig,' or grumpy, though it is often considered a charming part of the local character."
+    "The city's residents have a reputation for being 'grantig,' or grumpy, though it is often considered a charming part of the local character.",
 ]
 // MARK: - Brussels, Belgium Fun Facts
 
@@ -3960,7 +3958,7 @@ let funFactsBrussels: [String] = [
     "The city's 'Zinneke Parade' is a biennial multicultural parade that celebrates the city's diversity.",
     "The city's trams have a unique sound, a 'ding-ding' that is a characteristic sound of the city.",
     "The city has a comic book museum housed in a beautiful Art Nouveau building designed by Victor Horta.",
-    "The city's diverse and international character makes it a true melting pot of European cultures."
+    "The city's diverse and international character makes it a true melting pot of European cultures.",
 ]
 // MARK: - São Paulo, Brazil Fun Facts
 
@@ -4030,7 +4028,7 @@ let funFactsSaoPaulo: [String] = [
     "The city is a major center for medical tourism in Brazil.",
     "The city's economic strength has made it a magnet for migrants from all over Brazil and the world.",
     "The city has a rich architectural heritage, with styles ranging from colonial to modernist.",
-    "The city's immense scale and energy make it one of the most dynamic cities in the world."
+    "The city's immense scale and energy make it one of the most dynamic cities in the world.",
 ]
 ///////////////////////////////
 
@@ -4105,9 +4103,8 @@ let funFactsMcMurdo: [String] = [
     "The station has a 'pressure ridge' that forms on the sea ice, creating beautiful and dramatic ice formations.",
     "The station has a 'chalet,' the original commander's office, which is now a historic landmark.",
     "The station has a 'Dive Locker' for scientific diving operations under the ice.",
-    "The station is a testament to human ingenuity and our desire to explore the most extreme environments on the planet."
+    "The station is a testament to human ingenuity and our desire to explore the most extreme environments on the planet.",
 ]
-
 
 let funFactsRioDeJaneiro: [String] = [
     "Rio de Janeiro was Brazil’s capital from 1763 until Brasília was inaugurated in 1960.",
@@ -4180,7 +4177,7 @@ let funFactsRioDeJaneiro: [String] = [
     "Cable cars to Sugarloaf Mountain are among Brazil’s top tourist attractions.",
     "The city’s hills are part of Serra do Mar mountain range, covered in lush Mata Atlântica.",
     "Rio has one of the world’s largest helicopter fleets for urban transport and tourism.",
-    "Street art and murals are legalized in Rio, turning walls into open-air galleries."
+    "Street art and murals are legalized in Rio, turning walls into open-air galleries.",
 ]
 
 let funFactsSiemReap: [String] = [
@@ -4254,9 +4251,8 @@ let funFactsSiemReap: [String] = [
     "The city is a center for NGO activity, supporting education and conservation.",
     "The Angkor Silk Farm demonstrates silk production from mulberry trees to weaving.",
     "Many visitors view Angkor Wat at sunrise, a signature experience.",
-    "Siem Reap has transformed into a cultural hub, blending ancient and modern Cambodia."
+    "Siem Reap has transformed into a cultural hub, blending ancient and modern Cambodia.",
 ]
-
 
 let funFactsAlert: [String] = [
     "Alert, Nunavut, holds the distinction of being the northernmost permanently inhabited place on Earth, situated a mere 508 miles (817 km) from the geographic North Pole.",
@@ -4327,7 +4323,7 @@ let funFactsAlert: [String] = [
     "The personnel contingent is a diverse mix, representing various trades and branches from across the Canadian Armed Forces.",
     "While operational needs are prioritized, limited bandwidth for personal use provides a crucial link for personnel to connect with family and friends.",
     "The station stands as a monument to human adaptability and the persistent scientific drive to understand Earth's most extreme environments.",
-    "A celebratory 'mid-winter' feast is a significant cultural event, marking the psychological halfway point of the long, dark polar night."
+    "A celebratory 'mid-winter' feast is a significant cultural event, marking the psychological halfway point of the long, dark polar night.",
 ]
 
 // MARK: - Toronto, Ontario Fun Facts
@@ -4400,7 +4396,7 @@ let funFactsToronto: [String] = [
     "The Bloor-Yorkville neighborhood, often called the 'Mink Mile,' is one of the most luxurious and expensive shopping districts in the world.",
     "The Harbourfront Centre, a non-profit cultural organization, offers a wide array of public arts and cultural programming on the waterfront.",
     "The city is home to a professional box lacrosse team, the Toronto Rock, which has a dedicated and energetic fan base.",
-    "The city's inclusive and multicultural character is not just a demographic fact but a core component of its celebrated identity."
+    "The city's inclusive and multicultural character is not just a demographic fact but a core component of its celebrated identity.",
 ]
 
 // MARK: - Cartagena, Colombia Fun Facts
@@ -4468,7 +4464,7 @@ let funFactsCartagena: [String] = [
     "The city is renowned for its vibrant and energetic nightlife, particularly in the Getsemaní and Bocagrande districts.",
     "A number of fine art galleries in the old town showcase the work of both established and emerging Colombian artists.",
     "The city maintains a strong tradition of oral history and storytelling, passed down through generations.",
-    "The city's remarkable state of preservation allows visitors to experience the ambiance of a Spanish colonial port city in its prime."
+    "The city's remarkable state of preservation allows visitors to experience the ambiance of a Spanish colonial port city in its prime.",
 ]
 
 // MARK: - West Bay, Grand Cayman Fun Facts
@@ -4544,7 +4540,7 @@ let funFactsWestBay: [String] = [
     "For over 300 years, from the 1660s until 1962, the Cayman Islands were administered as a dependency of the Colony of Jamaica.",
     "Hurricane Ivan in 2004 was a catastrophic event that caused widespread devastation and reshaped parts of the island's coastline.",
     "The silver thatch palm, endemic to the islands, has been used for centuries to make rope, hats, and baskets.",
-    "The West Indian whistling duck is a notable native bird species found in the island's wetlands."
+    "The West Indian whistling duck is a notable native bird species found in the island's wetlands.",
 ]
 let funFactsSantiago: [String] = [
     "Santiago was founded in 1541 by Spanish conquistador Pedro de Valdivia and named Santiago del Nuevo Extremo.",
@@ -4619,7 +4615,7 @@ let funFactsSantiago: [String] = [
     "The Plaza de Armas has a central palm grove and statues of Spanish and Mapuche leaders.",
     "Santiago is a leading hub for South American cuisine, featuring Chilean wines and seafood.",
     "The Santiago Metro carries over 2.5 million riders daily, among the busiest in the Americas.",
-    "Santiago is a center of education, home to Universidad de Chile and Pontificia Universidad Católica."
+    "Santiago is a center of education, home to Universidad de Chile and Pontificia Universidad Católica.",
 ]
 
 let funFactsBeijing: [String] = [
@@ -4697,9 +4693,8 @@ let funFactsBeijing: [String] = [
     "Traditional siheyuan courtyard homes are iconic to Beijing’s architecture.",
     "The Beijing city wall was 40 km long in the Ming dynasty, with nine gates.",
     "Beijing’s cuisine includes zhajiangmian (soybean paste noodles) and jianbing crepes.",
-    "Beijing is one of only four cities worldwide to host both Summer and Winter Olympics."
+    "Beijing is one of only four cities worldwide to host both Summer and Winter Olympics.",
 ]
-
 
 // MARK: - Shanghai, China Fun Facts
 
@@ -4770,7 +4765,7 @@ let funFactsShanghai: [String] = [
     "The city's staggering pace of development over the past thirty years is frequently cited as a primary case study in urban planning and economic policy.",
     "A museum dedicated to Lu Xun, a leading figure of modern Chinese literature, is located in a park where the writer is buried.",
     "To manage intense traffic in the world's most populous city, an extensive network of elevated highways crisscrosses the urban core.",
-    "A commitment to improving urban livability is demonstrated by the creation of numerous 'pocket parks,' small green spaces built on vacant lots."
+    "A commitment to improving urban livability is demonstrated by the creation of numerous 'pocket parks,' small green spaces built on vacant lots.",
 ]
 
 // MARK: - Brazzaville, Republic of the Congo Fun Facts
@@ -4843,7 +4838,7 @@ let funFactsBrazzaville: [String] = [
     "Ongoing infrastructure projects, including road paving and utility upgrades, are central to the city's modernization efforts.",
     "As the terminus of the Congo-Océan Railway, the city is a vital center for trade and commerce between the coast and the interior.",
     "The city's urban fabric is a complex palimpsest, revealing layers of pre-colonial settlement, French colonial planning, and post-independence expansion.",
-    "The unique dyad of Brazzaville and Kinshasa offers a singular case study in cross-border urban relations and cultural exchange in Africa."
+    "The unique dyad of Brazzaville and Kinshasa offers a singular case study in cross-border urban relations and cultural exchange in Africa.",
 ]
 
 // MARK: - San José, Costa Rica Fun Facts
@@ -4917,7 +4912,7 @@ let funFactsSanJose: [String] = [
     "The relatively compact downtown area, with its grid of 'avenidas' and 'calles,' is well-suited for exploration on foot.",
     "The local residents' nickname for themselves, 'Ticos,' comes from their linguistic habit of using the diminutive '-tico' suffix.",
     "San José is the headquarters of the Inter-American Court of Human Rights, a major international judicial body.",
-    "The nation's long-standing policy of neutrality and its lack of a standing army have earned it the moniker 'the Switzerland of Central America.'"
+    "The nation's long-standing policy of neutrality and its lack of a standing army have earned it the moniker 'the Switzerland of Central America.'",
 ]
 
 // MARK: - Havana, Cuba Fun Facts
@@ -4988,7 +4983,7 @@ let funFactsHavana: [String] = [
     "The main campus of the University of Havana is a designated National Monument, recognized for its architectural and historical significance.",
     "The city has been a cradle for world-renowned writers, including Alejo Carpentier, a pioneer of the magical realism literary style.",
     "The Fábrica de Arte Cubano (FAC), a multidisciplinary arts space in a former factory, has become a major hub of contemporary Cuban culture.",
-    "Despite decades of economic challenges, the city's profound cultural vibrancy and the resilience of its people remain its most defining characteristics."
+    "Despite decades of economic challenges, the city's profound cultural vibrancy and the resilience of its people remain its most defining characteristics.",
 ]
 let funFactsCopenhagen: [String] = [
     "Copenhagen was founded as a Viking fishing village in the 10th century, originally called Havn.",
@@ -5061,7 +5056,7 @@ let funFactsCopenhagen: [String] = [
     "The city’s metro expansion has added sustainable wooden stations and driverless technology.",
     "Copenhagen has been ranked the world’s most livable city multiple times by Monocle magazine.",
     "The UN City complex is a green-certified hub hosting UN agencies in Copenhagen.",
-    "Copenhagen’s skyline mixes copper-roofed churches with sleek modern skyscrapers."
+    "Copenhagen’s skyline mixes copper-roofed churches with sleek modern skyscrapers.",
 ]
 
 let funFactsQuito: [String] = [
@@ -5131,7 +5126,7 @@ let funFactsQuito: [String] = [
     "The city is known for Holy Week processions with purple-robed penitents.",
     "The Museo de la Ciudad documents Quito’s evolution from pre-Hispanic times.",
     "The city’s old airport runway is now Parque Bicentenario, a vast urban park.",
-    "Quito is located in the Andes at the equator, earning it the nickname 'Middle of the World City.'"
+    "Quito is located in the Andes at the equator, earning it the nickname 'Middle of the World City.'",
 ]
 
 let funFactsCairo: [String] = [
@@ -5203,7 +5198,7 @@ let funFactsCairo: [String] = [
     "The Fatimid dynasty made Cairo its capital after conquering Egypt in 969 CE.",
     "Cairo’s Ezbekiyya Garden was one of the first public parks in the Arab world.",
     "Cairo is a UNESCO Creative City for its literature and cultural heritage.",
-    "The city is famous for traditional music, dance, and cuisine, such as koshari and falafel."
+    "The city is famous for traditional music, dance, and cuisine, such as koshari and falafel.",
 ]
 
 let funFactsHelsinki: [String] = [
@@ -5276,7 +5271,7 @@ let funFactsHelsinki: [String] = [
     "The city’s metro stations are known for bold and colorful architecture.",
     "Helsinki’s urban planning prioritizes biking and pedestrian-friendly spaces.",
     "The Pasila district is a hub for transportation, media, and events.",
-    "Helsinki’s long summer days and white nights attract many visitors."
+    "Helsinki’s long summer days and white nights attract many visitors.",
 ]
 
 let funFactsBoraBora: [String] = [
@@ -5351,7 +5346,7 @@ let funFactsBoraBora: [String] = [
     "Visitors often take jeep tours to reach Mount Otemanu’s viewpoints.",
     "The lagoon is dotted with coral heads, making it ideal for underwater photography.",
     "Bora Bora has one of the highest concentrations of luxury overwater villas in the world.",
-    "The island is a symbol of paradise in popular culture and travel media."
+    "The island is a symbol of paradise in popular culture and travel media.",
 ]
 
 let funFactsParis: [String] = [
@@ -5427,7 +5422,7 @@ let funFactsParis: [String] = [
     "The Eiffel Tower shrinks about six inches in winter due to metal contraction.",
     "Paris’s Metro system covers over 200 kilometers of track.",
     "The Musée de Cluny is dedicated to the Middle Ages and holds the famous Lady and the Unicorn tapestries.",
-    "The Eiffel Tower was the tallest structure in Paris for over a century until Tour Montparnasse was built in 1973."
+    "The Eiffel Tower was the tallest structure in Paris for over a century until Tour Montparnasse was built in 1973.",
 ]
 
 let funFactsBerlin: [String] = [
@@ -5573,7 +5568,7 @@ let funFactsAthens: [String] = [
     "Athens’ Marathon Race commemorates the legendary run of Pheidippides in 490 BCE.",
     "The Pnyx Hill was the assembly place where citizens gathered for debates.",
     "Athens is one of the few European capitals where ancient ruins sit alongside modern buildings.",
-    "The Acropolis remains a symbol of Western civilization and democracy."
+    "The Acropolis remains a symbol of Western civilization and democracy.",
 ]
 
 let funFactsNuuk: [String] = [
@@ -5647,7 +5642,7 @@ let funFactsNuuk: [String] = [
     "The city is surrounded by mountains that rise over 1,200 meters high.",
     "Nuuk has experienced rapid modernization over the last few decades.",
     "The colonial church near Nuuk’s harbor is one of its most photographed landmarks.",
-    "Nuuk is a symbol of Greenland’s movement toward independence from Denmark."
+    "Nuuk is a symbol of Greenland’s movement toward independence from Denmark.",
 ]
 
 let funFactsHongKong: [String] = [
@@ -5721,7 +5716,7 @@ let funFactsHongKong: [String] = [
     "The territory is made up of Hong Kong Island, Kowloon Peninsula, and the New Territories.",
     "Hong Kong’s skyline has been featured in many Hollywood and local films.",
     "The iconic Star Ferry fleet has been operating for over 120 years.",
-    "The Wong Tai Sin Temple is a major Taoist shrine attracting millions of visitors annually."
+    "The Wong Tai Sin Temple is a major Taoist shrine attracting millions of visitors annually.",
 ]
 
 let funFactsBudapest: [String] = [
@@ -5796,7 +5791,7 @@ let funFactsBudapest: [String] = [
     "Budapest has a network of natural hot springs flowing beneath its streets.",
     "The Great Synagogue has a cemetery and Holocaust memorial on-site.",
     "The Chain Bridge was designed by British engineer William Tierney Clark.",
-    "Budapest’s ruin bars are world-famous for their unique atmosphere."
+    "Budapest’s ruin bars are world-famous for their unique atmosphere.",
 ]
 
 let funFactsReykjavik: [String] = [
@@ -5871,7 +5866,7 @@ let funFactsReykjavik: [String] = [
     "The city’s surrounding Faxaflói Bay is a habitat for whales and seabirds.",
     "Reykjavík has few tall buildings due to seismic concerns and planning restrictions.",
     "The Reykjavík Pond (Tjörnin) freezes in winter, becoming a skating area.",
-    "Reykjavík’s urban design emphasizes pedestrian and cycling infrastructure."
+    "Reykjavík’s urban design emphasizes pedestrian and cycling infrastructure.",
 ]
 let funFactsMawsynram: [String] = [
     "Mawsynram is often cited as the wettest place on Earth, averaging extraordinary annual rainfall.",
@@ -5945,7 +5940,7 @@ let funFactsMawsynram: [String] = [
     "Mawsynram is a case study location for climate change and monsoon studies.",
     "The unique geography makes Mawsynram a favorite spot for photographers.",
     "The Khasi Hills’ high elevation amplifies the rainfall phenomenon.",
-    "Mawsynram’s community life is deeply tied to weather patterns."
+    "Mawsynram’s community life is deeply tied to weather patterns.",
 ]
 
 let funFactsMumbai: [String] = [
@@ -6020,7 +6015,7 @@ let funFactsMumbai: [String] = [
     "Mumbai’s Chor Bazaar is famous for antiques and vintage items.",
     "The city’s name change from Bombay reflected Marathi cultural pride.",
     "Mumbai is known for its monsoon flooding challenges.",
-    "The Asiatic Society Library’s steps are a popular filming location for Bollywood movies."
+    "The Asiatic Society Library’s steps are a popular filming location for Bollywood movies.",
 ]
 
 let funFactsSanandaj: [String] = [
@@ -6094,7 +6089,7 @@ let funFactsSanandaj: [String] = [
     "The region’s artisans use walnut wood for carving and furniture making.",
     "Sanandaj’s museums showcase Kurdish tribal jewelry and costumes.",
     "The Abidar mountain trails are popular for hiking and picnicking.",
-    "Sanandaj remains a symbol of Kurdish heritage and identity in Iran."
+    "Sanandaj remains a symbol of Kurdish heritage and identity in Iran.",
 ]
 
 let funFactsBaghdad: [String] = [
@@ -6166,7 +6161,7 @@ let funFactsBaghdad: [String] = [
     "Baghdad’s culture blends ancient Mesopotamian heritage with Arab and Islamic traditions.",
     "Many ancient artifacts from the area are in museums worldwide due to colonial excavations.",
     "Baghdad’s historic role as a 'City of Peace' contrasts with its turbulent modern history.",
-    "Baghdad was the intellectual capital of the Abbasid Empire, rivaling Constantinople and Cordoba."
+    "Baghdad was the intellectual capital of the Abbasid Empire, rivaling Constantinople and Cordoba.",
 ]
 
 let funFactsDublin: [String] = [
@@ -6231,9 +6226,8 @@ let funFactsDublin: [String] = [
     "The city is headquarters for major tech companies like Google, Facebook, and LinkedIn in Europe.",
     "The Jameson Distillery on Bow Street offers whiskey tours in a historic distillery building.",
     "Oscar Wilde’s childhood home is preserved near Merrion Square Park.",
-    "Dublin’s O’Donovan Rossa Bridge dates back"
+    "Dublin’s O’Donovan Rossa Bridge dates back",
 ]
-
 
 // MARK: - Milan, Italy Fun Facts
 
@@ -6305,7 +6299,7 @@ let funFactsMilan: [String] = [
     "The city's state archives hold invaluable historical documents, including records from the Sforza and Visconti duchies.",
     "A number of prominent private art foundations, such as the Fondazione Prada and Pirelli HangarBicocca, contribute to the city's contemporary art scene.",
     "Many of the city's public swimming pools, like the Piscina Romano, are notable examples of the Rationalist architecture of the 1930s.",
-    "The city has a long and influential history of industrial design, producing iconic everyday objects from companies like Alessi and Kartell."
+    "The city has a long and influential history of industrial design, producing iconic everyday objects from companies like Alessi and Kartell.",
 ]
 
 // MARK: - Kingston, Jamaica Fun Facts
@@ -6378,7 +6372,7 @@ let funFactsKingston: [String] = [
     "The city is the administrative center of the nation, housing all the major government ministries and agencies.",
     "The 'National Pantomime' is a beloved theatrical tradition that has been performed annually for over 80 years, blending music, comedy, and social satire.",
     "The city's location within a large natural harbor made it the primary base for the British Royal Navy's West Indies Squadron for centuries.",
-    "The urban landscape of Kingston is a dynamic tapestry that weaves together historic colonial architecture, modern commercial towers, and vibrant, resilient residential communities."
+    "The urban landscape of Kingston is a dynamic tapestry that weaves together historic colonial architecture, modern commercial towers, and vibrant, resilient residential communities.",
 ]
 
 // MARK - Aomori, Japan Fun Facts
@@ -6451,7 +6445,7 @@ let funFactsAomori: [String] = [
     "The area has produced a number of notable historical figures, artists, and writers.",
     "The stark beauty of the winter landscape in Aomori has served as an inspiration for countless artists, poets, and writers.",
     "The city's geographical position at the northern tip of Honshu has given it a unique cultural and historical role as a gateway to Hokkaido and the north.",
-    "A deep community commitment to preserving the tradition of the Nebuta Matsuri ensures that this spectacular cultural heritage is passed down to future generations."
+    "A deep community commitment to preserving the tradition of the Nebuta Matsuri ensures that this spectacular cultural heritage is passed down to future generations.",
 ]
 
 // MARK: - Hiroshima, Japan Fun Facts
@@ -6524,7 +6518,7 @@ let funFactsHiroshima: [String] = [
     "The testimonies of the 'hibakusha,' or atomic bomb survivors, are considered a vital part of the city's heritage and its mission for peace.",
     "A wealth of peace education materials, including survivor testimonies and historical documents, are compiled by the city and distributed worldwide.",
     "The city's remarkable reconstruction became a powerful symbol of Japan's post-war economic miracle.",
-    "While forever shaped by its tragic past, Hiroshima's civic identity is now overwhelmingly focused on championing a future of global peace and nuclear abolition."
+    "While forever shaped by its tragic past, Hiroshima's civic identity is now overwhelmingly focused on championing a future of global peace and nuclear abolition.",
 ]
 let funFactsNagasaki: [String] = [
     "Founded by Portuguese traders in the mid-16th century, Nagasaki became a major entry point for Western influence.",
@@ -6577,9 +6571,8 @@ let funFactsNagasaki: [String] = [
     "Nagasaki remains both a functioning modern city and a solemn testament to resilience.",
     "The city’s terrain, architecture, and cuisine continue to tell stories of centuries-long cultural exchange.",
     "From hidden identities to bustling markets, Nagasaki’s layers of history invite exploration.",
-    "Lantern Festival is a blend of Chinese and Japanese heritage light"
+    "Lantern Festival is a blend of Chinese and Japanese heritage light",
 ]
-
 
 let funFactsOsaka: [String] = [
     "The name ‘Ōsaka’ means ‘large slope’ or ‘large hill.’",
@@ -6650,9 +6643,8 @@ let funFactsOsaka: [String] = [
     "Osaka has one of the highest concentrations of Michelin-star restaurants in Japan.",
     "Street vending culture is deeply ingrained in Osaka’s urban fabric.",
     "The Hanshin Tigers baseball team is a cultural staple with a passionate fanbase.",
-    "Osaka is a gateway to Kansai, providing easy access to Kyoto, Nara, and Kobe."
+    "Osaka is a gateway to Kansai, providing easy access to Kyoto, Nara, and Kobe.",
 ]
-
 
 // MARK: - Tokyo, Japan Fun Facts
 
@@ -6712,7 +6704,7 @@ let funFactsTokyo: [String] = [
     "The Robot Restaurant in Shinjuku was a world-famous tourist attraction that offered a chaotic and spectacular cabaret show.",
     "Several themed restaurants offer unique dining experiences, from dining in a mock prison cell to catching your own fish for dinner.",
     "Planetarium bars offer a unique nightlife experience, allowing patrons to enjoy drinks while gazing at a projection of the starry sky.",
-    
+
     "The Tokyo International Forum, a massive convention center, is celebrated for its stunning architectural design, particularly its glass and steel atrium shaped like a ship's hull.",
     "Several small islands in Tokyo Bay have become 'cat islands,' where feral cat populations are cared for by local residents.",
     "The Rainbow Bridge, connecting the mainland to the Odaiba waterfront district, is beautifully illuminated with rainbow-colored lights at night.",
@@ -6723,7 +6715,7 @@ let funFactsTokyo: [String] = [
     "Near Ueno Park, the 'Ameya Yokocho' is a bustling open-air market that originated as a black market after World War II.",
     "Kappabashi Street is a district dedicated entirely to kitchenware, catering to both professional chefs and home cooks, and is famous for its hyper-realistic plastic food models.",
     "The city's complex address system is based on a hierarchy of districts, blocks, and house numbers, rather than sequential street numbering.",
-    "A deeply ingrained culture of social order and mutual respect contributes to Tokyo being one of the safest large cities in the world."
+    "A deeply ingrained culture of social order and mutual respect contributes to Tokyo being one of the safest large cities in the world.",
 ]
 
 // MARK: - Petra, Jordan Fun Facts
@@ -6795,7 +6787,7 @@ let funFactsPetra: [String] = [
     "A number of processional ways, including the one leading to the High Place of Sacrifice, were used for elaborate religious ceremonies.",
     "The quarries from which the sandstone for Petra's few freestanding buildings was extracted are still visible today.",
     "The city's very existence was predicated not on a river, but on the meticulous and ingenious harvesting of scarce rainfall.",
-    "The primary defense of the city was not a man-made wall, but the formidable natural protection offered by the surrounding mountains and narrow canyons."
+    "The primary defense of the city was not a man-made wall, but the formidable natural protection offered by the surrounding mountains and narrow canyons.",
 ]
 
 // MARK: - Kuwait City, Kuwait Fun Facts
@@ -6869,7 +6861,7 @@ let funFactsKuwaitCity: [String] = [
     "The traditional 'dhow' boat is a powerful symbol of Kuwait's maritime heritage, and several historic dhows are preserved and displayed.",
     "A number of prominent charitable organizations and Islamic foundations are based in the city.",
     "The city's modern urban form is the result of a series of ambitious master plans, the first of which was commissioned in the 1950s.",
-    "The urban landscape of Kuwait City is a striking juxtaposition of traditional Islamic design elements and futuristic modern architecture."
+    "The urban landscape of Kuwait City is a striking juxtaposition of traditional Islamic design elements and futuristic modern architecture.",
 ]
 
 // MARK: - Antananarivo, Madagascar Fun Facts
@@ -6943,7 +6935,7 @@ let funFactsAntananarivo: [String] = [
     "The city's main railway line connects it to the eastern port of Toamasina.",
     "The city has a number of important historical sites related to the Franco-Hova Wars of the late 19th century.",
     "The city's Ambohijatovo Park is one of its oldest public gardens.",
-    "The city serves as the primary base for scientists and conservationists working to study and protect Madagascar's unparalleled biodiversity."
+    "The city serves as the primary base for scientists and conservationists working to study and protect Madagascar's unparalleled biodiversity.",
 ]
 let funFactsColima: [String] = [
     "Colima lies near the active Volcán de Colima, one of Mexico’s most monitored volcanoes.",
@@ -7016,7 +7008,7 @@ let funFactsColima: [String] = [
     "Many Colima towns host local fiestas blending Catholic and Indigenous traditions.",
     "The state’s geography ranges from beaches to high mountains, all within hours’ drive.",
     "Colima is known for hospitality and laid-back Pacific culture.",
-    "The area’s cuisine features tropical fruits like guava, mango, and tamarind."
+    "The area’s cuisine features tropical fruits like guava, mango, and tamarind.",
 ]
 
 let funFactsMexicoCity: [String] = [
@@ -7092,10 +7084,8 @@ let funFactsMexicoCity: [String] = [
     "The Museo Dolores Olmedo is famous for Diego Rivera and Frida Kahlo collections.",
     "Mexico City has a complex water system, with canals and ancient aqueducts.",
     "The Angel of Independence is surrounded by a traffic circle, a popular protest site.",
-    "The Zócalo has been a gathering place for political movements for centuries."
+    "The Zócalo has been a gathering place for political movements for centuries.",
 ]
-
-
 
 // MARK: - Ulaanbaatar, Mongolia Fun Facts
 
@@ -7167,7 +7157,7 @@ let funFactsUlaanbaatar: [String] = [
     "The city's main railway station is a major hub for both domestic and international travel.",
     "The city's urban planning struggles to keep pace with the influx of former herders moving to the capital.",
     "The city is a major center for the processing of cashmere, one of Mongolia's key exports.",
-    "The city's unique position as the political and cultural heart of a historically nomadic nation makes it one of the most fascinating capitals in Asia."
+    "The city's unique position as the political and cultural heart of a historically nomadic nation makes it one of the most fascinating capitals in Asia.",
 ]
 
 // MARK: - Casablanca, Morocco Fun Facts
@@ -7239,7 +7229,7 @@ let funFactsCasablanca: [String] = [
     "The city has a number of important international aid and development organizations.",
     "The city has a number of important private universities and colleges.",
     "The city's main landmark, the Hassan II Mosque, was partially funded by public subscription, a testament to its national importance.",
-    "The city's vibrant and cosmopolitan character makes it a true gateway to modern Morocco."
+    "The city's vibrant and cosmopolitan character makes it a true gateway to modern Morocco.",
 ]
 
 // MARK: - Kathmandu, Nepal Fun Facts
@@ -7254,7 +7244,7 @@ let funFactsKathmandu: [String] = [
     "Pashupatinath Temple, on the banks of the Bagmati River, is one of the most sacred Hindu temples of the god Shiva in the world, and the site of open-air cremations.",
     "The city has a 'Living Goddess,' the Kumari, a young prepubescent girl who is chosen to be the human incarnation of the Hindu goddess Taleju.",
     "The Kathmandu, Patan, and Bhaktapur Durbar Squares are the historic royal palace squares of the three ancient kingdoms that once vied for power in the valley.",
-    
+
     "The city is a unique melting pot of Hinduism and Buddhism, where deities and temples from both religions are often worshipped side-by-side.",
     "The Thamel district is a bustling and chaotic neighborhood that has served as the primary hub for trekkers and tourists for decades.",
     "The devastating earthquake of 2015 caused significant damage to several of the city's historic monuments, many of which have been painstakingly restored.",
@@ -7309,7 +7299,7 @@ let funFactsKathmandu: [String] = [
     "The city's urban landscape is a dense and often chaotic mix of ancient temples, medieval palaces, and modern buildings.",
     "The city's name is derived from the Sanskrit words 'kāṣṭha' (wood) and 'maṇḍapa' (pavilion).",
     "The city's valley was once a large lake, which, according to legend, was drained by the Bodhisattva Manjushri.",
-    "The city's unique blend of cultures and its stunning historical and natural setting make it a place of profound spiritual and aesthetic significance."
+    "The city's unique blend of cultures and its stunning historical and natural setting make it a place of profound spiritual and aesthetic significance.",
 ]
 
 // MARK: - Amsterdam, Netherlands Fun Facts
@@ -7373,7 +7363,7 @@ let funFactsAmsterdam: [String] = [
     "The city's main newspaper is 'Het Parool.'",
     "The city has a number of important television and radio broadcasting stations.",
     "The city has a number of important international conferences and exhibitions.",
-    
+
     "The city has a unique 'Poezenboot,' or Cat Boat, a floating animal sanctuary for stray and abandoned cats.",
     "The city's 'Begijnhof' is a tranquil medieval courtyard that was once home to a Catholic sisterhood.",
     "The city's 'Magere Brug' (Skinny Bridge) is a famous and picturesque wooden drawbridge.",
@@ -7382,7 +7372,7 @@ let funFactsAmsterdam: [String] = [
     "The city has a number of important diamond factories that offer tours.",
     "The city's 'cheese museum' offers a look into the history of Dutch cheese-making.",
     "The city's main concert venue for popular music is the Ziggo Dome.",
-    "The city's commitment to freedom of expression and tolerance is a defining characteristic that has shaped its history and culture for centuries."
+    "The city's commitment to freedom of expression and tolerance is a defining characteristic that has shaped its history and culture for centuries.",
 ]
 let funFactsAuckland: [String] = [
     "Auckland, the ‘City of Sails,’ has more boats per capita than almost anywhere in the world.",
@@ -7459,7 +7449,7 @@ let funFactsAuckland: [String] = [
     "The city offers whale and dolphin watching tours in the Hauraki Gulf.",
     "Auckland’s North Shore features some of the best urban beaches in New Zealand.",
     "The Auckland Museum rooftop terrace provides panoramic city and harbor views.",
-    "The Waitākere Ranges once supplied timber for much of Auckland’s development."
+    "The Waitākere Ranges once supplied timber for much of Auckland’s development.",
 ]
 
 let funFactsNiamey: [String] = [
@@ -7532,10 +7522,8 @@ let funFactsNiamey: [String] = [
     "Niamey has several cultural centers promoting French and African arts.",
     "Niamey’s history reflects Niger’s transition from colonial rule to independence.",
     "The city’s central mosque is a major landmark visible from across Niamey.",
-    "Niamey is a crossroads between the Sahara Desert and West Africa’s savannas."
+    "Niamey is a crossroads between the Sahara Desert and West Africa’s savannas.",
 ]
-
-
 
 let funFactsPyongyang: [String] = [
     "Pyongyang’s massive monument architecture lines wide boulevards along the Taedong River.",
@@ -7605,7 +7593,7 @@ let funFactsPyongyang: [String] = [
     "The city's historical museums present the official state narrative of Korean history from ancient times to the present.",
     "The Chollima Statue, a monument of a mythical winged horse, symbolizes the concept of rapid, revolutionary progress.",
     "The city's urban landscape is known for its meticulous cleanliness and orderly appearance.",
-    "The physical development of Pyongyang serves as a direct and powerful manifestation of the country's official ideology and political system."
+    "The physical development of Pyongyang serves as a direct and powerful manifestation of the country's official ideology and political system.",
 ]
 
 // MARK: - Örebro, Sweden Fun Facts
@@ -7674,7 +7662,7 @@ let funFactsOrebro: [String] = [
     "Several historic inns and taverns in the city have been in operation for centuries.",
     "Örebro University Hospital is a major medical center and teaching hospital for the entire region.",
     "The city's long history as a crossroads is reflected in its diverse population and its open, welcoming atmosphere.",
-    "The city's commitment to public art and culture has made it a vibrant and creative center in the heart of Sweden."
+    "The city's commitment to public art and culture has made it a vibrant and creative center in the heart of Sweden.",
 ]
 
 // MARK: - Oslo, Norway Fun Facts
@@ -7749,7 +7737,7 @@ let funFactsOslo: [String] = [
     // A few more...
     "The city's main river, the Akerselva, has been transformed from an industrial waterway into a beautiful park corridor.",
     "The city has a number of important research vessels that are used for polar and marine research.",
-    "The city's commitment to combining modern urban living with easy access to nature is a defining characteristic of its identity."
+    "The city's commitment to combining modern urban living with easy access to nature is a defining characteristic of its identity.",
 ]
 let funFactsKarachi: [String] = [
     "Karachi is Pakistan’s largest city and a vital port on the Arabian Sea.",
@@ -7827,7 +7815,7 @@ let funFactsKarachi: [String] = [
     "Karachi’s Seaview Beach is a popular recreation spot for locals.",
     "Karachi’s Quaid-e-Azam Mausoleum is a symbol of Pakistan’s independence.",
     "Karachi’s diverse culture reflects influences from Central Asia, India, and the Middle East.",
-    "Karachi is one of the fastest-growing cities in the world."
+    "Karachi is one of the fastest-growing cities in the world.",
 ]
 
 let funFactsPanamaCity: [String] = [
@@ -7901,7 +7889,7 @@ let funFactsPanamaCity: [String] = [
     "Panama City’s nightlife is known for rooftop bars with skyline views.",
     "The city has a thriving seafood market, Mercado de Mariscos, offering fresh ceviche.",
     "Panama Viejo was one of the first European settlements on the Pacific coast of the Americas.",
-    "Casco Viejo is a UNESCO World Heritage Site for its cultural and architectural heritage."
+    "Casco Viejo is a UNESCO World Heritage Site for its cultural and architectural heritage.",
 ]
 let funFactsLima: [String] = [
     "Lima’s historic center and coastal cliffs are famous, and its cuisine ranks among the world’s best.",
@@ -7975,7 +7963,7 @@ let funFactsLima: [String] = [
     "The Museo de Arte Contemporáneo displays modern Peruvian art.",
     "Lima’s Plaza de Armas is one of the oldest continuously used plazas in South America.",
     "The city is a UNESCO Creative City of Gastronomy.",
-    "The historic center features brightly painted colonial-era buildings."
+    "The historic center features brightly painted colonial-era buildings.",
 ]
 
 let funFactsDavao: [String] = [
@@ -8051,7 +8039,7 @@ let funFactsDavao: [String] = [
     "Davao’s indigenous communities actively preserve weaving and craft traditions.",
     "The city is a popular venue for national conventions and trade fairs.",
     "Davao River Festival showcases colorful boats and cultural dances.",
-    "Davao is a model city for local governance and public safety."
+    "Davao is a model city for local governance and public safety.",
 ]
 
 let funFactsWarsaw: [String] = [
@@ -8127,7 +8115,7 @@ let funFactsWarsaw: [String] = [
     "Warsaw’s Castle Square is a popular meeting place in the city center.",
     "The Warsaw Mermaid legend says she protects the city from invaders.",
     "Warsaw has a vibrant nightlife with jazz clubs and historic pubs.",
-    "The POLIN Museum has won multiple awards for architecture and storytelling."
+    "The POLIN Museum has won multiple awards for architecture and storytelling.",
 ]
 
 ////////////
@@ -8205,7 +8193,7 @@ let funFactsLisbon: [String] = [
     "The city offers ferry services across the Tagus River.",
     "Lisbon is known for hosting fado shows in intimate taverns and restaurants.",
     "The 25 de Abril Bridge was named after Portugal’s 1974 Carnation Revolution.",
-    "Lisbon has a rich blend of Roman, Moorish, and Portuguese history."
+    "Lisbon has a rich blend of Roman, Moorish, and Portuguese history.",
 ]
 
 let funFactsMoscow: [String] = [
@@ -8284,9 +8272,8 @@ let funFactsMoscow: [String] = [
     "The Moscow metro has a punctuality rate of 99.9%.",
     "Moscow’s Kremlin Cathedral Square was the center of Tsarist Russia.",
     "The Kremlin Armoury contains the Russian state regalia, including crowns and thrones.",
-    "Moscow’s skyline is continually evolving with cutting-edge architecture."
+    "Moscow’s skyline is continually evolving with cutting-edge architecture.",
 ]
-
 
 let funFactsOymyakon: [String] = [
     "Oymyakon is one of the coldest inhabited places on Earth, with winter temperatures below −50°C.",
@@ -8358,7 +8345,7 @@ let funFactsOymyakon: [String] = [
     "Snow stays on the ground for up to seven months a year.",
     "Wintertime temperatures are so cold that ink pens, batteries, and phones freeze quickly.",
     "The cold air is dense and makes breathing feel heavier in Oymyakon.",
-    "The village is a symbol of human resilience and adaptation to extreme conditions."
+    "The village is a symbol of human resilience and adaptation to extreme conditions.",
 ]
 
 let funFactsYakutsk: [String] = [
@@ -8431,7 +8418,7 @@ let funFactsYakutsk: [String] = [
     "The city is connected by ice roads in winter when rivers freeze solid.",
     "Yakutsk’s cultural identity is tied deeply to Siberian shamanistic traditions.",
     "The Sakha Republic flag is a symbol of Yakutsk’s regional pride.",
-    "Yakutsk is a symbol of human adaptation to one of Earth’s harshest environments."
+    "Yakutsk is a symbol of human adaptation to one of Earth’s harshest environments.",
 ]
 
 let funFactsMecca: [String] = [
@@ -8506,7 +8493,7 @@ let funFactsMecca: [String] = [
     "The city experiences extreme heat, with summer temperatures exceeding 40°C.",
     "Mecca has one of the most advanced crowd management systems globally.",
     "The city is under strict Islamic law, with rules enforced for modest dress and behavior.",
-    "The Kaaba’s door is made of solid gold and is replaced periodically."
+    "The Kaaba’s door is made of solid gold and is replaced periodically.",
 ]
 
 let funFactsRiyadh: [String] = [
@@ -8578,7 +8565,7 @@ let funFactsRiyadh: [String] = [
     "The Riyadh Metro’s driverless trains are among the most advanced in the world.",
     "The city is a major hub for Middle Eastern aviation and logistics.",
     "Riyadh is one of the fastest-growing cities in the Arab world.",
-    "Riyadh has a mix of luxury developments and preserved historic landmarks."
+    "Riyadh has a mix of luxury developments and preserved historic landmarks.",
 ]
 
 let funFactsEdinburgh: [String] = [
@@ -8653,7 +8640,7 @@ let funFactsEdinburgh: [String] = [
     "The Meadows is one of the largest public parks in the city.",
     "Leith, Edinburgh’s historic port district, is a center for dining and shopping.",
     "Edinburgh’s skyline blends medieval spires with Georgian townhouses.",
-    "Edinburgh attracts over 4 million visitors annually, making it one of the UK’s top destinations."
+    "Edinburgh attracts over 4 million visitors annually, making it one of the UK’s top destinations.",
 ]
 
 let funFactsSingapore: [String] = [
@@ -8729,7 +8716,7 @@ let funFactsSingapore: [String] = [
     "Singapore’s skyline reflects both colonial heritage and cutting-edge modern design.",
     "The Singapore Science Centre attracts millions of visitors annually.",
     "Singaporeans are known for their love of food, with over 29 Michelin-starred restaurants.",
-    "The city’s population includes people from over 200 nationalities."
+    "The city’s population includes people from over 200 nationalities.",
 ]
 
 let funFactsMadrid: [String] = [
@@ -8798,9 +8785,8 @@ let funFactsMadrid: [String] = [
     "A former transmission tower, the 'Faro de Moncloa,' now serves as an observation deck offering some of the best panoramic views of the city.",
     "The city's archives contain invaluable documents, including the original plans for the 18th-century expansion of Madrid.",
     "Madrid's excellent drinking water is sourced from pristine reservoirs in the nearby Sierra de Guadarrama mountains, a point of local pride.",
-    "A number of major international aid and development organizations have their Spanish headquarters in the capital."
+    "A number of major international aid and development organizations have their Spanish headquarters in the capital.",
 ]
-
 
 let funFactsTarragona: [String] = [
     "Tarragona preserves impressive Roman ruins, including a seaside amphitheater.",
@@ -8868,7 +8854,7 @@ let funFactsTarragona: [String] = [
     "A number of historic inns and taverns in the old town offer a taste of traditional Catalan hospitality.",
     "The Joan XXIII University Hospital is the main medical center for the province.",
     "The very layout of the old town, with its three distinct terraces, directly reflects the structure of the ancient Roman provincial capital.",
-    "The city's profound commitment to its Roman heritage offers visitors an unparalleled journey into the classical past of the Iberian Peninsula."
+    "The city's profound commitment to its Roman heritage offers visitors an unparalleled journey into the classical past of the Iberian Peninsula.",
 ]
 let funFactsSuva: [String] = [
     "Suva is Fiji’s capital and cultural hub, known for colonial architecture and lively markets.",
@@ -8941,7 +8927,7 @@ let funFactsSuva: [String] = [
     "Suva’s Kings Wharf is one of the busiest ports in the Pacific Islands.",
     "The city played a role in World War II as a base for Allied forces.",
     "Suva has one of the largest Indo-Fijian populations in the country.",
-    "Suva’s vibrant mix of cultures makes it a hub for Pacific arts, food, and traditions."
+    "Suva’s vibrant mix of cultures makes it a hub for Pacific arts, food, and traditions.",
 ]
 
 let funFactsAleppo: [String] = [
@@ -9014,7 +9000,7 @@ let funFactsAleppo: [String] = [
     "Aleppo’s Aleppine cuisine is considered one of the richest in the Arab world.",
     "The Al-Madina Souk was once the longest covered market in the world.",
     "The Citadel’s drawbridge was a defensive feature used during sieges.",
-    "Aleppo remains a symbol of resilience and cultural heritage despite recent conflicts."
+    "Aleppo remains a symbol of resilience and cultural heritage despite recent conflicts.",
 ]
 
 let funFactsAndong: [String] = [
@@ -9084,7 +9070,7 @@ let funFactsAndong: [String] = [
     "A number of international exchange programs are facilitated through the city's cultural and educational institutions.",
     "The city has a number of important private and state-run enterprises.",
     "The city's main stadium is the Andong Civic Stadium.",
-    "The city's unique preservation of Joseon Dynasty traditions makes it a vital center for understanding Korea's cultural and intellectual history."
+    "The city's unique preservation of Joseon Dynasty traditions makes it a vital center for understanding Korea's cultural and intellectual history.",
 ]
 let funFactsJohannesburg: [String] = [
     "Johannesburg grew from a 19th-century gold rush and is the largest city in South Africa.",
@@ -9153,7 +9139,7 @@ let funFactsJohannesburg: [String] = [
     "The city's cuisine is a direct reflection of its incredible diversity, with influences from across Africa, Europe, and the Indian subcontinent.",
     "The paleontology department at Wits University is world-renowned for its groundbreaking research on human origins.",
     "The financial district in Sandton is often referred to as 'the richest square mile in Africa,' a hub of corporate headquarters and financial institutions.",
-    "The city's vibrant and resilient character is a powerful testament to its complex history of struggle, reconciliation, and ongoing transformation."
+    "The city's vibrant and resilient character is a powerful testament to its complex history of struggle, reconciliation, and ongoing transformation.",
 ]
 let funFactsZurich: [String] = [
     "Zürich repeatedly ranks among the world’s highest-quality-of-life cities and sits on Lake Zürich.",
@@ -9225,7 +9211,7 @@ let funFactsZurich: [String] = [
     "Zürich’s Sechseläutenplatz is one of the largest city squares in Switzerland.",
     "The city is known for its cultural festivals, music venues, and theaters.",
     "Zürich’s Grossmünster legend says Charlemagne discovered saints’ graves there.",
-    "The city’s lake promenade stretches for several kilometers, popular with cyclists and walkers."
+    "The city’s lake promenade stretches for several kilometers, popular with cyclists and walkers.",
 ]
 
 let funFactsTaipei: [String] = [
@@ -9298,7 +9284,7 @@ let funFactsTaipei: [String] = [
     "Taipei’s Xinyi District is the financial and shopping hub of Taiwan.",
     "Taipei’s MRT is entirely wheelchair accessible, with elevators in all stations.",
     "The National Taiwan Museum, established in 1908, is Taiwan’s oldest museum.",
-    "Taipei is one of Asia’s safest cities, with low crime rates and strong public transport security."
+    "Taipei is one of Asia’s safest cities, with low crime rates and strong public transport security.",
 ]
 
 let funFactsRayong: [String] = [
@@ -9373,7 +9359,7 @@ let funFactsRayong: [String] = [
     "Ko Samet has a vibrant nightlife scene catering to tourists.",
     "Rayong’s seafood restaurants are known for spicy Thai dishes.",
     "The province has cultural villages showcasing Thai traditions.",
-    "Rayong is a prime example of Thailand’s mix of natural beauty and economic growth."
+    "Rayong is a prime example of Thailand’s mix of natural beauty and economic growth.",
 ]
 
 let funFactsIstanbul: [String] = [
@@ -9448,7 +9434,7 @@ let funFactsIstanbul: [String] = [
     "Istanbul’s historic tramway line was revived in the 1990s for tourism and heritage.",
     "The Hagia Sophia was once the center of Orthodox Christianity worldwide.",
     "The Süleymaniye Mosque was designed by Mimar Sinan, the Ottoman Empire’s greatest architect.",
-    "Istanbul is home to over 30 universities and many research institutions."
+    "Istanbul is home to over 30 universities and many research institutions.",
 ]
 
 let funFactsKampala: [String] = [
@@ -9519,7 +9505,7 @@ let funFactsKampala: [String] = [
     "A unique local beverage is 'waragi,' a potent gin distilled from bananas or cassava.",
     "The city has a number of important historical sites related to the country's struggle for independence.",
     "The city's main library is a repository of invaluable historical documents.",
-    "The city's main cultural export is its vibrant music scene, which is influential throughout East Africa."
+    "The city's main cultural export is its vibrant music scene, which is influential throughout East Africa.",
 ]
 let funFactsKyiv: [String] = [
     "Kyiv’s Kyiv-Pechersk Lavra (Monastery of the Caves) is a UNESCO site dating to the 11th century.",
@@ -9589,7 +9575,7 @@ let funFactsKyiv: [String] = [
     "The city has a unique 'Museum of One Street' on Andriyivskyy Descent, which tells the history of the street and its famous residents.",
     "The city has a strong tradition of choral music, with the 'Dumka' National Choir being a famous example.",
     "The city's historic Podil district is the ancient commercial quarter, with a planned grid layout that dates back to the early 19th century.",
-    "The city's resilience and defiance in the face of invasion in 2022 have made it a global symbol of national sovereignty and courage."
+    "The city's resilience and defiance in the face of invasion in 2022 have made it a global symbol of national sovereignty and courage.",
 ]
 let funFactsDubai: [String] = [
     "Dubai’s Burj Khalifa is the tallest building in the world, with an observation deck over 1,480 ft high.",
@@ -9662,7 +9648,7 @@ let funFactsDubai: [String] = [
     "The Dubai Design District promotes creative industries and fashion.",
     "Dubai’s economy is considered one of the fastest-growing in the world.",
     "Dubai has the tallest Ferris wheel in the world, Ain Dubai.",
-    "The Dubai International Boat Show showcases luxury yachts and marine technology."
+    "The Dubai International Boat Show showcases luxury yachts and marine technology.",
 ]
 
 let funFactsLondon: [String] = [
@@ -9741,7 +9727,7 @@ let funFactsLondon: [String] = [
     "Big Ben weighs 13.5 tons and has been chiming since 1859.",
     "The Underground’s map, designed by Harry Beck in 1931, is world-famous.",
     "London’s Waterloo Station is the busiest railway station in the UK.",
-    "The city is home to 40,000 listed historic buildings."
+    "The city is home to 40,000 listed historic buildings.",
 ]
 
 let funFactsSanaa: [String] = [
@@ -9810,7 +9796,7 @@ let funFactsSanaa: [String] = [
     "The city's role as a crossroads of civilizations has left it with a rich and layered cultural heritage.",
     "The ongoing conflict has placed the entire Old City of Sana'a on the list of UNESCO World Heritage in Danger.",
     "Despite the immense challenges, efforts are being made by local communities to preserve their unique cultural heritage.",
-    "The city's resilience is a testament to the strength and spirit of its people in the face of profound adversity."
+    "The city's resilience is a testament to the strength and spirit of its people in the face of profound adversity.",
 ]
 
 // MARK: - Harare, Zimbabwe Fun Facts
@@ -9884,8 +9870,5 @@ let funFactsHarare: [String] = [
     "The city's main hospital is the Parirenyatwa General Hospital.",
     "The city's history is a complex narrative of colonial settlement, liberation struggle, and post-independence development.",
     "The city's commitment to education is evident in its high literacy rate, one of the highest in Africa.",
-    "The city's vibrant arts scene, particularly in sculpture, has made it a major center for African art."
+    "The city's vibrant arts scene, particularly in sculpture, has made it a major center for African art.",
 ]
-
-
-

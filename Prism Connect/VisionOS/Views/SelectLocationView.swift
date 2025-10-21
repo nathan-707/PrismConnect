@@ -17,10 +17,9 @@ import SwiftUI
 
         var body: some View {
             VStack {
-
                 List {
-                    ForEach(ALL_CITIES) { city in
-                
+                    ForEach(ALL_CITIES_NO_MODES) { city in
+
                         Button(city.nameForPicker()) {
                             prismSessionManager.worldTourIsOn = false
                             selectedCity = city
@@ -38,7 +37,6 @@ import SwiftUI
 
                         }
                         .foregroundStyle(prismSessionManager.userColor)
-
                     }
                 }
                 .padding(.top)

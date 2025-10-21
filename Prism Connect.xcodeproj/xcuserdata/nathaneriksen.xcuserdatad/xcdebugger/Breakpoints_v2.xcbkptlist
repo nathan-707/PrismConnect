@@ -7,144 +7,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5B38C32D-BF85-495E-86A8-D7B8971EFB4A"
+            uuid = "57205E83-FFED-441A-9781-F9D1CB71E6D0"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Prism Connect/GeneralFiles/sessionManager.swift"
+            filePath = "Prism Connect/VisionOS/Files/VirtualColorClock.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "getWeather(mode:city:)"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "fetchWeather(using:mode:teleportCity:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8AFFBBB7-0695-406B-A7AE-0020D9E6CD05"
+            uuid = "287FD140-2CBB-45F0-8E54-7D4F8F948410"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Prism Connect/VisionOS/Views/ClockVolume.swift"
+            filePath = "Prism Connect/VisionOS/Files/VirtualColorClock.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "73CF3171-0A4E-4938-AA2D-478D79167D63"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Prism Connect/GeneralFiles/sessionManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "waitToTryToConnectAndReport()"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "fetchWeather(using:mode:teleportCity:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "11EEC56D-E186-443E-952E-44F23371ECDA"
+            uuid = "531477D5-710C-49A1-8242-3DB0882FAD64"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Prism Connect/GeneralFiles/sessionManager.swift"
+            filePath = "Prism Connect/VisionOS/Files/VirtualColorClock.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "waitToTryToConnectAndReport()"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
+            landmarkName = "fetchWeather(using:mode:teleportCity:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0A1413F2-2DB6-4BD5-8796-5C0B274E101C"
+            uuid = "CE0F575D-A938-4420-9042-9F568CFAA823"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Prism Connect/VisionOS/Views/WeatherVolumeManager.swift"
+            filePath = "Prism Connect/VisionOS/Files/VirtualColorClock.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "updateAudio(AudioToPlay:soundOn:defaultGain:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "84D83FB9-4851-4517-A6A2-73FF25528799"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Prism Connect/VisionOS/Views/WeatherVolumeManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "updateAudio(AudioToPlay:soundOn:defaultGain:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4EEB43DA-FCC9-4BEA-887C-B952891FCD79"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Prism Connect/VisionOS/Views/WeatherVolumeManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "updateAudio(AudioToPlay:soundOn:defaultGain:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "23D44FF5-270C-4031-9F73-E80B568EC227"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Prism Connect/VisionOS/Views/SettingsView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BB06655E-C8C8-4372-B8D3-D6538E368C76"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Prism Connect/GeneralFiles/sessionManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
-            landmarkName = "updateTime()"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "fetchWeather(using:mode:teleportCity:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

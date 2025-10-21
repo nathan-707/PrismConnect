@@ -4,35 +4,59 @@
 //
 //  Created by Nathan Eriksen on 2/27/25.
 /*
- // todo::::::::::::::
- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ // TODO:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+ next version:
  
- adjust default clock and temp size as well as any other defaults that need it.
- 
- balance the different audio sounds. (rain, snow, thunderstorm)
- 
- handle if weather fails
- 
- when turning world tour on it flips from one locaiotn to amother really fast sometimes
- 
- funfact showed "no fun facts for this city" on teleport.
  
  
  
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
 // DONE ///////// -------------------------------------------------------------------------------------------
  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ 1.0
+ by default, hide connect to prismbox button
+
+ 
+ move volume slider to top of settings
+
+ 
+ make "teleporting..." the user color instead of green.
+
+ 
+ toggling audio on and off with the switch does not resume sound once turned back on.
+
+ 
+ remove volume control?
+
+ 
+ balance the different audio sounds. (rain, snow, thunderstorm)
+
+ 
+ fix the issue where the app only sets the default sizes after seacond laucnh
+
+ 
+ handle if weather fails
+
+ 
+ funfact showed "no fun facts for this city" on teleport.
+
+ 
+ when turning world tour on it flips from one locaiotn to amother really fast sometimes
+
+ 
+ adjust default clock and temp size as well as any other defaults that need it.
+
  teleporting animation
 
  
@@ -41,21 +65,30 @@
  
  tell user to turn on lcoaoitn access when app detects they didnt allow it
  
+ 
  make it where every possible locatoin in standalone is throttled and cqache weather data
+ 
 
  make when you toggle the audio to make it mute the sound correctly right now it doesnt
+ 
 
  add button to get anoter funfact?
+ 
 
  save world tour interval in settings and recover across launches
+ 
 
  option to disable the temperature
+ 
+ 
  add gain setting and option to turn sound off in settings.
 
 
  when turning connection to prismbox off, make standalone go into home mode.
+ 
 
  // make the getweather task use a date timer and check over and over instead of wait sleep
+ 
 
  // change the rain sound file
 
@@ -64,6 +97,7 @@
 
 
  settings page. add settings and make it look good.
+ 
 
  shop? in settings? probably.
 

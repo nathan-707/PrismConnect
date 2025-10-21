@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 // Fun fact arrays for theme parks
 let funFactsDisneyWorldAll: [String] = [
     "Walt Disney World Resort in Florida spans nearly 40 square miles (about the size of San Francisco), with four theme parks within its borders.",
@@ -80,7 +79,7 @@ let funFactsDisneyWorldAll: [String] = [
     "Walt Disney World has more than 200 restaurants serving cuisine from around the globe.",
     "The Magic Kingdom was designed with a ‘hub-and-spoke’ layout for easier navigation.",
     "EPCOT’s opening day was October 1, 1982, exactly 11 years after Magic Kingdom.",
-    "Walt Disney World uses over 2.5 million Christmas lights during the holiday season."
+    "Walt Disney World uses over 2.5 million Christmas lights during the holiday season.",
 ]
 
 let funFactsMagicKingdom: [String] = [
@@ -152,7 +151,7 @@ let funFactsMagicKingdom: [String] = [
     "The Haunted Mansion’s design is inspired by Gothic and colonial architecture.",
     "Magic Kingdom has a daily parade tradition dating back to opening day.",
     "The park has over 40 rides, shows, and attractions in total.",
-    "Magic Kingdom is home to some of the most photographed spots in the world."
+    "Magic Kingdom is home to some of the most photographed spots in the world.",
 ]
 
 let funFactsAnimalKingdom: [String] = [
@@ -225,7 +224,7 @@ let funFactsAnimalKingdom: [String] = [
     "The park features over 300 species of butterflies and insects.",
     "Animal Kingdom’s landscaping covers nearly 500 acres of planted greenery.",
     "The park focuses on exploration, adventure, and storytelling tied to nature.",
-    "Walt Disney originally imagined a park with animals, inspiring its concept decades later."
+    "Walt Disney originally imagined a park with animals, inspiring its concept decades later.",
 ]
 
 let funFactsEpcot: [String] = [
@@ -296,7 +295,7 @@ let funFactsEpcot: [String] = [
     "The Morocco pavilion’s mosaic tiles were handmade by Moroccan artisans.",
     "Spaceship Earth’s design uses a system of gutters to manage Florida’s rain.",
     "The park was meant to be a real city in Walt Disney’s original vision.",
-    "EPCOT remains one of the most educational Disney parks with exhibits on science and culture."
+    "EPCOT remains one of the most educational Disney parks with exhibits on science and culture.",
 ]
 
 let funFactsHollywoodStudios: [String] = [
@@ -368,7 +367,7 @@ let funFactsHollywoodStudios: [String] = [
     "The Mickey & Minnie’s Runaway Railway uses trackless ride technology.",
     "Galaxy’s Edge includes a life-size AT-AT walker inside the Rise of the Resistance attraction.",
     "Hollywood Studios has an entrance modeled after the Pan-Pacific Auditorium in Los Angeles.",
-    "The park combines live-action experiences, thrill rides, and character-driven storytelling."
+    "The park combines live-action experiences, thrill rides, and character-driven storytelling.",
 ]
 
 let funFactsDisneylandAllAnaheim: [String] = [
@@ -441,7 +440,7 @@ let funFactsDisneylandAllAnaheim: [String] = [
     "Walt Disney had a private dining space above Pirates of the Caribbean, now part of Club 33.",
     "Disneyland has underground tunnels for trash removal, similar to Magic Kingdom.",
     "Disneyland’s Main Street lamps are converted gas lamps from Baltimore.",
-    "Disneyland’s Snow White ride features a poisoned apple prop guests try to ‘steal.’"
+    "Disneyland’s Snow White ride features a poisoned apple prop guests try to ‘steal.’",
 ]
 
 let funFactsDisneylandParis: [String] = [
@@ -514,7 +513,7 @@ let funFactsDisneylandParis: [String] = [
     "The resort features one of Europe’s largest fireworks shows nightly.",
     "Disneyland Paris combines American and European design sensibilities.",
     "Discoveryland’s Orbitron ride has a steampunk-inspired design.",
-    "The park celebrated its 30th anniversary in 2022 with a major renovation."
+    "The park celebrated its 30th anniversary in 2022 with a major renovation.",
 ]
 
 let funFactsDisneylandTokyo: [String] = [
@@ -585,7 +584,7 @@ let funFactsDisneylandTokyo: [String] = [
     "Tokyo Disney Resort has one of the largest fireworks displays in Japan.",
     "The park’s shows often feature large casts and intricate staging.",
     "The resort opened a new Beauty and the Beast-themed area in 2020.",
-    "Tokyo DisneySea is often considered the most ambitious Disney park project ever completed."
+    "Tokyo DisneySea is often considered the most ambitious Disney park project ever completed.",
 ]
 
 let funFactsDisneyShanghai: [String] = [
@@ -655,7 +654,7 @@ let funFactsDisneyShanghai: [String] = [
     "Disneytown’s Walt Disney Grand Theatre was the first to stage The Lion King in Mandarin.",
     "Shanghai Disneyland represents a major step in Disney’s global expansion.",
     "The park is designed to handle large crowds with wide pathways and plazas.",
-    "Shanghai Disneyland continues to expand, with Zootopia Land opening in 2023."
+    "Shanghai Disneyland continues to expand, with Zootopia Land opening in 2023.",
 ]
 
 let funFactsDisneyHongKong: [String] = [
@@ -726,7 +725,7 @@ let funFactsDisneyHongKong: [String] = [
     "Hong Kong Disneyland’s fireworks are quieter to minimize disruption to local residents.",
     "The resort’s design blends Chinese cultural elements with Disney storytelling.",
     "Toy Story Land features RC Racer, a half-pipe roller coaster ride.",
-    "The park is continuously expanding, with an upcoming Frozen-themed land opening in 2023."
+    "The park is continuously expanding, with an upcoming Frozen-themed land opening in 2023.",
 ]
 
 let funFactsUniversalAllOrlando: [String] = [
@@ -800,7 +799,7 @@ let funFactsUniversalAllOrlando: [String] = [
     "Universal Orlando Resort draws more than 11 million visitors annually to its two main parks.",
     "The resort is known for thrill rides and high-tech attractions aimed at teens and adults.",
     "Universal partnered with Nintendo to bring Super Nintendo World to Epic Universe.",
-    "The resort has become a major competitor to Walt Disney World in Orlando."
+    "The resort has become a major competitor to Walt Disney World in Orlando.",
 ]
 
 let funFactsEpicUniverse: [String] = [
@@ -871,7 +870,7 @@ let funFactsEpicUniverse: [String] = [
     "Epic Universe will add over 14,000 new jobs to the Orlando area.",
     "The park will feature themed entertainment every night in Celestial Park.",
     "The resort’s expansion plan includes additional hotels beyond Helios Grand Hotel.",
-    "Epic Universe will set a new standard for theme park theming and immersion."
+    "Epic Universe will set a new standard for theme park theming and immersion.",
 ]
 
 let funFactsUniversalStudiosFL: [String] = [
@@ -943,7 +942,7 @@ let funFactsUniversalStudiosFL: [String] = [
     "Universal Studios Florida is home to over 30 attractions and shows.",
     "Universal Creative, the company’s design division, is based on-site.",
     "The park’s theming has evolved from a working studio to a full theme park.",
-    "The park has been a major driver of Orlando tourism since opening."
+    "The park has been a major driver of Orlando tourism since opening.",
 ]
 
 let funFactsIslandsOfAdventure: [String] = [
@@ -1016,7 +1015,7 @@ let funFactsIslandsOfAdventure: [String] = [
     "The Lost Continent area still features Mythos Restaurant and the Mystic Fountain.",
     "Hogsmeade Village has Honeydukes candy shop, selling exclusive wizarding treats.",
     "Islands of Adventure’s attractions cater to thrill-seekers as well as families.",
-    "The park has grown into one of Orlando’s top-rated attractions globally."
+    "The park has grown into one of Orlando’s top-rated attractions globally.",
 ]
 
 let funFactsVolcanoBay: [String] = [
@@ -1088,7 +1087,7 @@ let funFactsVolcanoBay: [String] = [
     "The water park is consistently rated one of the best water parks in the world.",
     "Volcano Bay’s artificial volcano was built using over 60,000 tons of steel and concrete.",
     "The park has underwater seating areas in the wave pool for relaxation.",
-    "TapuTapu technology was a first for any major water park globally."
+    "TapuTapu technology was a first for any major water park globally.",
 ]
 
 let funFactsUniversalHollywood: [String] = [
@@ -1160,7 +1159,7 @@ let funFactsUniversalHollywood: [String] = [
     "The backlot tour has been updated continuously to include current film props and sets.",
     "The park uses real studio facilities during daily guest operations.",
     "Universal Studios Hollywood’s hillside design provides unique views of Los Angeles and Burbank.",
-    "The original E.T. ride vehicles are preserved and displayed in a backlot prop warehouse."
+    "The original E.T. ride vehicles are preserved and displayed in a backlot prop warehouse.",
 ]
 
 let funFactsUniversalBeijing: [String] = [
@@ -1232,7 +1231,7 @@ let funFactsUniversalBeijing: [String] = [
     "The park uses advanced crowd flow technology to minimize congestion.",
     "Universal Beijing was China’s first major theme park built after Shanghai Disneyland.",
     "Kung Fu Panda Land is inspired by DreamWorks Animation’s Kung Fu Panda films.",
-    "The park features seasonal festivals and Chinese New Year celebrations."
+    "The park features seasonal festivals and Chinese New Year celebrations.",
 ]
 
 let funFactsUniversalJapan: [String] = [
@@ -1304,7 +1303,7 @@ let funFactsUniversalJapan: [String] = [
     "Hollywood Dream’s Backdrop coaster was the first backward-running coaster in Japan.",
     "Super Nintendo World is being cloned for Orlando’s Epic Universe after debuting in Osaka.",
     "USJ is part of a larger resort development including Universal City hotels and shopping.",
-    "The park is consistently among the highest-earning theme parks globally."
+    "The park is consistently among the highest-earning theme parks globally.",
 ]
 
 let funFactsSeaworldOrlando: [String] = [
@@ -1378,7 +1377,7 @@ let funFactsSeaworldOrlando: [String] = [
     "The park’s “Rescue Tales” exhibit highlights animal recovery stories.",
     "SeaWorld’s marine biologists have contributed to dozens of peer-reviewed studies.",
     "SeaWorld has rehabilitated manatees and released them back into the wild.",
-    "The park is committed to phasing out single-use plastic straws and bags."
+    "The park is committed to phasing out single-use plastic straws and bags.",
 ]
 
 let funFactsDollywood: [String] = [
@@ -1451,7 +1450,7 @@ let funFactsDollywood: [String] = [
     "Dollywood’s Festival of Nations has featured acts from over 30 countries.",
     "Dolly Parton credits Dollywood’s success to showcasing Appalachian hospitality.",
     "Dollywood is a cornerstone of tourism in the Pigeon Forge area.",
-    "The park’s food, rides, and entertainment reflect Dolly Parton’s family values and roots."
+    "The park’s food, rides, and entertainment reflect Dolly Parton’s family values and roots.",
 ]
 
 let funFactsKingsIsland: [String] = [
@@ -1524,7 +1523,7 @@ let funFactsKingsIsland: [String] = [
     "The Eiffel Tower provides a view of the Ohio River valley on clear days.",
     "Kings Island offers annual passes and special events for season pass holders.",
     "Kings Island remains one of the Midwest’s most popular attractions.",
-    "The park celebrated its 50th anniversary in 2022 with major festivities."
+    "The park celebrated its 50th anniversary in 2022 with major festivities.",
 ]
 
 let funFactsFerrariLand: [String] = [
@@ -1598,5 +1597,5 @@ let funFactsFerrariLand: [String] = [
     "Red Force uses magnetic brakes to ensure a smooth stop from high speeds.",
     "Ferrari Land includes a Kids’ Podium play area with racing-themed activities.",
     "The park has multiple restaurants offering traditional Italian dishes.",
-    "Ferrari Land is designed as an immersive brand experience for car enthusiasts."
+    "Ferrari Land is designed as an immersive brand experience for car enthusiasts.",
 ]

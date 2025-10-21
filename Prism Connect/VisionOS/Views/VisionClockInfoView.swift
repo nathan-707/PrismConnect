@@ -13,7 +13,6 @@ import SwiftUI
 
     let scaleMul: Double = 5
 
-
     struct VisionClockInfoView: View {
         @State private var currentDate = Date()
         @State private var timer: Timer? = nil
@@ -23,29 +22,36 @@ import SwiftUI
 
         var body: some View {
             VStack {
+
                 Rectangle().frame(width: 1000, height: 0).foregroundStyle(
                     .clear
                 )
 
-                if prismSessionManager.isStandaloneMode == false
-                    && prismSessionManager.pending
-                {
+                if teleportIsPending() {  // teleporting is pending, show loading.
+                    Text("TELEPORTING...")
+                        .foregroundStyle(prismSessionManager.userColor)
+                        .bold()
+                        .font(.headline)
+                        .padding()
                     ProgressView()
+                        .padding(.bottom)
                 }
 
                 // TIME
-                Text(prismSessionManager.clockTime)
-                    .font(.extraLargeTitle)
-                    .foregroundStyle(prismSessionManager.userColor)
-                    .bold()
-                    .scaleEffect(prismSessionManager.timeScale)
-                    .alignmentGuide(.controlPanelGuide) { context in
-                        context[HorizontalAlignment.center]
-                    }
-                    .padding(prismSessionManager.timeScale * scaleMul)
+                if !teleportIsPending() {
+                    Text(prismSessionManager.clockTime)
+                        .font(.extraLargeTitle)
+                        .foregroundStyle(prismSessionManager.userColor)
+                        .bold()
+                        .scaleEffect(prismSessionManager.timeScale)
+                        .alignmentGuide(.controlPanelGuide) { context in
+                            context[HorizontalAlignment.center]
+                        }
+                        .padding(prismSessionManager.timeScale * scaleMul)
+                }
 
                 // TEMPERATURE
-                if prismSessionManager.showTemperature {
+                if prismSessionManager.showTemperature && !teleportIsPending() {
                     Text(
                         String(prismSessionManager.clock_temperature)
                             + (prismSessionManager.imperial ? " F" : " C")
@@ -59,9 +65,8 @@ import SwiftUI
                     )
                     .font(.extraLargeTitle2)
                     .padding(10)
-
                 }
-                
+
                 // BATTERY
                 if prismSessionManager.showBattery {
                     Text(
@@ -76,28 +81,16 @@ import SwiftUI
                 }
 
                 // TELEPORT INFO
-                if prismSessionManager.currentMode == .teleportMode
-                    && !prismSessionManager.isStandaloneMode
-
-                    || prismSessionManager.standalonemode_Mode == .teleportMode
-                        && prismSessionManager.isStandaloneMode
-                {
-                    if prismSessionManager.isStandaloneMode && prismSessionManager.CurrentTeleportation == emptyCity && prismSessionManager.worldTourIsOn {
-                        // only dont display city if world tour mode is trying to get another city.
-                        ProgressView()
-                    } else {
-                        Text(
-                            prismSessionManager.CurrentTeleportation.city + ", "
-                                + prismSessionManager.CurrentTeleportation.territory
-                        )
-                        .font(.headline)
-                        .foregroundColor(prismSessionManager.userColor)
-                        .bold()
-                        .padding(5)
-                    }
-
-           
-                    //                    .glassBackgroundEffect(in: .rect(cornerRadius: 200))
+                if showCityTeleportInfo() && !teleportIsPending() {
+                    Text(
+                        prismSessionManager.CurrentTeleportation.city + ", "
+                            + prismSessionManager.CurrentTeleportation
+                            .territory
+                    )
+                    .font(.title2)
+                    .foregroundColor(prismSessionManager.userColor)
+                    //                    .bold()
+                    .padding(5)
 
                     if prismSessionManager.showFunfact {
                         Text(localFunfact)
@@ -127,12 +120,11 @@ import SwiftUI
                     //                    .glassBackgroundEffect(in: .rect(cornerRadius: 200))
                 }
 
-      
             }
             .onAppear {
                 localFunfact = prismSessionManager.CurrentTeleportation
                     .randomFunfact()
-                
+
                 #if canImport(UIKit)
                     UIDevice.current.isBatteryMonitoringEnabled = true
                     updateBatteryLevel()
@@ -165,6 +157,29 @@ import SwiftUI
             }
         }
 
+        func teleportIsPending() -> Bool {
+            if prismSessionManager.isStandaloneMode
+                && prismSessionManager.weatherRequestIsPending == true
+                && prismSessionManager.worldTourIsOn
+                || prismSessionManager.isStandaloneMode == false
+                    && prismSessionManager.pending
+            {
+                return true  // teleport is pending.
+            }
+            return false
+        }
+
+        func showCityTeleportInfo() -> Bool {
+            if prismSessionManager.currentMode == .teleportMode
+                && prismSessionManager.isStandaloneMode == false
+                || prismSessionManager.standalonemode_Mode == .teleportMode
+                    && prismSessionManager.isStandaloneMode == true
+            {
+                return true
+            }
+            return false
+        }
+
         func getRandomFactFromLocal() -> String {
             if prismSessionManager.isStandaloneMode == false
                 && prismSessionManager.currentMode == .themeParkMode
@@ -176,9 +191,6 @@ import SwiftUI
             }
         }
     }
-
-
-
 
     extension VisionClockInfoView {
         fileprivate func updateBatteryLevel() {
