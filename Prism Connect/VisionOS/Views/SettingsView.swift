@@ -140,6 +140,7 @@ import SwiftUI
                             Text("Restore Purchases")
                         }
                     }
+                    
 
                 }
                 .glassBackgroundEffect()
@@ -222,6 +223,12 @@ import SwiftUI
                 .onChange(of: prismSessionManager.showFunfact) {
                     saveSettings()
                 }
+                
+                
+                Text("Powered by Weather")
+                    .foregroundStyle(.secondary)
+                    .font(.headline)
+
 
             }
 

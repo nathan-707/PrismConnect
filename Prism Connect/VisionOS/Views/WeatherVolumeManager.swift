@@ -65,6 +65,7 @@ struct WeatherVolumeManager {
         root.children.removeAll()
 
         channelAudioEntity.stopAllAudio()
+        
 
         updateAudio(
             AudioToPlay: weatherUpdate.audioType(isDay: isDay),

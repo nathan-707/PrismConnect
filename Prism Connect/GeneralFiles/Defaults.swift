@@ -10,7 +10,7 @@ let defaultSettings = DefaultSettings()
 
 struct DefaultSettings {
     let getWeatherInterval_Mins: Double = 20  // home refresh interval in mins.
-    let defaultWorldTourInterval_Mins = 15
+    let defaultWorldTourInterval_Mins = 15 // default tour interval between cities.
     let defaultVolume: Double = -20  // testing////////////////////////////////// -23.157894736842106  gain
 
     // default size of volume.
