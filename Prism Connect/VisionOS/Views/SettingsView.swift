@@ -225,9 +225,9 @@ import SwiftUI
                 }
                 
                 
-                Text("Powered by Weather")
+                Text("Weather from Weather. https://developer.apple.com/weatherkit/data-source-attribution/")
                     .foregroundStyle(.secondary)
-                    .font(.headline)
+                    .font(.caption2)
 
 
             }
