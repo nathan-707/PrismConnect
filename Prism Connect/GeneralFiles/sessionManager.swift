@@ -20,6 +20,7 @@ enum Views {
 }
 
 class ClockSessionManager: NSObject, ObservableObject {
+    var isShowingWeatherSpace = true
     @Published var lastKnownLat: Double = 0
     @Published var lastKnownLong: Double = 0
     @Published var failedGetHomeWeatherAttempts = 0

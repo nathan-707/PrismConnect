@@ -24,7 +24,7 @@ import SwiftUI
                     prismSessionManager.sendCommand(command: .themeParkMode)
                 }
                 .controlSize(.large)
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(.glassProminent)
                 .tint(
                     prismSessionManager.prismboxVersion?.color ?? .accentColor
                 )

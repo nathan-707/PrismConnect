@@ -74,13 +74,19 @@ struct Prism_ConnectApp: App {
                 switch newValue {
                 case .background:
                     prismSessionManager.disconnect()
-                //                    print("background")
+                    print("background")
                 case .inactive:
                     prismSessionManager.disconnect()
-                //                    print("inactive")
+                    print("inactive")
                 case .active:
                     prismSessionManager.connect()
-                    //                    print("active")
+
+                    #if os(visionOS)
+                        if prismSessionManager.isShowingWeatherSpace == false {
+                            openWindow(id: "VisionView")
+                        }
+                    #endif
+
                     break
                 @unknown default:
                     prismSessionManager.disconnect()

@@ -42,6 +42,9 @@ struct ClockVolume: View {
             )
             content.add(Scene)
         }
+        .onDisappear(){
+            prismSessionManager.isShowingWeatherSpace = false
+        }
         .onChange(
             of: prismSessionManager.lastKnownLat,
             { oldValue, newValue in
@@ -99,6 +102,8 @@ struct ClockVolume: View {
         }
 
         .onAppear {
+            prismSessionManager.isShowingWeatherSpace = true
+
             prismSessionManager.getWeather(mode: .home, city: worldTourCity)
             keepTryingToGetWeatherTask = keepTryingToGetWeatherTaskSch()
             getWeatherTask = getWeatherTaskSch(

@@ -46,7 +46,7 @@ let fiveMin: Int = (60000 * 5)
                         prismSessionManager.ping()
                     }
                     .controlSize(.large)
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(.glassProminent)
                     .tint(.green)
                     .foregroundStyle(.white)
                 } else {

@@ -77,12 +77,12 @@ import SwiftUI
                             Text("Show Funfacts in Teleport")
                         }
 
-                        Toggle(
-                            isOn: $prismSessionManager
-                                .showConnectToPrismboxButton
-                        ) {
-                            Text("Show Toggle for PrismBox Connection")
-                        }
+                        //                        Toggle(
+                        //                            isOn: $prismSessionManager
+                        //                                .showConnectToPrismboxButton
+                        //                        ) {
+                        //                            Text("Show Toggle for PrismBox Connection")
+                        //                        }
 
                     }
 
@@ -102,32 +102,46 @@ import SwiftUI
                             UpgradeInfoView()
                         }
 
-                        ColorPicker(
-                            selection: $prismSessionManager.userColor,
-                            supportsOpacity: false
-                        ) {
+                        if storeModel.upgraded {
+                            ColorPicker(
+                                selection: $prismSessionManager.userColor,
+                                supportsOpacity: false
+                            ) {
+                                Text(
+                                    "Customize Color of Text"
+                                )
+
+                            }
+                        } else {
                             Text(
                                 "Customize Color of Text"
                             )
+                        }
 
-                        }.disabled(!storeModel.upgraded)
-
-                        Toggle(isOn: $prismSessionManager.showBattery) {
+                        if storeModel.upgraded {
+                            Toggle(isOn: $prismSessionManager.showBattery) {
+                                Text("Show Battery Level")
+                            }
+                        } else {
                             Text("Show Battery Level")
-                        }.disabled(!storeModel.upgraded)
+                        }
 
-                        Picker(
-                            "Tour Interval",
-                            selection: $prismSessionManager
-                                .standalone_worldTourInterval_Mins,
-                        ) {
-                            Text("1 Min").tag(1)
-                            Text("5 Mins").tag(5)
-                            Text("10 Mins").tag(10)
-                            Text("15 Mins").tag(15)
-                            Text("30 Mins").tag(30)
-                            Text("1 Hr").tag(60)
-                        }.disabled(!storeModel.upgraded)
+                        if storeModel.upgraded {
+                            Picker(
+                                "Tour Interval",
+                                selection: $prismSessionManager
+                                    .standalone_worldTourInterval_Mins,
+                            ) {
+                                Text("1 Min").tag(1)
+                                Text("5 Mins").tag(5)
+                                Text("10 Mins").tag(10)
+                                Text("15 Mins").tag(15)
+                                Text("30 Mins").tag(30)
+                                Text("1 Hr").tag(60)
+                            }
+                        } else {
+                            Text("Change Tour Interval")
+                        }
 
                     }
 
@@ -140,7 +154,6 @@ import SwiftUI
                             Text("Restore Purchases")
                         }
                     }
-                    
 
                 }
                 .glassBackgroundEffect()
@@ -223,12 +236,12 @@ import SwiftUI
                 .onChange(of: prismSessionManager.showFunfact) {
                     saveSettings()
                 }
-                
-                
-                Text("Weather from Weather. https://developer.apple.com/weatherkit/data-source-attribution/")
-                    .foregroundStyle(.secondary)
-                    .font(.caption2)
 
+                Text(
+                    "Weather from Weather. https://developer.apple.com/weatherkit/data-source-attribution/"
+                )
+                .foregroundStyle(.secondary)
+                .font(.caption2)
 
             }
 

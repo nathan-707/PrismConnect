@@ -98,7 +98,8 @@ class VirtualColorClock: NSObject, CLLocationManagerDelegate {
                     )
 
                     print(
-                        "NO LOCATIONS. Using last known coordinates. \(sessionManager?.lastKnownLat) + \(sessionManager?.lastKnownLong)"
+                        print("NO LOCATION. USING LAST KNOWN.")
+//                        "NO LOCATIONS. Using last known coordinates. \(sessionManager?.lastKnownLat) + \(sessionManager?.lastKnownLong)"
                     )
 
                     return await fetchWeather(

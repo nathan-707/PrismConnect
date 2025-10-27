@@ -46,7 +46,7 @@ import SwiftUI
                         }
                     }
                     .controlSize(.large)
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(.glassProminent)
                     .tint(.green)
                     .foregroundStyle(.white)
 
