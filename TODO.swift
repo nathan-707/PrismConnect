@@ -105,17 +105,7 @@
 
  // add show teleporting time into the vision info sync so can use.
 
- ✈️ Upgrade to Virtual Skies Pro
- Unlock the full world tour experience.
- 🌍 What You’ll Get
- Tour Mode → Sit back and let Virtual Skies rotate through destinations worldwide, changing every minute.
- Fun Facts → Discover fascinating weather and cultural trivia for every location.
- 15-Minute Updates → See skies refresh 4× faster for the most accurate live conditions.
- Full Location Access → Explore the entire global library — no limits.
- 🎁 Coming Soon for Pro Users
- Seasonal Themes → Ghosts in the Halloween sky, Santa sleigh at Christmas, fireworks for New Year’s, and more.
- 👉 One-time unlock: $5.99
- Enjoy forever — no subscription required.
+
 
  vision os standalone todo:::
 
