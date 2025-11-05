@@ -39,7 +39,7 @@ final class ChatGPTClient {
     // IMPORTANT: Replace this with your actual API key, or load from Keychain/Info.plist.
     // For Info.plist, consider reading with: Bundle.main.object(forInfoDictionaryKey: "OPENAI_API_KEY") as? String
 
-    //    private var apiKey: String? = "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"
+    //    private var apiKey: String? = ""
 
     //
     private var apiKey: String? = ""
