@@ -156,6 +156,8 @@ add battery option
 // what do i want this to do?
 
  // main menu?
+ 
+ 1.2 removed some facts.
  */
  
 
