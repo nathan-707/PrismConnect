@@ -377,7 +377,7 @@ class ClockSessionManager: NSObject, ObservableObject {
     }
 
     @Published var appView: Views = .connectedMainMenu
-    @Published var prismboxVersion: PrismBox?
+    @Published var prismboxVersion: PrismDevice?
     @Published var peripheralConnected = false
     @Published var pickerDismissed = true
     @Published var authenticated = true
@@ -400,24 +400,24 @@ class ClockSessionManager: NSObject, ObservableObject {
         private var session = ASAccessorySession()
 
         // MARK: - Accessory Picker Items
-        private static let mono: ASPickerDisplayItem = {
+        private static let PencilHolderPickerItem: ASPickerDisplayItem = {
             let descriptor = ASDiscoveryDescriptor()
-            descriptor.bluetoothServiceUUID = PrismBox.mono.serviceUUID
+            descriptor.bluetoothServiceUUID = PrismDevice.pencilHolder.serviceUUID
 
             return ASPickerDisplayItem(
-                name: PrismBox.mono.displayName,
-                productImage: UIImage(named: PrismBox.mono.productImageName)!,
+                name: PrismDevice.pencilHolder.displayName,
+                productImage: UIImage(named: PrismDevice.pencilHolder.productImageName)!,
                 descriptor: descriptor
             )
         }()
 
-        private static let stereo: ASPickerDisplayItem = {
+        private static let ClockPickerItem: ASPickerDisplayItem = {
             let descriptor = ASDiscoveryDescriptor()
-            descriptor.bluetoothServiceUUID = PrismBox.Accessory.serviceUUID
+            descriptor.bluetoothServiceUUID = PrismDevice.clock.serviceUUID
             return ASPickerDisplayItem(
-                name: PrismBox.Accessory.displayName,
+                name: PrismDevice.clock.displayName,
                 productImage: UIImage(
-                    named: PrismBox.Accessory.productImageName
+                    named: PrismDevice.clock.productImageName
                 )!,
                 descriptor: descriptor
             )
@@ -443,9 +443,10 @@ class ClockSessionManager: NSObject, ObservableObject {
     #if os(iOS)
         // MARK: - Accessory Picker
         func presentPicker() {
-            Self.stereo.setupOptions = .confirmAuthorization
+            Self.ClockPickerItem.setupOptions = .confirmAuthorization
+            Self.PencilHolderPickerItem.setupOptions = .confirmAuthorization
 
-            session.showPicker(for: [Self.stereo, Self.mono]) { error in
+            session.showPicker(for: [Self.ClockPickerItem, Self.PencilHolderPickerItem]) { error in
                 if let error = error {
                     print(
                         "Failed to show picker due to: \(error.localizedDescription)"
@@ -475,10 +476,12 @@ class ClockSessionManager: NSObject, ObservableObject {
                 manager = CBCentralManager(delegate: self, queue: nil)
             }
 
-            if prismBox.displayName == PrismBox.mono.displayName {
-                prismboxVersion = .mono
-            } else if prismBox.displayName == PrismBox.Accessory.displayName {
-                prismboxVersion = .Accessory
+            if prismBox.displayName == PrismDevice.pencilHolder.displayName {
+                prismboxVersion = .pencilHolder
+            }
+            
+            else if prismBox.displayName == PrismDevice.clock.displayName {
+                prismboxVersion = .clock
             }
         }
 
