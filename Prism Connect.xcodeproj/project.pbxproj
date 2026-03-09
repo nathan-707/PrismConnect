@@ -53,6 +53,7 @@
 		82BC4E712DE98089001D7B63 /* ClockVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC4E702DE98089001D7B63 /* ClockVolume.swift */; };
 		82BC4E732DE986BE001D7B63 /* ClockControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC4E722DE986BE001D7B63 /* ClockControls.swift */; };
 		82C108C22DEA41F200E8CDF9 /* WeatherVolumeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C108C12DEA41F200E8CDF9 /* WeatherVolumeManager.swift */; };
+		82C5048A2F43E8B9006E5DEF /* ManageDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C504892F43E8B9006E5DEF /* ManageDeviceView.swift */; };
 		82D6928B2E7D1515007BCD48 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6928A2E7D1515007BCD48 /* UserData.swift */; };
 		82DEAC3D2DA9E05500013FF1 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEAC3C2DA9E05500013FF1 /* WeatherManager.swift */; };
 		82E6F7C42D7805910087A1C6 /* WaitTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6F7C32D7805910087A1C6 /* WaitTimes.swift */; };
@@ -148,6 +149,7 @@
 		82BC4E702DE98089001D7B63 /* ClockVolume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockVolume.swift; sourceTree = "<group>"; };
 		82BC4E722DE986BE001D7B63 /* ClockControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockControls.swift; sourceTree = "<group>"; };
 		82C108C12DEA41F200E8CDF9 /* WeatherVolumeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVolumeManager.swift; sourceTree = "<group>"; };
+		82C504892F43E8B9006E5DEF /* ManageDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageDeviceView.swift; sourceTree = "<group>"; };
 		82D6928A2E7D1515007BCD48 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		82DEAC3C2DA9E05500013FF1 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		82E6F7C32D7805910087A1C6 /* WaitTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitTimes.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				82263CB22D7EB21C00952BF2 /* InTeleportModeView.swift */,
 				82263CD42D812FDC00952BF2 /* ThemeParkView.swift */,
 				826031722D79707E00C0BF71 /* ClockSettingsView.swift */,
+				82C504892F43E8B9006E5DEF /* ManageDeviceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				823CF8352E67842300BC9461 /* FunfactTool.swift in Sources */,
 				826031732D79707E00C0BF71 /* ClockSettingsView.swift in Sources */,
 				82480ABC2C1C206200ED84CD /* ContentView.swift in Sources */,
+				82C5048A2F43E8B9006E5DEF /* ManageDeviceView.swift in Sources */,
 				82F517C02E84E6FA007D11C7 /* UpgradeInfoView.swift in Sources */,
 				823CD6A02E6267F8006F334E /* VirtualColorClock.swift in Sources */,
 				821856822E1E1D98003F70F3 /* AsistanceData.swift in Sources */,

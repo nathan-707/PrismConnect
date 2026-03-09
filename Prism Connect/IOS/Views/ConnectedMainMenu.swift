@@ -24,6 +24,8 @@ import WeatherKit
         @State private var AsistantIsShown = false
         @State private var animate = false
         @State private var currentScenePhase: ScenePhase = .active
+        @State private var showManageDeviceView = false
+
 
         let timer = Timer.publish(every: 0.1, on: .main, in: .common)
             .autoconnect()
@@ -66,9 +68,26 @@ import WeatherKit
                 VStack {
                     if prismSessionManager.peripheralConnected
                         || debug.testingSoDontShowSetup == true
+                        && prismSessionManager.hasConnected == true
                     {
+                        
+                        VStack{
+                            TopTitleBar()
+                            
+                            HStack{
+                                Text(prismSessionManager.currentDice?.displayName ?? "")
+                                    .font(.caption).bold()
+                                    .foregroundStyle(.secondary)
+                                
+                                Button("", systemImage: "arrow.left.arrow.right.square.fill") {
+                                    heavyImpact.impactOccurred()
+                                    prismSessionManager.presentManagerDeviceView = true
+                                }
+                                .tint(.secondary)
+                            }
+                            .padding(.bottom)
+                        }
 
-                        TopTitleBar()
 
                         if prismSessionManager.currentMode == .sleepMode {  // show sleep options.
                             SleepModeView()
@@ -116,7 +135,7 @@ import WeatherKit
                             )
 
                             .foregroundStyle(
-                                prismSessionManager.prismboxVersion?.color
+                                prismSessionManager.prismDevice?.color
                                     ?? .accentColor
                             )
                             .scaleEffect(2)
@@ -146,7 +165,7 @@ import WeatherKit
                             )
 
                             .foregroundStyle(
-                                prismSessionManager.prismboxVersion?.color
+                                prismSessionManager.prismDevice?.color
                                     ?? .accentColor
                             )
                             .scaleEffect(2)
@@ -165,13 +184,38 @@ import WeatherKit
 
                     } else {
                         VStack {
+                            
+                            Spacer()
 
-                            Text("Searching for PrismBox")
+                            Text("Searching for \(prismSessionManager.currentDice?.displayName ?? "")")
                                 .foregroundStyle(.secondary)
                                 .font(.title)
-
+                                .padding(.top)
                             ProgressView()
                                 .scaleEffect(progressScale)
+                                .padding(.bottom)
+                            
+                            
+                            if showManageDeviceView {
+                                ManageDeviceView()
+                            }
+                            
+                            else {
+                                Button {
+                                    heavyImpact.impactOccurred()
+                                    showManageDeviceView = true
+                                } label: {
+                                    Text("Manage Devices")
+                                }
+                                .controlSize(.large)
+                                .buttonStyle(.glassProminent)
+                                .tint(.green)
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 12)
+                            }
+                            
+                            Spacer()
+
                         }
                     }
                 }
@@ -180,7 +224,14 @@ import WeatherKit
                     prismSessionManager.connect()
                 }
             }
-
+            
+            .sheet(isPresented: $prismSessionManager.presentManagerDeviceView, content: {
+                Text("Manage Devices")
+                    .font(.title2).bold().padding(.top)
+                Divider()
+                ManageDeviceView()
+            })
+      
             .onChange(
                 of: prismSessionManager.pending,
                 { oldValue, newValue in
@@ -214,7 +265,7 @@ import WeatherKit
                     currentScenePhase = newValue
                     if newValue == .active {
                         print("active")
-                        prismSessionManager.ping()
+//                        prismSessionManager.ping()
                     } else if newValue == .background {
                         print("background")
                         prismSessionManager.disconnect()
@@ -268,6 +319,7 @@ import WeatherKit
         @State private var AsistantIsShown = false
         @State private var aiIsEnabled = false
 
+
         var body: some View {
             HStack {
                 if prismSessionManager.sleepTimerOn
@@ -295,12 +347,12 @@ import WeatherKit
                     .padding(.bottom, 5)
                     .padding(.horizontal, 15)
                 }
-
-                Text(prismSessionManager.pendingMode.title())
-                    .font(.system(size: 50).monospaced().bold())
-                    .foregroundStyle(Color(.green))
-                    .padding()
-
+                
+                    Text(prismSessionManager.pendingMode.title())
+                        .font(.system(size: 50).monospaced().bold())
+                        .foregroundStyle(Color(.green))
+                        .padding(.horizontal)
+                        
                 if !prismSessionManager.pending
                     && prismSessionManager.currentMode != .sleepMode
                 {
@@ -309,6 +361,10 @@ import WeatherKit
                         settingsShown = true
                     }
                     .tint(.secondary)
+                    
+                
+                    
+                    
                 }
             }.sheet(isPresented: $settingsShown) {
                 Text("Settings").font(.title2).bold().padding(.top)
@@ -323,6 +379,8 @@ import WeatherKit
                     AiAsistantView()
                 }
             }
+
+       
             .onAppear {
                 aiIsEnabled = setupAI()
             }

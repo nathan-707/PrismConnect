@@ -21,6 +21,7 @@ enum Views {
 
 class ClockSessionManager: NSObject, ObservableObject {
     var isShowingWeatherSpace = true
+    @Published var presentManagerDeviceView = false
     @Published var lastKnownLat: Double = 0
     @Published var lastKnownLong: Double = 0
     @Published var failedGetHomeWeatherAttempts = 0
@@ -30,12 +31,6 @@ class ClockSessionManager: NSObject, ObservableObject {
     private var currentSystemTime: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "h:mm"  // This ensures a space before AM/PM
-        //        if isStandaloneMode && standalonemode_Mode == .home {
-        //            formatter.dateFormat = "h:mm" // This ensures a space before AM/PM
-        //
-        //        }else {
-        //            formatter.dateFormat = "h:mm  a" // This ensures a space before AM/PM
-        //        }
         return formatter.string(from: Date())
     }
 
@@ -76,7 +71,6 @@ class ClockSessionManager: NSObject, ObservableObject {
     var failedTeleport = true
 
     func getWeather(mode: Modes, city: City) {
-
         if virtualClock == nil {
             virtualClock = VirtualColorClock()
             virtualClock?.sessionManager = self
@@ -103,7 +97,6 @@ class ClockSessionManager: NSObject, ObservableObject {
                 }
             }
             syncVirtualClockToWeather()
-
         }
     }
 
@@ -116,7 +109,6 @@ class ClockSessionManager: NSObject, ObservableObject {
                 )
                 self.updateDisplayedTemperatureFromRaw()
             }
-
         }
     }
 
@@ -124,11 +116,7 @@ class ClockSessionManager: NSObject, ObservableObject {
 
     func waitToTryToConnectAndReport() {
         reportConnectionTask = Task<Void, Never> { @MainActor in
-
-            if debug.skipClockSearch {
-                return
-            }
-
+            if debug.skipClockSearch { return }
             searchingForClock = true
 
             if manager == nil {
@@ -138,7 +126,6 @@ class ClockSessionManager: NSObject, ObservableObject {
             try? await Task.sleep(for: .seconds(5))
 
             if peripheralConnected {
-
                 isStandaloneMode = false
                 tryToTurnOnStandAloneMode = true
             } else {
@@ -154,6 +141,11 @@ class ClockSessionManager: NSObject, ObservableObject {
                 reportConnection = false
             }
         }
+    }
+    
+    func disconnectAndRetry(){
+        print("Cannot write: Peripheral or characteristic unavailable, or not writable. disconnecting and reconneting to try to fix.")
+        return
     }
 
     // standalone.
@@ -186,6 +178,7 @@ class ClockSessionManager: NSObject, ObservableObject {
     @Published var cutOff: Int = 0
     @Published var isDay: Bool = false
     @Published var isAm: Bool = false
+    @Published var hasConnected = false
 
     // MARK: - Settings
     @Published var version: Int = 0
@@ -226,49 +219,33 @@ class ClockSessionManager: NSObject, ObservableObject {
     @Published var tempBlue: Int = 0
     @Published var CurrentParkClockIsIn: ThemePark = AllParks[0]
     @Published var sleepTimerOn: Bool = false
-    @Published var tempClockColor: CGColor = CGColor(
-        red: 0,
-        green: 0,
-        blue: 0,
-        alpha: 0
-    )
-    @Published var customColor: CGColor = CGColor(
-        red: 0,
-        green: 0,
-        blue: 0,
-        alpha: 0
-    )
+    @Published var tempClockColor: CGColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0)
+    @Published var customColor: CGColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0)
     @Published var clock_weather: WeatherLight = .UNKNOWN
     @Published var clock_temperature: Int = 0
     private var rawTemperatureFahrenheit: Int = 0
 
     // future proofing
-    @Published var somethingICanUse1: Int = 0  // future proof if i need it
-    @Published var somethingICanUse2: Int = 0  // future proof if i need it
-    @Published var somethingICanUse3: Int = 0  // future proof if i need it
+    @Published var somethingICanUse1: Int = 0
+    @Published var somethingICanUse2: Int = 0
+    @Published var somethingICanUse3: Int = 0
 
     @Published var clockTime: String = ""
 
     func updateTime() {
-
         if self.peripheralConnected == false || self.isStandaloneMode == true {
             clockTime = self.currentSystemTime
             return
-            //            return self.currentSystemTime
         }
 
         if clock_time_min >= 10 {
             clockTime = "\(clock_time_hour):\(clock_time_min)"
-            //            return "\(clock_time_hour):\(clock_time_min)"
         } else {
             clockTime = "\(clock_time_hour) \(":") \("0")\(clock_time_min)"
-            //            return "\(clock_time_hour) \(":") \("0")\(clock_time_min)"
         }
     }
 
     func syncState(update: VisionInfo) {
-        print(update)
-
         if debug.printStateUpdates {
             print("vision update")
             print(update)
@@ -297,7 +274,6 @@ class ClockSessionManager: NSObject, ObservableObject {
     }
 
     func syncState(update: ClockSettings) {
-
         if debug.printStateUpdates {
             print("setting update")
             print(update)
@@ -377,7 +353,7 @@ class ClockSessionManager: NSObject, ObservableObject {
     }
 
     @Published var appView: Views = .connectedMainMenu
-    @Published var prismboxVersion: PrismDevice?
+    @Published var prismDevice: PrismDevice?
     @Published var peripheralConnected = false
     @Published var pickerDismissed = true
     @Published var authenticated = true
@@ -388,16 +364,13 @@ class ClockSessionManager: NSObject, ObservableObject {
     private var clockSettingsCharacteristic: CBCharacteristic?
     private var vCharacteristic: CBCharacteristic?
 
-    // The BLE characteristic UUID used for updating the clock
-    private static let vCharacteristic_UUID =
-        "beb4538e-36e1-4688-b7f5-ea07361b26a8"
-    private static let clockUpdateCharacteristicUUID =
-        "beb5483e-36e1-4688-b7f5-ea07361b26a8"
+    private static let vCharacteristic_UUID = "beb4538e-36e1-4688-b7f5-ea07361b26a8"
+    private static let clockUpdateCharacteristicUUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8"
     private static let SERVICE_UUID = "E56A082E-C49B-47CA-A2AB-389127B8ABE3"
 
     #if os(iOS)
-        private var currentDice: ASAccessory?
-        private var session = ASAccessorySession()
+        var currentDice: ASAccessory?
+        var session = ASAccessorySession()
 
         // MARK: - Accessory Picker Items
         private static let PencilHolderPickerItem: ASPickerDisplayItem = {
@@ -416,9 +389,7 @@ class ClockSessionManager: NSObject, ObservableObject {
             descriptor.bluetoothServiceUUID = PrismDevice.clock.serviceUUID
             return ASPickerDisplayItem(
                 name: PrismDevice.clock.displayName,
-                productImage: UIImage(
-                    named: PrismDevice.clock.productImageName
-                )!,
+                productImage: UIImage(named: PrismDevice.clock.productImageName)!,
                 descriptor: descriptor
             )
         }()
@@ -427,43 +398,169 @@ class ClockSessionManager: NSObject, ObservableObject {
     // MARK: - Initialization
     override init() {
         super.init()
-        #if os(visionOS)
-            //            if manager == nil {
-            //                manager = CBCentralManager(delegate: self, queue: nil)
-            //            }
-        #endif
         #if os(iOS)
             self.session.activate(
                 on: DispatchQueue.main,
                 eventHandler: handleSessionEvent(event:)
             )
         #endif
-
     }
+    
     #if os(iOS)
-        // MARK: - Accessory Picker
+        // MARK: - Persistence & Registry Helpers
+        private func persistLastDevice(accessory: ASAccessory) {
+            if let uuid = accessory.bluetoothIdentifier {
+                UserDefaults.standard.set(uuid.uuidString, forKey: "lastConnectedDeviceUUID")
+            }
+        }
+        
+        private func getDeviceType(for uuid: UUID?) -> PrismDevice? {
+            guard let uuidString = uuid?.uuidString else { return nil }
+            let registry = UserDefaults.standard.dictionary(forKey: "PrismDeviceRegistry") as? [String: String] ?? [:]
+            
+            if registry[uuidString] == "clock" { return .clock }
+            if registry[uuidString] == "pencilHolder" { return .pencilHolder }
+            return nil
+        }
+
+        private func registerDeviceType(for uuid: UUID?, type: PrismDevice) {
+            guard let uuidString = uuid?.uuidString else { return }
+            var registry = UserDefaults.standard.dictionary(forKey: "PrismDeviceRegistry") as? [String: String] ?? [:]
+            
+            if type == .clock { registry[uuidString] = "clock" }
+            else if type == .pencilHolder { registry[uuidString] = "pencilHolder" }
+            
+            UserDefaults.standard.set(registry, forKey: "PrismDeviceRegistry")
+        }
+    
+        // MARK: - Accessory Switching
+        func switchToKnownAccessory(accessory: ASAccessory) {
+            print("Switching to \(accessory.displayName)...")
+
+                let targetDevice = getDeviceType(for: accessory.bluetoothIdentifier)
+                
+                // FIX: Cancel any existing or pending connections before overwriting
+                if self.peripheral != nil {
+                    disconnect()
+                }
+                
+                if authenticated {
+                    currentDice = accessory
+                    persistLastDevice(accessory: accessory)
+                }
+            
+            if let targetDevice = targetDevice {
+                prismDevice = targetDevice
+            } else {
+                print("Device type unknown (first connect). Type will resolve automatically upon connection.")
+            }
+
+            if manager == nil {
+                print("Initializing Central Manager. Waiting for power up...")
+                manager = CBCentralManager(delegate: self, queue: nil)
+            } else if manager?.state == .poweredOn {
+                if let peripheralUUID = accessory.bluetoothIdentifier {
+                    let retrieved = manager?.retrievePeripherals(withIdentifiers: [peripheralUUID]) ?? []
+                    if let newPeripheral = retrieved.first {
+                        print("Found peripheral: \(newPeripheral). Connecting...")
+                        peripheral = newPeripheral
+                        peripheral?.delegate = self
+                        connect()
+                    } else {
+                        print("Failed to retrieve peripheral for accessory: \(accessory.displayName). It might be out of range.")
+                    }
+                }
+            } else {
+                print("Bluetooth is not ready yet. Connection will happen automatically when powered on.")
+            }
+        }
+    
+        func manageDevices() {
+            print("manage")
+            let accessories = session.accessories
+            guard accessories.count > 1 else {
+                print("Not enough devices to switch between.")
+                return
+            }
+
+            var targetDevice: PrismDevice?
+            var targetAccessory: ASAccessory?
+
+            if prismDevice == .clock {
+                targetDevice = .pencilHolder
+                targetAccessory = accessories.first { getDeviceType(for: $0.bluetoothIdentifier) == .pencilHolder }
+            } else if prismDevice == .pencilHolder {
+                targetDevice = .clock
+                targetAccessory = accessories.first { getDeviceType(for: $0.bluetoothIdentifier) == .clock }
+            }
+            
+            // Fallback for unregistered or new devices
+            if targetAccessory == nil {
+                targetAccessory = accessories.first { $0.bluetoothIdentifier != currentDice?.bluetoothIdentifier }
+                targetDevice = getDeviceType(for: targetAccessory?.bluetoothIdentifier)
+            }
+
+            guard let finalAccessory = targetAccessory else { return }
+
+            if peripheralConnected { disconnect() }
+
+            currentDice = finalAccessory
+            persistLastDevice(accessory: finalAccessory)
+            if let knownDevice = targetDevice { prismDevice = knownDevice }
+
+            if manager == nil {
+                print("Initializing Central Manager. Waiting for power up...")
+                manager = CBCentralManager(delegate: self, queue: nil)
+            } else if manager?.state == .poweredOn {
+                if let peripheralUUID = finalAccessory.bluetoothIdentifier {
+                    let retrieved = manager?.retrievePeripherals(withIdentifiers: [peripheralUUID]) ?? []
+                    if let newPeripheral = retrieved.first {
+                        peripheral = newPeripheral
+                        peripheral?.delegate = self
+                        connect()
+                    } else {
+                        print("Failed to retrieve peripheral for accessory: \(finalAccessory.displayName)")
+                    }
+                }
+            } else {
+                print("Bluetooth is not ready yet. Connection will happen automatically when powered on.")
+            }
+        }
+    
         func presentPicker() {
             Self.ClockPickerItem.setupOptions = .confirmAuthorization
             Self.PencilHolderPickerItem.setupOptions = .confirmAuthorization
 
             session.showPicker(for: [Self.ClockPickerItem, Self.PencilHolderPickerItem]) { error in
                 if let error = error {
-                    print(
-                        "Failed to show picker due to: \(error.localizedDescription)"
-                    )
+                    print("Failed to show picker due to: \(error.localizedDescription)")
                 }
             }
         }
 
         func removePrismBox() {
             guard let currentDice = currentDice else { return }
+            let deviceUUIDToRemove = currentDice.bluetoothIdentifier?.uuidString
 
             if peripheralConnected {
                 disconnect()
             }
 
             session.removeAccessory(currentDice) { _ in
-                self.prismboxVersion = nil
+                if let savedString = UserDefaults.standard.string(forKey: "lastConnectedDeviceUUID"),
+                   let currentUUIDString = deviceUUIDToRemove,
+                   savedString == currentUUIDString {
+                    UserDefaults.standard.removeObject(forKey: "lastConnectedDeviceUUID")
+                }
+                
+                // Clear from registry
+                if let uuidStr = deviceUUIDToRemove {
+                    var registry = UserDefaults.standard.dictionary(forKey: "PrismDeviceRegistry") as? [String: String] ?? [:]
+                    registry.removeValue(forKey: uuidStr)
+                    UserDefaults.standard.set(registry, forKey: "PrismDeviceRegistry")
+                }
+
+                self.prismDevice = nil
                 self.currentDice = nil
                 self.manager = nil
             }
@@ -471,103 +568,124 @@ class ClockSessionManager: NSObject, ObservableObject {
 
         private func savePrismBox(prismBox: ASAccessory) {
             currentDice = prismBox
+            persistLastDevice(accessory: prismBox)
+            
+            if let knownType = getDeviceType(for: prismBox.bluetoothIdentifier) {
+                prismDevice = knownType
+            } else {
+                print("Device type unknown (first connect). Type will resolve automatically upon connection.")
+            }
 
             if manager == nil {
                 manager = CBCentralManager(delegate: self, queue: nil)
             }
+        }
 
-            if prismBox.displayName == PrismDevice.pencilHolder.displayName {
-                prismboxVersion = .pencilHolder
+    private func handleSessionEvent(event: ASAccessoryEvent) {
+        switch event.eventType {
+        case .pickerSetupPairing:
+            print("Pairing in progress...")
+            authenticated = false
+            
+        case .accessoryAdded, .accessoryChanged:
+            guard let prismBox = event.accessory else { return }
+            
+            
+            
+            
+            
+            
+            // FIX: Stop the boot-spam loop!
+            // We only want to auto-switch if we are actively pairing a new device,
+            // or if we have absolutely nothing set.
+            if authenticated == false || currentDice == nil {
+                switchToKnownAccessory(accessory: prismBox)
+                savePrismBox(prismBox: prismBox)
+            } else {
+                // Keep the reference fresh if it's the active device, but don't hijack the connection
+                if currentDice?.bluetoothIdentifier == prismBox.bluetoothIdentifier {
+                    currentDice = prismBox
+                }
+                print("Background accessory load ignored to preserve selected connection.")
             }
             
-            else if prismBox.displayName == PrismDevice.clock.displayName {
-                prismboxVersion = .clock
-            }
-        }
+        case .activated:
+            let accessories = session.accessories
+            guard !accessories.isEmpty else { return }
 
-        private func handleSessionEvent(event: ASAccessoryEvent) {
-            switch event.eventType {
-            case .pickerSetupPairing:
-                print("Pairing in progress...")
-                authenticated = false
-            case .accessoryAdded, .accessoryChanged:
-                guard let prismBox = event.accessory else { return }
-                savePrismBox(prismBox: prismBox)
-            case .activated:
-                guard let prismBox = session.accessories.first else { return }
-                savePrismBox(prismBox: prismBox)
-            case .pickerDidPresent:
-                pickerDismissed = false
-            case .pickerDidDismiss:
-                pickerDismissed = true
-            case .pickerSetupFailed:
-                authenticated = false
-                break
-            case .invalidated:
-                print("Session invalidated")
-                authenticated = false
-            default:
-                print("Received event type \(event)")
+            if let savedString = UserDefaults.standard.string(forKey: "lastConnectedDeviceUUID"),
+               let savedUUID = UUID(uuidString: savedString),
+               let lastAccessory = accessories.first(where: { $0.bluetoothIdentifier == savedUUID }) {
+                
+                print("Restoring connection to last known device: \(lastAccessory.displayName)")
+                savePrismBox(prismBox: lastAccessory)
+                
+            } else {
+                print("No saved device found, defaulting to first in list.")
+                if let firstAccessory = accessories.first {
+                    savePrismBox(prismBox: firstAccessory)
+                }
             }
+            
+        case .pickerDidPresent:
+            pickerDismissed = false
+            
+        case .pickerDidDismiss:
+            pickerDismissed = true
+//            authenticated = true // FIX: Reset this so we don't get stuck in pairing mode
+            
+        case .pickerSetupFailed:
+//            authenticated = true
+            print("Picker setup failed.")
+            
+        case .invalidated:
+            print("Session invalidated")
+            authenticated = false
+            
+        default:
+            print("Received event type \(event)")
         }
-    #endif
+    }    #endif
 
     // MARK: - Connection Management
     func connect() {
-
-        guard let manager = manager, manager.state == .poweredOn,
-            let peripheral = peripheral
-        else {
+        guard let manager = manager, manager.state == .poweredOn, let peripheral = peripheral else {
             return
         }
-
         manager.connect(peripheral)
     }
 
     func disconnect() {
         guard let peripheral = peripheral, let manager = manager else { return }
+        peripheralConnected = false
+        
+        // CoreBluetooth safely ignores this if it's already disconnected,
+        // but it will properly abort a 'connecting' state.
         manager.cancelPeripheralConnection(peripheral)
     }
 
     // MARK: - Accessory Session Functions
     func getFadeSpeedForEffect(effect: LightEffects) -> Float {
         switch effect {
-        case .colorclock_m:
-            break
-        case .custom_m:
-            break
-        case .dualmode_m:
-            break
-        case .firemode_m:
-            return FireFS
-        case .headless_m:
-            return HeadFS
-        case .meteorshower_m:
-            return SCFS
-        case .rainbowmode_m:
-            return SpecFS
-        case .tempclock_m:
-            break
+        case .colorclock_m: break
+        case .custom_m: break
+        case .dualmode_m: break
+        case .firemode_m: return FireFS
+        case .headless_m: return HeadFS
+        case .meteorshower_m: return SCFS
+        case .rainbowmode_m: return SpecFS
+        case .tempclock_m: break
         }
         return 0.0
     }
 
     // MARK: - BLE Communication: Update Clock
-    /// send change light effect command.
-    ///
-    ///
     func sendCommand(command: LightEffects) {
         guard let peripheral = peripheral,
             let characteristic = clockSettingsCharacteristic,
-            characteristic.properties.contains(.write)
-                || characteristic.properties.contains(
-                    .writeWithoutResponse
-                )
+            characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse)
         else {
-            //            self.peripheralConnected = false
-            print(
-                "Cannot write: Peripheral or characteristic unavailable, or not writable"
-            )
+            disconnectAndRetry()
             return
         }
 
@@ -580,24 +698,15 @@ class ClockSessionManager: NSObject, ObservableObject {
             value: command,
             value2: getFadeSpeedForEffect(effect: command)
         )
-        peripheral.writeValue(
-            encodeTOJSON(any: toESP),
-            for: characteristic,
-            type: .withResponse
-        )
+        peripheral.writeValue(encodeTOJSON(any: toESP), for: characteristic, type: .withResponse)
     }
 
-    /// send change mode command.
     func sendCommand(command: Modes) {
         guard let peripheral = peripheral,
             let characteristic = clockSettingsCharacteristic,
-            characteristic.properties.contains(.write)
-                || characteristic.properties.contains(.writeWithoutResponse)
+            characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse)
         else {
-            //            self.peripheralConnected = false
-            print(
-                "Cannot write: Peripheral or characteristic unavailable, or not writable"
-            )
+            disconnectAndRetry()
             return
         }
 
@@ -614,23 +723,15 @@ class ClockSessionManager: NSObject, ObservableObject {
         } else if command == .themeParkMode {
             toESP.value2 = self.selectedPark.id
         }
-        peripheral.writeValue(
-            encodeTOJSON(any: toESP),
-            for: characteristic,
-            type: .withResponse
-        )
+        peripheral.writeValue(encodeTOJSON(any: toESP), for: characteristic, type: .withResponse)
     }
 
     func sendCutOff() {
         guard let peripheral = peripheral,
             let characteristic = clockSettingsCharacteristic,
-            characteristic.properties.contains(.write)
-                || characteristic.properties.contains(.writeWithoutResponse)
+            characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse)
         else {
-            //            self.peripheralConnected = false
-            print(
-                "Cannot write: Peripheral or characteristic unavailable, or not writable"
-            )
+            disconnectAndRetry()
             return
         }
 
@@ -639,29 +740,18 @@ class ClockSessionManager: NSObject, ObservableObject {
             var value: Int
         }
 
-        let command = Command(command: "cut", value: self.cutOff)
-
-        var toESP = command
-
+        var toESP = Command(command: "cut", value: self.cutOff)
         toESP.value = self.cutOff
 
-        peripheral.writeValue(
-            encodeTOJSON(any: toESP),
-            for: characteristic,
-            type: .withResponse
-        )
+        peripheral.writeValue(encodeTOJSON(any: toESP), for: characteristic, type: .withResponse)
     }
 
     func updateLatest() {
         guard let peripheral = peripheral,
             let characteristic = clockSettingsCharacteristic,
-            characteristic.properties.contains(.write)
-                || characteristic.properties.contains(.writeWithoutResponse)
+            characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse)
         else {
-            print(
-                "Cannot write: Peripheral or characteristic unavailable, or not writable"
-            )
-            //            self.peripheralConnected = false
+            disconnectAndRetry()
             return
         }
 
@@ -670,12 +760,7 @@ class ClockSessionManager: NSObject, ObservableObject {
         }
 
         let toESP = Command()
-
-        peripheral.writeValue(
-            encodeTOJSON(any: toESP),
-            for: characteristic,
-            type: .withResponse
-        )
+        peripheral.writeValue(encodeTOJSON(any: toESP), for: characteristic, type: .withResponse)
     }
 
     func updateSettings(nameOfSetting: String, value: Float) {
@@ -687,14 +772,9 @@ class ClockSessionManager: NSObject, ObservableObject {
 
         guard let peripheral = peripheral,
             let characteristic = clockSettingsCharacteristic,
-            characteristic.properties.contains(.write)
-                || characteristic.properties.contains(.writeWithoutResponse)
+            characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse)
         else {
-            //            self.peripheralConnected = false
-
-            print(
-                "Cannot write: Peripheral or characteristic unavailable, or not writable"
-            )
+            disconnectAndRetry()
             return
         }
 
@@ -704,24 +784,15 @@ class ClockSessionManager: NSObject, ObservableObject {
         }
 
         let toESP = Command(command: nameOfSetting, value: value)
-        peripheral.writeValue(
-            encodeTOJSON(any: toESP),
-            for: characteristic,
-            type: .withResponse
-        )
+        peripheral.writeValue(encodeTOJSON(any: toESP), for: characteristic, type: .withResponse)
     }
 
     func updateSettings(nameOfSetting: String, value: Int) {
         guard let peripheral = peripheral,
             let characteristic = clockSettingsCharacteristic,
-            characteristic.properties.contains(.write)
-                || characteristic.properties.contains(.writeWithoutResponse)
+            characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse)
         else {
-            //            self.peripheralConnected = false
-
-            print(
-                "Cannot write: Peripheral or characteristic unavailable, or not writable"
-            )
+            disconnectAndRetry()
             return
         }
 
@@ -731,24 +802,15 @@ class ClockSessionManager: NSObject, ObservableObject {
         }
 
         let toESP = Command(command: nameOfSetting, value: value)
-        peripheral.writeValue(
-            encodeTOJSON(any: toESP),
-            for: characteristic,
-            type: .withResponse
-        )
+        peripheral.writeValue(encodeTOJSON(any: toESP), for: characteristic, type: .withResponse)
     }
 
     func updateSettings(nameOfSetting: String, value: String) {
         guard let peripheral = peripheral,
             let characteristic = clockSettingsCharacteristic,
-            characteristic.properties.contains(.write)
-                || characteristic.properties.contains(.writeWithoutResponse)
+            characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse)
         else {
-            //            self.peripheralConnected = false
-
-            print(
-                "Cannot write: Peripheral or characteristic unavailable, or not writable"
-            )
+            disconnectAndRetry()
             return
         }
 
@@ -758,24 +820,15 @@ class ClockSessionManager: NSObject, ObservableObject {
         }
 
         let toESP = Command(command: nameOfSetting, value: value)
-        peripheral.writeValue(
-            encodeTOJSON(any: toESP),
-            for: characteristic,
-            type: .withResponse
-        )
+        peripheral.writeValue(encodeTOJSON(any: toESP), for: characteristic, type: .withResponse)
     }
 
     func updateMasterEffect(update: MasterEffect) {
         guard let peripheral = peripheral,
             let characteristic = clockSettingsCharacteristic,
-            characteristic.properties.contains(.write)
-                || characteristic.properties.contains(.writeWithoutResponse)
+            characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse)
         else {
-            //            self.peripheralConnected = false
-
-            print(
-                "Cannot write: Peripheral or characteristic unavailable, or not writable"
-            )
+            disconnectAndRetry()
             return
         }
 
@@ -785,26 +838,19 @@ class ClockSessionManager: NSObject, ObservableObject {
         }
 
         let toESP = Command(value: update)
-        peripheral.writeValue(
-            encodeTOJSON(any: toESP),
-            for: characteristic,
-            type: .withResponse
-        )
+        peripheral.writeValue(encodeTOJSON(any: toESP), for: characteristic, type: .withResponse)
     }
 
-    // manually ping the esp to get a state update.
     func ping() {
         guard let peripheral = peripheral,
             let characteristic = clockSettingsCharacteristic,
-            characteristic.properties.contains(.write)
-                || characteristic.properties.contains(.writeWithoutResponse)
+            characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse)
         else {
-            //            self.peripheralConnected = false
-            print(
-                "Cannot write: Peripheral or characteristic unavailable, or not writable"
-            )
+            disconnectAndRetry()
             return
         }
+        
+        hasConnected = true
 
         struct Command: Codable {
             var command = "ping"
@@ -812,23 +858,15 @@ class ClockSessionManager: NSObject, ObservableObject {
         }
 
         let toESP = Command()
-        peripheral.writeValue(
-            encodeTOJSON(any: toESP),
-            for: characteristic,
-            type: .withResponse
-        )
+        peripheral.writeValue(encodeTOJSON(any: toESP), for: characteristic, type: .withResponse)
     }
 
     func updateLayout(layout: Int) {
         guard let peripheral = peripheral,
             let characteristic = clockSettingsCharacteristic,
-            characteristic.properties.contains(.write)
-                || characteristic.properties.contains(.writeWithoutResponse)
+            characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse)
         else {
-            //            self.peripheralConnected = false
-            print(
-                "Cannot write: Peripheral or characteristic unavailable, or not writable"
-            )
+            disconnectAndRetry()
             return
         }
 
@@ -838,23 +876,15 @@ class ClockSessionManager: NSObject, ObservableObject {
         }
 
         let toESP = Command(value: layout)
-        peripheral.writeValue(
-            encodeTOJSON(any: toESP),
-            for: characteristic,
-            type: .withResponse
-        )
+        peripheral.writeValue(encodeTOJSON(any: toESP), for: characteristic, type: .withResponse)
     }
 
     func updateCustomColor() {
         guard let peripheral = peripheral,
             let characteristic = clockSettingsCharacteristic,
-            characteristic.properties.contains(.write)
-                || characteristic.properties.contains(.writeWithoutResponse)
+            characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse)
         else {
-            //            self.peripheralConnected = false
-            print(
-                "Cannot write: Peripheral or characteristic unavailable, or not writable"
-            )
+            disconnectAndRetry()
             return
         }
 
@@ -865,122 +895,98 @@ class ClockSessionManager: NSObject, ObservableObject {
             var blue: Int
         }
 
-        let toESP = Command(
-            red: self.customRed,
-            green: self.customGreen,
-            blue: self.customBlue
-        )
-        peripheral.writeValue(
-            encodeTOJSON(any: toESP),
-            for: characteristic,
-            type: .withResponse
-        )
+        let toESP = Command(red: self.customRed, green: self.customGreen, blue: self.customBlue)
+        peripheral.writeValue(encodeTOJSON(any: toESP), for: characteristic, type: .withResponse)
     }
-
 }
 
 // MARK: - CBCentralManagerDelegate
 
 extension ClockSessionManager: CBCentralManagerDelegate {
-
+    
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-
         print("Central manager state: \(central.state)")
 
         switch central.state {
-
         case .poweredOn:
             print("power up")
-
+            
             #if os(visionOS)
-                central.scanForPeripherals(
-                    withServices: [
-                        CBUUID(string: ClockSessionManager.SERVICE_UUID)
-                    ],
-                    options: nil
-                )
+                // visionOS doesn't use ASK in your code, so keep its scan logic
+                central.scanForPeripherals(withServices: [CBUUID(string: ClockSessionManager.SERVICE_UUID)], options: nil)
             #endif
+            
             #if os(iOS)
-                currentDice?.descriptor.supportedOptions = [.bluetoothPairingLE]
-                if let peripheralUUID = currentDice?.bluetoothIdentifier {
-                    //                print(currentDice?.bluetoothIdentifier)
-                    peripheral =
-                        central.retrievePeripherals(withIdentifiers: [
-                            peripheralUUID
-                        ]).first
-                    peripheral?.delegate = self
-                    // Automatically connect if the peripheral is found
-                    if peripheral != nil {
+                // FIX: Removed the redundant auto-connect logic here.
+                // We now rely purely on AccessorySetupKit's `.activated` or `.accessoryAdded`
+                // events to trigger switchToKnownAccessory() or savePrismBox().
+                // All we need to do here is check if ASK already queued up a peripheral for us
+                // while we were waiting for Bluetooth to power on.
+                
+                if let peripheralUUID = currentDice?.bluetoothIdentifier, self.peripheral == nil {
+                    print("Bluetooth ready. Checking for ASK's queued device...")
+                    if let retrieved = central.retrievePeripherals(withIdentifiers: [peripheralUUID]).first {
+                        self.peripheral = retrieved
+                        self.peripheral?.delegate = self
                         self.connect()
                     }
                 }
             #endif
 
         default:
-            peripheral = nil
+            // Optional: you might not want to nuke the peripheral on .background or .inactive states,
+            // but definitely do it on .poweredOff
+            if central.state == .poweredOff {
+                peripheral = nil
+            }
         }
     }
-
+    
+    
+    
     func centralManager(
         _ central: CBCentralManager,
         didDiscover peripheral: CBPeripheral,
         advertisementData: [String: Any],
         rssi RSSI: NSNumber
     ) {
-        print(
-            """
+        print("""
             🛰️ Discovered Peripheral:
             Name: \(peripheral.name ?? "Unknown")
             Identifier: \(peripheral.identifier)
             RSSI: \(RSSI)
             Advertisement Data: \(advertisementData)
-            """
-        )
+            """)
         #if os(visionOS)
             self.peripheral = peripheral
             self.peripheral!.delegate = self
             self.connect()
         #endif
     }
-
-    func centralManager(
-        _ central: CBCentralManager,
-        didConnect peripheral: CBPeripheral
-    ) {
-        print("Connected to peripheral: \(peripheral)")
-        #if os(iOS)
-            guard let prismboxVersion = prismboxVersion else { return }
-            peripheral.delegate = self
-            peripheral.discoverServices([prismboxVersion.serviceUUID])
-            ping()
-        #endif
-        #if os(visionOS)
-            peripheral.discoverServices([
-                CBUUID(string: ClockSessionManager.SERVICE_UUID)
-            ])
-        #endif
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        print("Connected to: \(peripheral.name ?? "Unknown")")
+        peripheral.delegate = self
         peripheralConnected = true
-        ping()
+
+        print("Searching for ALL services to verify device type...")
+        peripheral.discoverServices(nil)
     }
 
-    func centralManager(
-        _ central: CBCentralManager,
-        didDisconnectPeripheral peripheral: CBPeripheral,
-        error: Error?
-    ) {
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Disconnected from peripheral: \(peripheral)")
         peripheralConnected = false
         isStandaloneMode = true
     }
 
-    func centralManager(
-        _ central: CBCentralManager,
-        didFailToConnect peripheral: CBPeripheral,
-        error: Error?
-    ) {
-        print(
-            "Failed to connect to peripheral: \(peripheral), error: \(error?.localizedDescription ?? "unknown error")"
-        )
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print("Failed to connect to peripheral: \(peripheral), error: \(error?.localizedDescription ?? "unknown error")")
+        
+//        if let currentDice = currentDice {
+//            switchToKnownAccessory(accessory: currentDice)
+//        }
+        
+        
     }
 
     func centralManager(
@@ -990,136 +996,106 @@ extension ClockSessionManager: CBCentralManagerDelegate {
         isReconnecting: Bool,
         error: (any Error)?
     ) {
-        print(
-            "Disconnected from peripheral: \(peripheral), timestamp: \(timestamp), isReconnecting: \(isReconnecting), error: \(error?.localizedDescription ?? "unknown error")"
-        )
+        print("Disconnected from peripheral: \(peripheral), timestamp: \(timestamp), isReconnecting: \(isReconnecting), error: \(error?.localizedDescription ?? "unknown error")")
     }
 }
 
 // MARK: - CBPeripheralDelegate
 
 extension ClockSessionManager: CBPeripheralDelegate {
-    func peripheral(
-        _ peripheral: CBPeripheral,
-        didDiscoverServices error: Error?
-    ) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard error == nil, let services = peripheral.services else {
-            print(
-                "Service discovery failed: \(error?.localizedDescription ?? "unknown error")"
-            )
+            print("Service discovery failed: \(error?.localizedDescription ?? "unknown error")")
             return
         }
+        
         for service in services {
+            #if os(iOS)
+                // Register the hardware type permanently bypassing any custom user names
+                if service.uuid == PrismDevice.clock.serviceUUID {
+                    DispatchQueue.main.async { self.prismDevice = .clock }
+                    registerDeviceType(for: peripheral.identifier, type: .clock)
+                    print("Verified Hardware: This is a Clock")
+                } else if service.uuid == PrismDevice.pencilHolder.serviceUUID {
+                    DispatchQueue.main.async { self.prismDevice = .pencilHolder }
+                    registerDeviceType(for: peripheral.identifier, type: .pencilHolder)
+                    print("Verified Hardware: This is a Pencil Holder")
+                }
+            #endif
+
             peripheral.discoverCharacteristics(nil, for: service)
         }
     }
 
-    func peripheral(
-        _ peripheral: CBPeripheral,
-        didDiscoverCharacteristicsFor service: CBService,
-        error: Error?
-    ) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard error == nil, let characteristics = service.characteristics else {
+            print("Error discovering characteristics: \(error?.localizedDescription ?? "unknown")")
             return
         }
-        print(characteristics.count)
+        print("Found \(characteristics.count) characteristics")
 
         #if os(iOS)
-            for characteristic in characteristics
-            where characteristic.uuid
-                == CBUUID(string: Self.clockUpdateCharacteristicUUID)
-            {
-                clockSettingsCharacteristic = characteristic
-                peripheral.setNotifyValue(true, for: characteristic)
-                peripheral.readValue(for: characteristic)
+            for characteristic in characteristics {
+                if characteristic.uuid == CBUUID(string: Self.clockUpdateCharacteristicUUID) {
+                    clockSettingsCharacteristic = characteristic
+                    peripheral.setNotifyValue(true, for: characteristic)
+                    peripheral.readValue(for: characteristic)
+                    print("✅ Characteristic Ready. Sending Ping...")
+                    hasConnected = true
+                    if !authenticated {
+                        print("not authenticated...")
+                        presentManagerDeviceView = false
+
+                    }
+                    ping()
+                }
             }
         #endif
 
-        for characteristic in characteristics
-        where characteristic.uuid == CBUUID(string: Self.vCharacteristic_UUID) {
+        for characteristic in characteristics where characteristic.uuid == CBUUID(string: Self.vCharacteristic_UUID) {
             vCharacteristic = characteristic
             peripheral.setNotifyValue(true, for: characteristic)
-            print(peripheral.readValue(for: characteristic))
-            print("read value")
+            print("Vision characteristic found")
         }
-
-        ping()
-
     }
 
-    func peripheral(
-        _ peripheral: CBPeripheral,
-        didUpdateValueFor characteristic: CBCharacteristic,
-        error: Error?
-    ) {
-
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         #if os(iOS)
-            Task {  // dismiss the session thing if not already.
+            Task {
                 if let currentDice = currentDice {
                     do {
-                        try await session.finishAuthorization(
-                            for: currentDice,
-                            settings: .default
-                        )
+                        try await session.finishAuthorization(for: currentDice, settings: .default)
                     } catch {
-                        print(
-                            "Error finishing authorization: \(error.localizedDescription)"
-                        )
+                        print("Error finishing authorization: \(error.localizedDescription)")
                     }
                 }
             }
 
-            if characteristic.uuid
-                == CBUUID(string: Self.clockUpdateCharacteristicUUID)
-            {
-                guard let data = characteristic.value else {
-                    return
-                }
+            if characteristic.uuid == CBUUID(string: Self.clockUpdateCharacteristicUUID) {
+                guard let data = characteristic.value else { return }
 
-                if let stateUpdate = try? JSONDecoder().decode(
-                    ClockSettings.self,
-                    from: data
-                ) {  // try to decode ClockSettings
+                if let stateUpdate = try? JSONDecoder().decode(ClockSettings.self, from: data) {
                     syncState(update: stateUpdate)
                     authenticated = true
-                    //                DispatchQueue.main.async {
-                    //                    withAnimation {
-                    //                        print("state update.")
-                    //                    }
-                    //                }
                 } else {
                     print("ClockSettings Decoding error.")
-                    print(data)
                 }
             }
-
         #endif
 
         #if os(visionOS)
+            if characteristic.uuid == CBUUID(string: Self.vCharacteristic_UUID) {
+                guard let data = characteristic.value else { return }
 
-            if characteristic.uuid == CBUUID(string: Self.vCharacteristic_UUID)
-            {
-                guard let data = characteristic.value else {
-                    return
-                }
-
-                if let stateUpdate = try? JSONDecoder().decode(
-                    VisionInfo.self,
-                    from: data
-                ) {  // try to decode ClockSettings
+                if let stateUpdate = try? JSONDecoder().decode(VisionInfo.self, from: data) {
                     syncState(update: stateUpdate)
                     authenticated = true
-                    if debug.printStateUpdates {
-                        print(stateUpdate)
-                    }
-
+                    if debug.printStateUpdates { print(stateUpdate) }
                 } else {
                     print("Clock Info Decoding error.")
-                    //                    print(data)
                 }
             }
         #endif
-
     }
 }
 
@@ -1141,14 +1117,10 @@ func encodeTOJSON(any: Codable) -> Data {
 }
 
 extension Int {
-    var `true`: Bool {
-        return self != 0
-    }
-
-    var `false`: Bool {
-        return self == 0
-    }
+    var `true`: Bool { return self != 0 }
+    var `false`: Bool { return self == 0 }
 }
+
 func returnSecondsFrom(min: Int) -> Double {
     return Double(min * 60)
 }

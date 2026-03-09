@@ -133,7 +133,6 @@
                             nameOfSetting: "getTimeInTel",
                             value: (newValue == false ? 0 : 1)
                         )
-                        // john
 
                         if prismSessionManager.currentMode == .teleportMode
                             || prismSessionManager.currentMode == .themeParkMode
@@ -182,6 +181,22 @@
                         Text("Check For Update")  //john
                     }
                 }
+                
+                
+                if debug.showSetLC {
+                    
+                    Button{
+                        prismSessionManager.updateSettings(
+                            nameOfSetting: "setLC",
+                            value: 1
+                        )
+                        
+                    } label: {
+                        Text("ENABLE LC")
+                    }
+                }
+                
+                
             }
         }
     }

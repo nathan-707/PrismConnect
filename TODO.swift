@@ -8,6 +8,11 @@
 
  next version:
  
+ known bugs::
+ when you add a second prism box, it doesnt make you enter passkey until after its setup
+ does not remember last connectred device, which really might not be bad.
+ add remove and rename device feature in manage device
+ 
  
  
  

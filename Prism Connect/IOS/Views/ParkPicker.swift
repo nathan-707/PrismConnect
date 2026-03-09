@@ -26,7 +26,7 @@ import SwiftUI
                 .controlSize(.large)
                 .buttonStyle(.glassProminent)
                 .tint(
-                    prismSessionManager.prismboxVersion?.color ?? .accentColor
+                    prismSessionManager.prismDevice?.color ?? .accentColor
                 )
                 .foregroundStyle(.white)
 

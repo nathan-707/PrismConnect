@@ -19,7 +19,8 @@ import SwiftUI
 
             if prismSessionManager.pickerDismissed
                 && prismSessionManager.authenticated,
-                prismSessionManager.prismboxVersion != nil
+                prismSessionManager.prismDevice != nil
+                
             {
 
                 if prismSessionManager.appView == .connectedMainMenu {
@@ -30,7 +31,15 @@ import SwiftUI
                 if debug.testingSoDontShowSetup {
                     ConnectedMainMenu()
                 } else {
-                    makeSetupView
+                    
+
+                        if prismSessionManager.hasConnected {
+                            ManageDeviceView()
+                        } else {
+                            makeSetupView
+                        }
+                    
+                    
                 }
             }
         }

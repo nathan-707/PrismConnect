@@ -9,8 +9,11 @@ import Foundation
 
 let progressScale = 1.33
 
+let natePower = true
+
 struct Debug {
-    let allowUpdateFromSettings = false
+    let allowUpdateFromSettings = natePower
+    let showSetLC = natePower
 
     let testingSoDontShowSetup = false
     let skipClockSearch = false
