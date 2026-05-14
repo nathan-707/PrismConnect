@@ -50,8 +50,11 @@ import SwiftUI
                                 Text("Headless").tag(2)
                                 Text("Short Circuit").tag(3)
                                 Text("Fire").tag(7)
-                                Text("Color Clock").tag(4)
-                                Text("Temp Clock").tag(5)
+                                if prismSessionManager.deviceType != .pencil || prismSessionManager.status == .connected {
+                                    Text("Color Clock").tag(4)
+                                    Text("Temp Clock").tag(5)
+                                }
+                           
                             }
                             .pickerStyle(.menu)
                         }
@@ -71,8 +74,11 @@ import SwiftUI
                                 Text("Headless").tag(2)
                                 Text("Short Circuit").tag(3)
                                 Text("Fire").tag(7)
-                                Text("Color Clock").tag(4)
-                                Text("Temp Clock").tag(5)
+                
+                                if prismSessionManager.deviceType != .pencil || prismSessionManager.status == .connected {
+                                    Text("Color Clock").tag(4)
+                                    Text("Temp Clock").tag(5)
+                                }
                             }
 
                             .pickerStyle(.menu)

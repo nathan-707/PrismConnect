@@ -197,6 +197,12 @@
                 }
                 
                 
+                
+                if prismSessionManager.deviceType == .pencil {
+                    PencilHolderCustomView()
+                }
+                
+                
             }
         }
     }

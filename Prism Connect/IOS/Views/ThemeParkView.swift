@@ -16,7 +16,7 @@ struct ThemeParkView: View {
             Text(prismSessionManager.CurrentParkClockIsIn.fullLocationName())
                 .font(.title3).bold()
                 .padding(.bottom, 20)
-            teleportCityInfoView()
+            WeatherInfoView()
         }
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 let progressScale = 1.33
 
-let natePower = true
+let natePower = false
 
 struct Debug {
     let allowUpdateFromSettings = natePower

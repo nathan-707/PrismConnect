@@ -16,7 +16,7 @@ import SwiftUI
 let currentVersion = 2  // use this to force clock to update if app needs to.
 
 enum Views {
-    case connectedMainMenu, connectedLightEffects
+    case connectedMainMenu, connectedLightEffects, clockSetupWifiView
 }
 
 class ClockSessionManager: NSObject, ObservableObject {
@@ -27,6 +27,7 @@ class ClockSessionManager: NSObject, ObservableObject {
     @Published var failedGetHomeWeatherAttempts = 0
     @Published var reportWeatherError = false
     @Published var showConnectToPrismboxButton = false
+    @Published var status: WifiStatus = .nothing
 
     private var currentSystemTime: String {
         let formatter = DateFormatter()
@@ -162,6 +163,8 @@ class ClockSessionManager: NSObject, ObservableObject {
     @Published var searchingForClock = false
     @Published var reportConnection = false
     @Published var tryToTurnOnStandAloneMode: Bool = false
+    @Published var location: String = ""
+    @Published var hasGottenWeather: Bool = false
 
     // end of standalone vars.
     var virtualClock: VirtualColorClock?
@@ -226,9 +229,9 @@ class ClockSessionManager: NSObject, ObservableObject {
     private var rawTemperatureFahrenheit: Int = 0
 
     // future proofing
-    @Published var somethingICanUse1: Int = 0
-    @Published var somethingICanUse2: Int = 0
-    @Published var somethingICanUse3: Int = 0
+    @Published var deviceType: DeviceVersion = .stereo
+    @Published var pencilClock_internet_enabled = false
+    @Published var somethingICanUse2: Int = 0 // todo: use this as status of internet (connecting, connected, not connected, failed to connect with given creds)
 
     @Published var clockTime: String = ""
 
@@ -245,43 +248,17 @@ class ClockSessionManager: NSObject, ObservableObject {
         }
     }
 
-    func syncState(update: VisionInfo) {
-        if debug.printStateUpdates {
-            print("vision update")
-            print(update)
-        }
-
-        isAm = update.am
-        isDay = update.isDay
-        CurrentTeleportation = returnCityFromID(ID: update.city)
-        CurrentParkClockIsIn = matchParkIDtoPark(ID: update.park)
-        currentMode = Modes(rawValue: update.mode) ?? .home
-        clock_time_min = update.timeMin
-        clock_time_hour = update.timeHour
-        clock_weekDay = update.weekDay
-        clock_DOM = update.DOM
-        clock_month = update.month
-        clock_weather = WeatherLight.from(update.weather) ?? .CLEAR_DAY
-        rawTemperatureFahrenheit = update.temp
-        updateDisplayedTemperatureFromRaw()
-        pending = (update.visionP != 0)
-        tempClockColor = CGColor(
-            red: CGFloat(update.tempR) / 255,
-            green: CGFloat(update.tempG) / 255,
-            blue: CGFloat(update.tempB) / 255,
-            alpha: 1
-        )
-    }
 
     func syncState(update: ClockSettings) {
         if debug.printStateUpdates {
             print("setting update")
             print(update)
         }
-
-        somethingICanUse1 = update.e1
-        somethingICanUse2 = update.e2
-        somethingICanUse3 = update.e3
+        
+        deviceType = DeviceVersion(rawValue: update.e1) ?? .stereo
+        pencilClock_internet_enabled = (update.e2 != 0)
+        status = WifiStatus(rawValue: update.e3) ?? .neverConnected
+        print("status: ", status)
         currentMode = Modes(rawValue: update.mode) ?? .home
         clock_weather = WeatherLight.from(update.weather) ?? .CLEAR_DAY
         rawTemperatureFahrenheit = update.temp
@@ -308,6 +285,14 @@ class ClockSessionManager: NSObject, ObservableObject {
         customRed = update.cR
         customGreen = update.cG
         customBlue = update.cB
+                
+        location = update.loc ?? ""
+        hasGottenWeather = (update.gW != 0)
+        
+        print(location)
+        print(status)
+        
+        
         customColor = CGColor(
             red: CGFloat(update.cR) / 255,
             green: CGFloat(update.cG) / 255,
@@ -363,10 +348,12 @@ class ClockSessionManager: NSObject, ObservableObject {
     private var peripheral: CBPeripheral?
     private var clockSettingsCharacteristic: CBCharacteristic?
     private var vCharacteristic: CBCharacteristic?
+    private var pencilHolderCharacteristic: CBCharacteristic?
 
-    private static let vCharacteristic_UUID = "beb4538e-36e1-4688-b7f5-ea07361b26a8"
     private static let clockUpdateCharacteristicUUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8"
     private static let SERVICE_UUID = "E56A082E-C49B-47CA-A2AB-389127B8ABE3"
+    private static let pencilHolderCharacteristicUUID = "beb65483-36e1-4688-b7f5-ea07361b26a8"
+    
 
     #if os(iOS)
         var currentDice: ASAccessory?
@@ -804,6 +791,9 @@ class ClockSessionManager: NSObject, ObservableObject {
         let toESP = Command(command: nameOfSetting, value: value)
         peripheral.writeValue(encodeTOJSON(any: toESP), for: characteristic, type: .withResponse)
     }
+    
+    
+    
 
     func updateSettings(nameOfSetting: String, value: String) {
         guard let peripheral = peripheral,
@@ -1049,14 +1039,17 @@ extension ClockSessionManager: CBPeripheralDelegate {
                     }
                     ping()
                 }
+                
+                // --> ADDED: Discover and subscribe to the Pencil Holder characteristic
+                                if characteristic.uuid == CBUUID(string: Self.pencilHolderCharacteristicUUID) {
+                                    pencilHolderCharacteristic = characteristic
+                                    peripheral.setNotifyValue(true, for: characteristic)
+                                    print("✏️ Pencil Holder Characteristic Ready.")
+                                }
             }
         #endif
 
-        for characteristic in characteristics where characteristic.uuid == CBUUID(string: Self.vCharacteristic_UUID) {
-            vCharacteristic = characteristic
-            peripheral.setNotifyValue(true, for: characteristic)
-            print("Vision characteristic found")
-        }
+   
     }
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
@@ -1081,21 +1074,60 @@ extension ClockSessionManager: CBPeripheralDelegate {
                     print("ClockSettings Decoding error.")
                 }
             }
+        
+//        
+//        else if characteristic.uuid == CBUUID(string: Self.pencilHolderCharacteristicUUID) {
+//                print("read pencil characteristic")
+//                
+//                guard let data = characteristic.value else { return }
+//                
+//                if let stateUpdate = try? JSONDecoder().decode(PencilHolderSettings.self, from: data) {
+//                    if let decodedEffect = LightEffects(rawValue: stateUpdate.effect) {
+//                        print("Successfully decoded pencil effect: \(decodedEffect)")
+//                        
+//                        Task { @MainActor in
+//                            self.currentLightEffect = decodedEffect
+//                            self.customRed = stateUpdate.cR
+//                            self.customGreen = stateUpdate.cG
+//                            self.customBlue = stateUpdate.cB
+//                            self.masterEffect = MasterEffect(rawValue: stateUpdate.masterEffect) ?? .showW
+//                            self.status = WifiStatus(rawValue: stateUpdate.e3) ?? .neverConnected
+//                            self.autoBrightnessOn = (stateUpdate.aBr != 0)
+//                            self.brightness = stateUpdate.br
+//                            self.clock_weather = WeatherLight.from(stateUpdate.weather) ?? .CLEAR_DAY
+//                            self.clock_temperature = stateUpdate.temp
+//                            self.deviceType = DeviceVersion(rawValue: stateUpdate.e1) ?? .stereo
+//                            self.location = stateUpdate.loc
+//                            self.hasGottenWeather = (stateUpdate.gW != 0)
+//                            print("city: ")
+//                            print(stateUpdate.loc)
+//                            print("has gotten weather ", self.hasGottenWeather)
+//                                                        
+//                            customColor = CGColor(
+//                                red: CGFloat(stateUpdate.cR) / 255,
+//                                green: CGFloat(stateUpdate.cG) / 255,
+//                                blue: CGFloat(stateUpdate.cB) / 255,
+//                                alpha: 1
+//                            )
+//                            
+//                            tempClockColor = CGColor(
+//                                red: CGFloat(stateUpdate.tempR) / 255,
+//                                green: CGFloat(stateUpdate.tempG) / 255,
+//                                blue: CGFloat(stateUpdate.tempB) / 255,
+//                                alpha: 1
+//                            )
+//                        }
+//                    } else {
+//                        print("Received an unknown effect integer: \(stateUpdate.effect)")
+//                    }
+//                } else {
+//                    print("Failed to decode pencil settings JSON.")
+//                }
+//            }
+              
         #endif
 
-        #if os(visionOS)
-            if characteristic.uuid == CBUUID(string: Self.vCharacteristic_UUID) {
-                guard let data = characteristic.value else { return }
 
-                if let stateUpdate = try? JSONDecoder().decode(VisionInfo.self, from: data) {
-                    syncState(update: stateUpdate)
-                    authenticated = true
-                    if debug.printStateUpdates { print(stateUpdate) }
-                } else {
-                    print("Clock Info Decoding error.")
-                }
-            }
-        #endif
     }
 }
 

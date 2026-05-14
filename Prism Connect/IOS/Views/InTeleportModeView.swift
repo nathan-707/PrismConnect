@@ -23,7 +23,7 @@ struct InTeleportModeView: View {
             .bold()
             .padding(.bottom, 20)
 
-            teleportCityInfoView()
+            WeatherInfoView()
         }.onDisappear {
             #if os(iOS)
                 softImpact.impactOccurred()
@@ -33,7 +33,7 @@ struct InTeleportModeView: View {
     }
 }
 
-struct teleportCityInfoView: View {
+struct WeatherInfoView: View {
     @EnvironmentObject private var prismSessionManager: ClockSessionManager
     var body: some View {
         VStack {

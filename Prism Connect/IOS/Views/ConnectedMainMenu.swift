@@ -95,26 +95,37 @@ import WeatherKit
                             && !prismSessionManager.pending
                             || debug.testingSoDontShowSetup == true
                         {  // show home options.
-                            HStack {
-                                VStack {
-                                    TeleportButton()
-                                        .padding(.bottom, 5)
-                                        .padding(.horizontal, 15)
-
-                                    Text(
-                                        prismSessionManager.cityIsSelected
+                            
+                            if prismSessionManager.deviceType != .pencil {
+                                HStack {
+                                    VStack {
+                                        TeleportButton()
+                                            .padding(.bottom, 5)
+                                            .padding(.horizontal, 15)
+                                        
+                                        Text(
+                                            prismSessionManager.cityIsSelected
                                             ? prismSessionManager
                                                 .selectedTeleportCity
                                                 .nameForPicker()
                                             : prismSessionManager.selectedPark
                                                 .pickerName()
-                                    ).bold()
-                                        .foregroundColor(.green)
-                                        .padding(5)
+                                        ).bold()
+                                            .foregroundColor(.green)
+                                            .padding(5)
+                                    }
                                 }
                             }
+                            
+                            if prismSessionManager.deviceType == .pencil {
+                                
+                                Pencil_PickEffectView()
+                            } else {
+                                PickEffectView()
 
-                            PickEffectView()
+                                
+                            }
+
 
                         } else if prismSessionManager.currentMode
                             == .teleportMode && !prismSessionManager.pending
@@ -369,7 +380,14 @@ import WeatherKit
             }.sheet(isPresented: $settingsShown) {
                 Text("Settings").font(.title2).bold().padding(.top)
                 Divider()
-                ClockSettingsView()
+                
+            
+                 if prismSessionManager.deviceType == .pencil {
+                    Pencil_SettingsView()
+                } else {
+                    ClockSettingsView()
+                }
+                
             }
             .sheet(isPresented: $AsistantIsShown) {
                 Text("Prism Assistant").font(.title2).bold().padding(.top)
