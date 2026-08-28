@@ -364,6 +364,12 @@ class ClockSessionManager: NSObject, ObservableObject {
             let descriptor = ASDiscoveryDescriptor()
             descriptor.bluetoothServiceUUID = PrismDevice.pencilHolder.serviceUUID
 
+            // Tell ASK this accessory needs BLE bonding. Without this, ASK doesn't know a
+            // passkey is coming, so it never renders its own keypad screen — CoreBluetooth
+            // ends up raising the generic "would like to pair with your iPhone" alert
+            // instead, whenever a read happens to trip the peripheral's security request.
+            descriptor.supportedOptions = [.bluetoothPairingLE]
+
             return ASPickerDisplayItem(
                 name: PrismDevice.pencilHolder.displayName,
                 productImage: UIImage(named: PrismDevice.pencilHolder.productImageName)!,
@@ -374,13 +380,18 @@ class ClockSessionManager: NSObject, ObservableObject {
         private static let ClockPickerItem: ASPickerDisplayItem = {
             let descriptor = ASDiscoveryDescriptor()
             descriptor.bluetoothServiceUUID = PrismDevice.clock.serviceUUID
+
+            // See note above — this is what gives you ASK's passkey screen instead of the
+            // generic system pairing alert.
+            descriptor.supportedOptions = [.bluetoothPairingLE]
+
             return ASPickerDisplayItem(
                 name: PrismDevice.clock.displayName,
                 productImage: UIImage(named: PrismDevice.clock.productImageName)!,
                 descriptor: descriptor
             )
         }()
-    #endif
+    #endif  // os(iOS)
 
     // MARK: - Initialization
     override init() {
@@ -390,7 +401,7 @@ class ClockSessionManager: NSObject, ObservableObject {
                 on: DispatchQueue.main,
                 eventHandler: handleSessionEvent(event:)
             )
-        #endif
+        #endif  // os(iOS)
     }
     
     #if os(iOS)
@@ -419,7 +430,34 @@ class ClockSessionManager: NSObject, ObservableObject {
             
             UserDefaults.standard.set(registry, forKey: "PrismDeviceRegistry")
         }
-    
+
+        // MARK: - Authorization
+        // Both picker items use `.confirmAuthorization`, which parks the accessory in
+        // `.awaitingAuthorization` and holds the picker open until we call finishAuthorization.
+        // This MUST NOT depend on the accessory answering a read or write — that round trip is
+        // what blew past the authorization window on iOS 27. Call it the moment service
+        // discovery proves the hardware is ours.
+        @MainActor
+        private func finishAuthorizationIfNeeded() async {
+            guard let accessory = currentDice else {
+                print("finishAuthorization skipped: no current accessory.")
+                return
+            }
+
+            guard accessory.state == .awaitingAuthorization else {
+                // Already authorized, or never needed confirmation. Nothing to do.
+                return
+            }
+
+            do {
+                try await session.finishAuthorization(for: accessory, settings: .default)
+                print("✅ Authorization finished for \(accessory.displayName)")
+                authenticated = true
+            } catch {
+                print("❌ finishAuthorization failed: \(error.localizedDescription)")
+            }
+        }
+
         // MARK: - Accessory Switching
         func switchToKnownAccessory(accessory: ASAccessory) {
             print("Switching to \(accessory.displayName)...")
@@ -431,10 +469,13 @@ class ClockSessionManager: NSObject, ObservableObject {
                     disconnect()
                 }
                 
-                if authenticated {
-                    currentDice = accessory
-                    persistLastDevice(accessory: accessory)
-                }
+                // FIX (iOS 27): do NOT gate this on `authenticated`. During a real pairing
+                // `authenticated` is false, so currentDice was never set here — and
+                // centralManagerDidUpdateState reads currentDice?.bluetoothIdentifier to find
+                // the peripheral ASK queued for us. It only worked because savePrismBox
+                // happened to run immediately afterwards.
+                currentDice = accessory
+                persistLastDevice(accessory: accessory)
             
             if let targetDevice = targetDevice {
                 prismDevice = targetDevice
@@ -577,11 +618,6 @@ class ClockSessionManager: NSObject, ObservableObject {
         case .accessoryAdded, .accessoryChanged:
             guard let prismBox = event.accessory else { return }
             
-            
-            
-            
-            
-            
             // FIX: Stop the boot-spam loop!
             // We only want to auto-switch if we are actively pairing a new device,
             // or if we have absolutely nothing set.
@@ -619,6 +655,7 @@ class ClockSessionManager: NSObject, ObservableObject {
             
         case .pickerDidDismiss:
             pickerDismissed = true
+        
 //            authenticated = true // FIX: Reset this so we don't get stuck in pairing mode
             
         case .pickerSetupFailed:
@@ -632,7 +669,8 @@ class ClockSessionManager: NSObject, ObservableObject {
         default:
             print("Received event type \(event)")
         }
-    }    #endif
+    }
+    #endif  // os(iOS)
 
     // MARK: - Connection Management
     func connect() {
@@ -839,8 +877,9 @@ class ClockSessionManager: NSObject, ObservableObject {
             disconnectAndRetry()
             return
         }
-        
-        hasConnected = true
+
+        // hasConnected is no longer set here — it would defeat the picker guard in
+        // didDiscoverCharacteristicsFor, since ping() is called immediately after it.
 
         struct Command: Codable {
             var command = "ping"
@@ -921,7 +960,7 @@ extension ClockSessionManager: CBCentralManagerDelegate {
                         self.connect()
                     }
                 }
-            #endif
+            #endif  // os(iOS)
 
         default:
             // Optional: you might not want to nuke the peripheral on .background or .inactive states,
@@ -963,11 +1002,10 @@ extension ClockSessionManager: CBCentralManagerDelegate {
         peripheral.discoverServices(nil)
     }
 
-    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("Disconnected from peripheral: \(peripheral)")
-        peripheralConnected = false
-        isStandaloneMode = true
-    }
+    // NOTE: centralManager(_:didDisconnectPeripheral:error:) used to live here. It was
+    // deprecated in iOS 18, and when both signatures are implemented CoreBluetooth only
+    // calls the newer timestamp/isReconnecting one below — so this body was dead code on
+    // any modern iOS. Its state resets now live in that handler.
 
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("Failed to connect to peripheral: \(peripheral), error: \(error?.localizedDescription ?? "unknown error")")
@@ -987,6 +1025,16 @@ extension ClockSessionManager: CBCentralManagerDelegate {
         error: (any Error)?
     ) {
         print("Disconnected from peripheral: \(peripheral), timestamp: \(timestamp), isReconnecting: \(isReconnecting), error: \(error?.localizedDescription ?? "unknown error")")
+
+        peripheralConnected = false
+
+        // If CoreBluetooth is auto-reconnecting, don't drop the app into standalone mode —
+        // we'll get didConnect again shortly.
+        if !isReconnecting {
+            isStandaloneMode = true
+            clockSettingsCharacteristic = nil
+            pencilHolderCharacteristic = nil
+        }
     }
 }
 
@@ -999,6 +1047,8 @@ extension ClockSessionManager: CBPeripheralDelegate {
             return
         }
         
+        var verifiedPrismHardware = false
+
         for service in services {
             #if os(iOS)
                 // Register the hardware type permanently bypassing any custom user names
@@ -1006,15 +1056,27 @@ extension ClockSessionManager: CBPeripheralDelegate {
                     DispatchQueue.main.async { self.prismDevice = .clock }
                     registerDeviceType(for: peripheral.identifier, type: .clock)
                     print("Verified Hardware: This is a Clock")
+                    verifiedPrismHardware = true
                 } else if service.uuid == PrismDevice.pencilHolder.serviceUUID {
                     DispatchQueue.main.async { self.prismDevice = .pencilHolder }
                     registerDeviceType(for: peripheral.identifier, type: .pencilHolder)
                     print("Verified Hardware: This is a Pencil Holder")
+                    verifiedPrismHardware = true
                 }
-            #endif
+            #endif  // os(iOS)
 
             peripheral.discoverCharacteristics(nil, for: service)
         }
+
+        #if os(iOS)
+            // THE FIX: we have proven this is our hardware, so confirm authorization now.
+            // Waiting for the characteristic read to come back (the old behaviour) is what
+            // let ASK's authorization window expire on iOS 27, which removed the accessory
+            // and revoked our Bluetooth grant — the phantom "poweredOff" in the log.
+            if verifiedPrismHardware {
+                Task { await finishAuthorizationIfNeeded() }
+            }
+        #endif  // os(iOS)
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
@@ -1031,11 +1093,19 @@ extension ClockSessionManager: CBPeripheralDelegate {
                     peripheral.setNotifyValue(true, for: characteristic)
                     peripheral.readValue(for: characteristic)
                     print("✅ Characteristic Ready. Sending Ping...")
-                    hasConnected = true
+
+                    // FIX: don't flip ContentView into ManageDeviceView while the ASK picker
+                    // sheet is still on screen. Presenting over the picker is what the
+                    // AccessorySetupUI presenter was complaining about in the log. hasConnected
+                    // is also set in didUpdateValueFor once the box actually answers, which
+                    // covers the pairing case.
+                    if pickerDismissed, currentDice?.state != .awaitingAuthorization {
+                        hasConnected = true
+                    }
+
                     if !authenticated {
                         print("not authenticated...")
                         presentManagerDeviceView = false
-
                     }
                     ping()
                 }
@@ -1047,22 +1117,29 @@ extension ClockSessionManager: CBPeripheralDelegate {
                                     print("✏️ Pencil Holder Characteristic Ready.")
                                 }
             }
-        #endif
+        #endif  // os(iOS)
 
    
     }
 
+    // Diagnostic: tells you whether GATT writes are actually completing before authorization.
+    // If you see the ping write go out but never land here, writes are being blocked while the
+    // accessory is still .awaitingAuthorization — i.e. a deadlock rather than a slow race.
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        if let error {
+            print("❌ Write failed for \(characteristic.uuid): \(error.localizedDescription)")
+        } else {
+            print("↩︎ Write acknowledged for \(characteristic.uuid)")
+        }
+    }
+
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         #if os(iOS)
-            Task {
-                if let currentDice = currentDice {
-                    do {
-                        try await session.finishAuthorization(for: currentDice, settings: .default)
-                    } catch {
-                        print("Error finishing authorization: \(error.localizedDescription)")
-                    }
-                }
-            }
+            // REMOVED (iOS 27 fix): finishAuthorization used to run here, on every single
+            // characteristic update. That made authorization depend on the accessory
+            // answering — which is exactly the round trip that timed out — and it also
+            // re-authorized an already-authorized accessory forever after, throwing each
+            // time. Authorization now happens in didDiscoverServices.
 
             if characteristic.uuid == CBUUID(string: Self.clockUpdateCharacteristicUUID) {
                 guard let data = characteristic.value else { return }
@@ -1070,21 +1147,22 @@ extension ClockSessionManager: CBPeripheralDelegate {
                 if let stateUpdate = try? JSONDecoder().decode(ClockSettings.self, from: data) {
                     syncState(update: stateUpdate)
                     authenticated = true
+                    hasConnected = true
                 } else {
                     print("ClockSettings Decoding error.")
                 }
             }
         
-//        
+//
 //        else if characteristic.uuid == CBUUID(string: Self.pencilHolderCharacteristicUUID) {
 //                print("read pencil characteristic")
-//                
+//
 //                guard let data = characteristic.value else { return }
-//                
+//
 //                if let stateUpdate = try? JSONDecoder().decode(PencilHolderSettings.self, from: data) {
 //                    if let decodedEffect = LightEffects(rawValue: stateUpdate.effect) {
 //                        print("Successfully decoded pencil effect: \(decodedEffect)")
-//                        
+//
 //                        Task { @MainActor in
 //                            self.currentLightEffect = decodedEffect
 //                            self.customRed = stateUpdate.cR
@@ -1102,14 +1180,14 @@ extension ClockSessionManager: CBPeripheralDelegate {
 //                            print("city: ")
 //                            print(stateUpdate.loc)
 //                            print("has gotten weather ", self.hasGottenWeather)
-//                                                        
+//
 //                            customColor = CGColor(
 //                                red: CGFloat(stateUpdate.cR) / 255,
 //                                green: CGFloat(stateUpdate.cG) / 255,
 //                                blue: CGFloat(stateUpdate.cB) / 255,
 //                                alpha: 1
 //                            )
-//                            
+//
 //                            tempClockColor = CGColor(
 //                                red: CGFloat(stateUpdate.tempR) / 255,
 //                                green: CGFloat(stateUpdate.tempG) / 255,
@@ -1125,7 +1203,7 @@ extension ClockSessionManager: CBPeripheralDelegate {
 //                }
 //            }
               
-        #endif
+        #endif  // os(iOS)
 
 
     }
@@ -1156,3 +1234,4 @@ extension Int {
 func returnSecondsFrom(min: Int) -> Double {
     return Double(min * 60)
 }
+
