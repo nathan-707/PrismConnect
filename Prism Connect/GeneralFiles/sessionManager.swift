@@ -144,9 +144,58 @@ class ClockSessionManager: NSObject, ObservableObject {
         }
     }
     
-    func disconnectAndRetry(){
-        print("Cannot write: Peripheral or characteristic unavailable, or not writable. disconnecting and reconneting to try to fix.")
-        return
+    /// Called from every write guard when the peripheral or characteristic isn't usable.
+    /// This used to just print and return, so all 11 call sites silently dropped their
+    /// command while logging that they were reconnecting. It now actually bounces the link
+    /// and reconnects, throttled so a burst of failed writes can't cause a reconnect storm.
+    func disconnectAndRetry() {
+        print("Cannot write: peripheral or characteristic unavailable. Attempting reconnect...")
+
+        if let last = lastReconnectAttempt, Date().timeIntervalSince(last) < 5 {
+            print("Reconnect throttled (last attempt \(Int(Date().timeIntervalSince(last)))s ago).")
+            return
+        }
+
+        guard let manager, manager.state == .poweredOn else {
+            print("Reconnect skipped: Bluetooth is not powered on.")
+            return
+        }
+
+        lastReconnectAttempt = Date()
+
+        #if os(visionOS)
+            // visionOS finds its clock by scanning, not through AccessorySetupKit, so tearing
+            // the peripheral down here has to be paired with restarting discovery — otherwise
+            // there's nothing to reconnect to.
+            clearActivePeripheral()
+            manager.scanForPeripherals(
+                withServices: [CBUUID(string: ClockSessionManager.SERVICE_UUID)],
+                options: nil
+            )
+        #endif
+
+        #if os(iOS)
+            clearActivePeripheral()
+
+            guard let uuid = currentDice?.bluetoothIdentifier else {
+                print("Reconnect skipped: no current accessory to reconnect to.")
+                return
+            }
+
+            // Let the cancel settle before asking for the peripheral back.
+            Task { @MainActor [weak self] in
+                try? await Task.sleep(for: .milliseconds(500))
+                guard let self, let manager = self.manager else { return }
+
+                if let retrieved = manager.retrievePeripherals(withIdentifiers: [uuid]).first {
+                    self.peripheral = retrieved
+                    self.peripheral?.delegate = self
+                    self.connect()
+                } else {
+                    print("Reconnect failed: peripheral not retrievable (out of range?).")
+                }
+            }
+        #endif
     }
 
     // standalone.
@@ -350,6 +399,15 @@ class ClockSessionManager: NSObject, ObservableObject {
     private var vCharacteristic: CBCharacteristic?
     private var pencilHolderCharacteristic: CBCharacteristic?
 
+    /// Throttle for disconnectAndRetry() so a burst of failed writes can't storm reconnects.
+    private var lastReconnectAttempt: Date?
+    /// CoreBluetooth's connect() never times out by design. This is our own deadline.
+    private var connectWatchdog: Task<Void, Never>?
+    #if os(iOS)
+        /// Last-resort authorization so a failed connect can't leave ASK spinning forever.
+        private var authorizationFallback: Task<Void, Never>?
+    #endif
+
     private static let clockUpdateCharacteristicUUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8"
     private static let SERVICE_UUID = "E56A082E-C49B-47CA-A2AB-389127B8ABE3"
     private static let pencilHolderCharacteristicUUID = "beb65483-36e1-4688-b7f5-ea07361b26a8"
@@ -446,12 +504,14 @@ class ClockSessionManager: NSObject, ObservableObject {
 
             guard accessory.state == .awaitingAuthorization else {
                 // Already authorized, or never needed confirmation. Nothing to do.
+                authorizationFallback?.cancel()
                 return
             }
 
             do {
                 try await session.finishAuthorization(for: accessory, settings: .default)
                 print("✅ Authorization finished for \(accessory.displayName)")
+                authorizationFallback?.cancel()
                 authenticated = true
             } catch {
                 print("❌ finishAuthorization failed: \(error.localizedDescription)")
@@ -464,10 +524,10 @@ class ClockSessionManager: NSObject, ObservableObject {
 
                 let targetDevice = getDeviceType(for: accessory.bluetoothIdentifier)
                 
-                // FIX: Cancel any existing or pending connections before overwriting
-                if self.peripheral != nil {
-                    disconnect()
-                }
+                // FIX: fully tear down the old link before overwriting. disconnect() alone
+                // left `peripheral` pointing at the previous box, which stranded the switch
+                // whenever Bluetooth wasn't powered on yet.
+                clearActivePeripheral()
                 
                 // FIX (iOS 27): do NOT gate this on `authenticated`. During a real pairing
                 // `authenticated` is false, so currentDice was never set here — and
@@ -530,7 +590,7 @@ class ClockSessionManager: NSObject, ObservableObject {
 
             guard let finalAccessory = targetAccessory else { return }
 
-            if peripheralConnected { disconnect() }
+            clearActivePeripheral()
 
             currentDice = finalAccessory
             persistLastDevice(accessory: finalAccessory)
@@ -570,17 +630,20 @@ class ClockSessionManager: NSObject, ObservableObject {
             guard let currentDice = currentDice else { return }
             let deviceUUIDToRemove = currentDice.bluetoothIdentifier?.uuidString
 
-            if peripheralConnected {
-                disconnect()
-            }
+            clearActivePeripheral()
 
-            session.removeAccessory(currentDice) { _ in
+            session.removeAccessory(currentDice) { error in
+                if let error {
+                    print("❌ removeAccessory failed: \(error.localizedDescription)")
+                    return  // Don't tear down local state for a removal that didn't happen.
+                }
+
                 if let savedString = UserDefaults.standard.string(forKey: "lastConnectedDeviceUUID"),
                    let currentUUIDString = deviceUUIDToRemove,
                    savedString == currentUUIDString {
                     UserDefaults.standard.removeObject(forKey: "lastConnectedDeviceUUID")
                 }
-                
+
                 // Clear from registry
                 if let uuidStr = deviceUUIDToRemove {
                     var registry = UserDefaults.standard.dictionary(forKey: "PrismDeviceRegistry") as? [String: String] ?? [:]
@@ -590,7 +653,41 @@ class ClockSessionManager: NSObject, ObservableObject {
 
                 self.prismDevice = nil
                 self.currentDice = nil
-                self.manager = nil
+
+                // Keep the central manager alive — nil'ing it left connect()/disconnect()
+                // permanently inert. Instead, fall back to another paired box if one exists,
+                // so removing one of two devices doesn't drop the user to "No PrismBox".
+                if let next = self.session.accessories.first {
+                    print("Falling back to remaining accessory: \(next.displayName)")
+                    self.switchToKnownAccessory(accessory: next)
+                } else {
+                    self.hasConnected = false
+                }
+            }
+        }
+
+        /// Safety net against the infinite "Pairing accessory" spinner.
+        ///
+        /// The normal path authorizes from didDiscoverServices. But if the connection to the
+        /// new box fails, or discovery never returns, that never runs and ASK spins forever
+        /// with no way out. This authorizes anyway after a grace period.
+        ///
+        /// Skipping our own verification is safe here: ASK only ever offers accessories that
+        /// already matched the descriptor's private service UUID, so it is a PrismBox.
+        private func scheduleAuthorizationFallback(for accessory: ASAccessory) {
+            authorizationFallback?.cancel()
+            authorizationFallback = Task { @MainActor [weak self] in
+                try? await Task.sleep(for: .seconds(12))
+                guard !Task.isCancelled, let self else { return }
+                guard accessory.state == .awaitingAuthorization else { return }
+
+                print("⏱️ Service discovery didn't authorize in time — authorizing anyway.")
+                do {
+                    try await self.session.finishAuthorization(for: accessory, settings: .default)
+                    self.authenticated = true
+                } catch {
+                    print("❌ Fallback finishAuthorization failed: \(error.localizedDescription)")
+                }
             }
         }
 
@@ -618,12 +715,19 @@ class ClockSessionManager: NSObject, ObservableObject {
         case .accessoryAdded, .accessoryChanged:
             guard let prismBox = event.accessory else { return }
             
-            // FIX: Stop the boot-spam loop!
-            // We only want to auto-switch if we are actively pairing a new device,
-            // or if we have absolutely nothing set.
-            if authenticated == false || currentDice == nil {
+            // Stop the boot-spam loop, but never at the cost of an in-flight pairing.
+            //
+            // This used to read `authenticated == false || currentDice == nil`, which only
+            // worked for the FIRST box: after that currentDice is set and `authenticated`
+            // is true, so adding a second box fell into the else branch and we never
+            // authorized it — ASK sat on "Pairing accessory" forever waiting on us.
+            //
+            // `.awaitingAuthorization` is ASK's own statement that it is blocked on this
+            // app, so key off that rather than a flag we maintain by hand.
+            if prismBox.state == .awaitingAuthorization || currentDice == nil {
                 switchToKnownAccessory(accessory: prismBox)
                 savePrismBox(prismBox: prismBox)
+                scheduleAuthorizationFallback(for: prismBox)
             } else {
                 // Keep the reference fresh if it's the active device, but don't hijack the connection
                 if currentDice?.bluetoothIdentifier == prismBox.bluetoothIdentifier {
@@ -655,12 +759,18 @@ class ClockSessionManager: NSObject, ObservableObject {
             
         case .pickerDidDismiss:
             pickerDismissed = true
-        
-//            authenticated = true // FIX: Reset this so we don't get stuck in pairing mode
-            
+
+            // If the user backed out of the picker, clear the pairing flag or ContentView
+            // stays pinned on the setup screen forever (it gates on pickerDismissed &&
+            // authenticated). Skip it if an authorization is genuinely still in flight.
+            if currentDice?.state != .awaitingAuthorization {
+                authenticated = true
+            }
+
         case .pickerSetupFailed:
-//            authenticated = true
             print("Picker setup failed.")
+            // Setup failed, so nothing is awaiting authorization — don't leave the app stuck.
+            authenticated = true
             
         case .invalidated:
             print("Session invalidated")
@@ -678,15 +788,52 @@ class ClockSessionManager: NSObject, ObservableObject {
             return
         }
         manager.connect(peripheral)
+        startConnectWatchdog(for: peripheral)
     }
 
     func disconnect() {
         guard let peripheral = peripheral, let manager = manager else { return }
         peripheralConnected = false
-        
+        connectWatchdog?.cancel()
+
         // CoreBluetooth safely ignores this if it's already disconnected,
         // but it will properly abort a 'connecting' state.
         manager.cancelPeripheralConnection(peripheral)
+    }
+
+    /// Tears the current link down AND forgets what it was pointing at.
+    ///
+    /// Use this instead of disconnect() whenever we're switching to a different accessory.
+    /// disconnect() leaves `peripheral` pointing at the old box, which makes the
+    /// `self.peripheral == nil` guard in centralManagerDidUpdateState skip the reconnect —
+    /// so a switch made while Bluetooth wasn't powered on would silently never happen.
+    private func clearActivePeripheral() {
+        connectWatchdog?.cancel()
+
+        if let peripheral, let manager {
+            manager.cancelPeripheralConnection(peripheral)
+        }
+
+        peripheral = nil
+        peripheralConnected = false
+        clockSettingsCharacteristic = nil
+        pencilHolderCharacteristic = nil
+    }
+
+    /// CoreBluetooth's connect() waits forever if the box is off or out of range, and
+    /// didFailToConnect never fires in that case. Without this the app just sits there.
+    private func startConnectWatchdog(for target: CBPeripheral) {
+        connectWatchdog?.cancel()
+        connectWatchdog = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .seconds(20))
+            guard !Task.isCancelled, let self else { return }
+            guard self.peripheralConnected == false,
+                  self.peripheral?.identifier == target.identifier else { return }
+
+            print("⏱️ Connect timed out for \(target.identifier). Giving up.")
+            self.manager?.cancelPeripheralConnection(target)
+            self.isStandaloneMode = true
+        }
     }
 
     // MARK: - Accessory Session Functions
@@ -963,10 +1110,13 @@ extension ClockSessionManager: CBCentralManagerDelegate {
             #endif  // os(iOS)
 
         default:
-            // Optional: you might not want to nuke the peripheral on .background or .inactive states,
-            // but definitely do it on .poweredOff
+            // Note: under AccessorySetupKit a "poweredOff" here often isn't the user's radio
+            // at all — it's ASK revoking our Bluetooth grant. Either way the link is gone,
+            // so clear everything that describes it rather than just the peripheral (which
+            // used to leave peripheralConnected == true and the UI claiming it was live).
             if central.state == .poweredOff {
-                peripheral = nil
+                clearActivePeripheral()
+                isStandaloneMode = true
             }
         }
     }
@@ -994,7 +1144,15 @@ extension ClockSessionManager: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        // Ignore callbacks for a box we've already switched away from. Without this, a late
+        // event from the previous accessory stomps the state of the new one.
+        guard peripheral.identifier == self.peripheral?.identifier else {
+            print("Ignoring didConnect from stale peripheral \(peripheral.identifier)")
+            return
+        }
+
         print("Connected to: \(peripheral.name ?? "Unknown")")
+        connectWatchdog?.cancel()
         peripheral.delegate = self
         peripheralConnected = true
 
@@ -1008,13 +1166,15 @@ extension ClockSessionManager: CBCentralManagerDelegate {
     // any modern iOS. Its state resets now live in that handler.
 
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        guard peripheral.identifier == self.peripheral?.identifier else {
+            print("Ignoring didFailToConnect from stale peripheral \(peripheral.identifier)")
+            return
+        }
+
         print("Failed to connect to peripheral: \(peripheral), error: \(error?.localizedDescription ?? "unknown error")")
-        
-//        if let currentDice = currentDice {
-//            switchToKnownAccessory(accessory: currentDice)
-//        }
-        
-        
+        connectWatchdog?.cancel()
+        peripheralConnected = false
+        isStandaloneMode = true
     }
 
     func centralManager(
@@ -1024,6 +1184,15 @@ extension ClockSessionManager: CBCentralManagerDelegate {
         isReconnecting: Bool,
         error: (any Error)?
     ) {
+        // Critical when switching boxes: switchToKnownAccessory() cancels the old link and
+        // connects to the new one in the same run loop, so the OLD box's disconnect can land
+        // after the NEW one is already up. Without this guard it would wipe the new
+        // connection's characteristics and flip the app to standalone.
+        guard peripheral.identifier == self.peripheral?.identifier else {
+            print("Ignoring didDisconnect from stale peripheral \(peripheral.identifier)")
+            return
+        }
+
         print("Disconnected from peripheral: \(peripheral), timestamp: \(timestamp), isReconnecting: \(isReconnecting), error: \(error?.localizedDescription ?? "unknown error")")
 
         peripheralConnected = false

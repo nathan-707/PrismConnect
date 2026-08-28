@@ -28,8 +28,10 @@ struct ManageDeviceView: View {
             
             Button {
                 heavyImpact.impactOccurred()
+                // NOTE: `authenticated = false` used to be set here by hand. ASK's
+                // .pickerSetupPairing event already does that, and if the user backed out of
+                // the picker nothing ever set it back — which pinned the app on this screen.
                 prismSessionManager.presentPicker()
-                prismSessionManager.authenticated = false
             } label: {
                 Label("Add Device", systemImage: "plus.circle.fill")
             }
