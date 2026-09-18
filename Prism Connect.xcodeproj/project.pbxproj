@@ -780,9 +780,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
-				"MARKETING_VERSION[sdk=iphone*]" = 1.3;
-				"MARKETING_VERSION[sdk=xr*]" = 1.3;
+				MARKETING_VERSION = 1.4;
+				"MARKETING_VERSION[sdk=iphone*]" = 1.4;
+				"MARKETING_VERSION[sdk=xr*]" = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.loosestudios.virtualskies;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.loosestudios.prismConnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -826,9 +826,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
-				"MARKETING_VERSION[sdk=iphone*]" = 1.3;
-				"MARKETING_VERSION[sdk=xr*]" = 1.3;
+				MARKETING_VERSION = 1.4;
+				"MARKETING_VERSION[sdk=iphone*]" = 1.4;
+				"MARKETING_VERSION[sdk=xr*]" = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.loosestudios.virtualskies;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.loosestudios.prismConnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
